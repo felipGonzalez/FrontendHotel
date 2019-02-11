@@ -1,0 +1,17 @@
+.clear{
+    margin: 15px;
+}
+
+.required{
+  color: red;
+  font-weight: bolder;
+}
+
+.main-form{
+  margin: 0 auto;
+  width: 70%;
+}
+
+.btn-save{
+  margin-left: 45%;
+}

@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar><a href="#" id="a_mat_toolbar">Menu</a> </mat-toolbar>
+    <mat-nav-list>
+      <button class="btn_new_reserve" [routerLink]="['/nuevaReserva']" >Nueva reserva</button>
+      <hr>
+      <a mat-list-item [routerLink]="['/dashboard']"   >Dashboard</a>
+      <hr>
+      <a mat-list-item [routerLink]="['/reserva']">Reservas</a>
+      <hr>
+      <a mat-list-item [routerLink]="['/tarifa']">Tarifas</a>
+      <hr>
+      <a mat-list-item [routerLink]="['/user']">Clientes</a>
+      <hr>
+      <a mat-list-item [routerLink]="['/inventario']">Inventario</a>
+      <hr>
+      <a mat-list-item [routerLink]="['/reservaOnline']">Reservas Online</a>
+      <hr>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <mat-toolbar-row>
+        <span><h1>Yeimar</h1></span>
+        <span class="example-spacer"></span>
+        <button mat-button class="link-btn" [matMenuTriggerFor]="option">Opciones </button>
+        <mat-menu #option="matMenu">
+        <button mat-menu-item  [routerLink]="['/establecimiento']">Mi Establecimiento</button>
+        <button mat-menu-item [routerLink]="['/configuracion']" >Configurar</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="manager">Administrador</button>
+        <mat-menu #manager="matMenu">
+        <button mat-menu-item [routerLink]="['/admin']">Datos de usuario</button>
+        <button mat-menu-item [routerLink]="['/contrasena']">Cambiar contraseña</button>
+        <button mat-menu-item>Cerrar sesión</button>
+        </mat-menu>
+        <button mat-button [routerLink]="['/reservaOnline']" [matMenuTriggerFor]="help">Ayuda</button>
+        <mat-menu #help="matMenu">
+        <button mat-menu-item>Manual</button>
+        <button mat-menu-item>Primeros pasos</button>
+        </mat-menu>
+      </mat-toolbar-row>
+
+    </mat-toolbar>
+
+
+    <div class="Conteiner">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

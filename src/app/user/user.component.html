@@ -1,0 +1,29 @@
+<h1>Usuario Registrados</h1>
+<button type="button" [routerLink]="['/createUserComponent']" class="btn btn-success">Agregar Usuario</button>
+<div class="clear"  ></div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Primer Nombre</th>
+      <th scope="col">Segundo Nombre</th>
+      <th scope="col">Primer Apellido</th>
+      <th scope="col">Segundo Apellido</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of users">
+      <td>{{item.firstName}}</td>
+      <td>{{item.secondName}}</td>
+      <td>{{item.firstSurname}}</td>
+      <td>{{item.secondSurname}}</td>
+      <td>{{item.phone}}</td>
+      <td>{{item.address}}</td>
+      <td><img src="../../assets/edit.png" class="editIcon" (click)="edit(item)"></td>
+    </tr>
+
+  </tbody>
+</table>
+
