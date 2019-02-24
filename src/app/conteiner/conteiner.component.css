@@ -25,9 +25,13 @@
   text-decoration: none;
 }
 
+.mat-toolbar-row{
+  background-color: #337ab7;
+}
+
 .btn_new_reserve{
   margin-left: 15px;
-  background-color: #3f51b5;
+  background-color: #337ab7;
   font-size: 1.7em;
   color: white;
   border: 0;
@@ -38,7 +42,7 @@
 
 .mat-list-item{
 
-  color: #3f51b5;
+  color: #337ab7;
 
 }
 

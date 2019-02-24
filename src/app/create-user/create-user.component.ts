@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { UserModel } from '../model/UserModel';
 import { CreateUserService } from './create-user.service';
 import { OK } from '../model/httpStatus';
+import { TypeDocument } from '../model/TypeDocument';
+import { FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-create-user',
@@ -16,6 +19,10 @@ export class CreateUserComponent implements OnInit {
   private  user: UserModel;
   private isValid: boolean;
   private message: string;
+  private typeDocuments: Array<TypeDocument>;
+
+  userControl = new FormControl('', [Validators.required]);
+  selectFormControl = new FormControl('', Validators.required);
 
   constructor(private createUserService: CreateUserService,
     private router: Router ) {
@@ -30,12 +37,24 @@ export class CreateUserComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.loadTypeDocument();
+
+
+  }
+
+  private loadTypeDocument(): void {
+    this.createUserService.getTypeDocument().subscribe(res => {
+      this.typeDocuments = res;
+      console.log(this.typeDocuments);
+    },
+      (error: any)  => this.typeDocuments = []
+    );
   }
 
   public saveOurUpdate(): void {
     this.isValid = this.createUserService.validate(this.user);
     if (this.isValid) {
-      this.createUserService.saveOurUpdate(this.user).subscribe(res =>{
+       this.createUserService.saveOurUpdate(this.user).subscribe(res => {
        if (res.responseCode === OK) {
         this.router.navigate(['/userComponent']);
        } else {
@@ -47,5 +66,10 @@ export class CreateUserComponent implements OnInit {
       this.message = 'Los campos son obligatorios';
     }
    }
+
+   onChange(event) {
+    console.log(event)
+  }
+
 
 }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { RestResponse } from '../model/RestResponse.model';
 import { UserModel } from '../model/UserModel';
+import { TypeDocument } from '../model/TypeDocument';
 
 @Injectable({
   providedIn: 'root'
@@ -18,23 +19,25 @@ export class CreateUserService {
 
   public validate(user: UserModel): boolean {
     let isValid = true;
-
-
-
-    if ( !user.firstSurname) {
+    console.log(user.idTypeDocument);
+    if ( !user.lastName) {
       isValid = false;
     }
-
-    if ( !user.address) {
+    if ( !user.city) {
        isValid = false;
     }
-    user.passwordUser = "21321321";
-    console.log(user.phone);
-
     return isValid;
-  }
+    }
 
   public saveOurUpdate(user: UserModel): Observable<RestResponse> {
-    return this.http.post<RestResponse>( 'http://localhost:8080/list/users' , user);
+    console.log(user.password);
+
+    return this.http.post<RestResponse>( 'http://localhost:8080/listUser' , user);
   }
+
+  public getTypeDocument(): Observable<TypeDocument[]> {
+    return this.http.get<TypeDocument[]>('http://localhost:8080/listTypeDocument');
+  }
+
+
 }

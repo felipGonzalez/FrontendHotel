@@ -15,9 +15,8 @@ import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 
-
 const routes: Routes = [
-
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {path: 'user', component: UserComponent},
   {path: 'createUserComponent', component: CreateUserComponent},
   {path: 'admin', component: AdminComponent},

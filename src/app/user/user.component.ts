@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import { UserService } from './user.service';
 import { UserModel } from '../model/UserModel';
+
 
 
 @Component({
@@ -15,8 +16,12 @@ export class UserComponent implements OnInit {
 
   private users: Array<UserModel>;
 
+
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router) {
+                sessionStorage.clear();
+
+               }
 
   ngOnInit() {
     this.loadUsers();
@@ -25,8 +30,7 @@ export class UserComponent implements OnInit {
   private loadUsers(): void {
     this.userService.getUser().subscribe(res => {
       this.users = res;
-
-    },
+     },
       (error: any)  => this.users = []
     );
   }

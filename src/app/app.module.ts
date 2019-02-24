@@ -1,16 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule } from '@angular/platform-browser';
+import {NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import {FormsModule} from '@angular/forms';
+import {AppRoutingModule } from './app-routing.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http/';
+
 
 import { AppComponent } from './app.component';
 import {AngularMaterial} from './angular.material';
 import { ConteinerComponent } from './conteiner/conteiner.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule} from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule,
+MatSelectModule} from '@angular/material';
 
 
 import { UserComponent } from './user/user.component';
@@ -60,8 +62,10 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
     MatIconModule,
     MatListModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

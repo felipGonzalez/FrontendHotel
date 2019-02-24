@@ -1,43 +1,51 @@
-<div class="clear" ></div>
+<div class="conteiner">
+    <h1 class ="title" >Usuarios</h1>
+    <form action="/action_page.php" class="main-form" >
+      <div *ngIf="!isValid"  class="alert alert-danger" role="alert">
+        <strong>Tenemos un error!</strong> {{ message }}
+      </div>
+      <div class="form-group">
+        <label for="firstName"> <span class="required" >*</span>Nombres:</label>
+        <input type="text" class="form-control" name="firstName"  id="firstName" [(ngModel)]="user.firstName"  placeholder="Ingrese su Primer Nombre">
+      </div>
+      <div class="form-group">
+        <label for="firstSurName"><span class="required"  >*</span>Apellidos:</label>
+        <input type="text" class="form-control"  name="firstSurName" id="firstSurName" [(ngModel)]="user.lastName " placeholder="Ingrese su Primer Apellido">
+      </div>
 
-<h1 >Crear Nuevo Usuario</h1>
+      <h4>Tipo de Documento</h4>
+      <mat-form-field>
+        <mat-select placeholder="Tipo de Documento"     [formControl]="userControl"  [(ngModel)] = "user.idTypeDocument" required>
+          <mat-option >Seleccione el tipo de documento</mat-option>
+          <mat-option *ngFor="let document of typeDocuments" [value]="document.id"  >
+             {{document.nombre_tipo}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="userControl.hasError('required')">Por favor, ingrese su tipo de documento</mat-error>
+      </mat-form-field>
 
+      <div class="form-group">
+        <label for="phone"><span class="required"  >*</span>Documento</label>
+        <input type="tel " class="form-control"  name="document"  id="document" [(ngModel)]="user.document" placeholder="Ingrese su Documento">
+      </div>
 
-<form action="/action_page.php" class="main-form" >
-  <div *ngIf="!isValid"  class="alert alert-danger" role="alert">
-    <strong>Oh snap!</strong> {{message}}
-  </div>
-  <div class="form-group">
-    <label for="firstName"> <span class="required" >*</span> Primer Nombre:</label>
-    <input type="text" class="form-control" name="firstName"  id="firstName" [(ngModel)]="user.firstName"  placeholder="Ingrese su Primer Nombre">
-  </div>
-  <div class="form-group">
-    <label for="secondName">Segundo Nombre:</label>
-    <input type="text" class="form-control" name="secondName"  id="secondName" [(ngModel)]="user.secondName" placeholder="Ingrese su segundo nombre">
-  </div>
-  <div class="form-group">
-    <label for="firstSurName"><span class="required"  >*</span>Primer Apellido:</label>
-    <input type="text" class="form-control"  name="firstSurName" id="firstSurName" [(ngModel)]="user.firstSurname " placeholder="Ingrese su Primer Apellido">
-  </div>
-  <div class="form-group">
-    <label for="secondtSurName">Segundo Apellido:</label>
-    <input type="text" class="form-control" name="secondtSurName"  id="secondtSurName" [(ngModel)]="user.secondSurname" placeholder="Ingrese su Segundo Apellido">
-  </div>
+      <div class="form-group">
+        <label for="phone"><span class="required"  >*</span>Teléfono</label>
+        <input type="tel" class="form-control"  name="phone"  id="phone" [(ngModel)]="user.phone" placeholder="Ingrese su Teléfono">
+      </div>
+      <div class="form-group">
+        <label for="adrees"><span class="required"  >*</span>Ciudad</label>
+        <input type="text" class="form-control" name="adrees"  id="adrees" [(ngModel)]="user.city" placeholder="Ingrese su Dirreción">
+      </div>
 
-  <div class="form-group">
-    <label for="phone"><span class="required"  >*</span>Documento</label>
-    <input type="tel " class="form-control"  name="document"  id="document" [(ngModel)]="user.document" placeholder="Ingrese su Documento">
-  </div>
+      <div class="form-group">
+        <label for="adrees"><span class="required"  >*</span>Email</label>
+        <input type="email" class="form-control" name="adrees"  id="adrees" [(ngModel)]="user.email" placeholder="Ingrese su Dirreción">
+      </div>
 
-  <div class="form-group">
-    <label for="phone"><span class="required"  >*</span>Teléfono</label>
-    <input type="tel" class="form-control"  name="phone"  id="phone" [(ngModel)]="user.phone" placeholder="Ingrese su Teléfono">
-  </div>
-  <div class="form-group">
-    <label for="adrees"><span class="required"  >*</span>Dirreción</label>
-    <input type="text" class="form-control" name="adrees"  id="adrees" [(ngModel)]="user.address" placeholder="Ingrese su Dirreción">
-  </div>
+      <button type="submit" (click)="saveOurUpdate()"  class="btn btn-primary btn-save">Guardar</button>
+      <button type="button" [routerLink]="['/user']" class="btn btn-success" >Cancelar</button>
+    </form>
 
-  <button type="submit" (click)="saveOurUpdate()"  class="btn btn-primary btn-save">Guardar</button>
-  <button type="button" [routerLink]="['/user']" class="btn btn-success">Cancelar</button>
-</form>
+</div>
+
