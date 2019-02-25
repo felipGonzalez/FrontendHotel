@@ -45,10 +45,10 @@
         <button mat-menu-item [routerLink]="['/contrasena']">Cambiar contraseña</button>
         <button mat-menu-item>Cerrar sesión</button>
         </mat-menu>
-        <button mat-button [routerLink]="['/reservaOnline']" [matMenuTriggerFor]="help">Ayuda</button>
+        <button mat-button [routerLink]="['/*']" [matMenuTriggerFor]="help">Ayuda</button>
         <mat-menu #help="matMenu">
         <button mat-menu-item>Manual</button>
-        <button mat-menu-item>Primeros pasos</button>
+        <button mat-menu-item [routerLink]="['/primerosPasos']">Primeros pasos</button>
         </mat-menu>
       </mat-toolbar-row>
 

@@ -1,0 +1,17 @@
+.tittle{
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.editTittle, .others{
+    margin-top: 2%;
+}
+
+a {
+    color: blue;
+}
+
+.li{
+  display: list-item;
+  text-align: -webkit-match-parent;
+}

@@ -1,3 +1,21 @@
-<p>
-  contrasena works!
-</p>
+<div class="clear" ></div>
+
+<h1 >Datos de usuario</h1>
+
+
+<form action="/action_page.php" class="main-form" >
+  <div class="form-group">
+    <label for="actual"> <span class="required" >*</span>Contraseña actual</label>
+    <input type="password" class="form-control" >
+  </div>
+  <div class="form-group">
+      <label for="actual"> <span class="required" >*</span>Nueva contraseña</label>
+      <input type="password" class="form-control" >
+    </div>
+    <div class="form-group">
+        <label for="actual"> <span class="required" >*</span>Repetir contraseña</label>
+        <input type="password" class="form-control" >
+      </div>
+  <button type="submit"  class="btn btn-primary btn-save">Guardar</button>
+  <button type="button" [routerLink]="['/']" class="btn btn-success" >Cancelar</button>
+</form>

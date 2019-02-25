@@ -4,20 +4,33 @@
 
 
     <div class="row">
-        <div class="col-xs-12 col-xl-6 card">
-            <button type="button" class="btn btn-primary btn-lg ">Datos del hotel</button>
-          </div>
-          <div class=" col-xs-12 col-xl-6 card">
-            <button type="button" class="btn btn-primary btn-lg">Habitaciones</button>
+        <div class="col-xs-12 col-xl-12 card">
+            <button type="button" [routerLink]="['/datosHotel']"  class="btn btn-primary btn-lg btn-data-hotel">Datos del hotel</button>
           </div>
           <div class="col-xs-12 col-xl-6 card">
-            <button type="button" class="btn btn-primary btn-lg">Tipos de habitaciones</button>
-
+              <button type="button" class="btn btn-primary btn-lg">Tipos de habitaciones</button>
           </div>
+
+          <div class=" col-xs-12 col-xl-6 card">
+            <button type="button" [routerLink]="['/datosHabitaciones']" class="btn btn-primary btn-lg">Habitaciones</button>
+          </div>
+
+          <div class="col-xs-12 col-xl-6 card">
+              <button type="button" class="btn btn-primary btn-lg">Tipos de servicios</button>
+          </div>
+
           <div class="col-xs-12 col-xl-6 card">
             <button type="button" class="btn btn-primary btn-lg">Servicios</button>
             </div>
+
+            <div class="col-xs-12 col-xl-6 card">
+                <button type="button" class="btn btn-primary btn-lg btn-prov">Provedores</button>
+                </div>
     </div>
+
+
+
+
 
 
 </div>

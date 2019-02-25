@@ -12,7 +12,11 @@ import {AngularMaterial} from './angular.material';
 import { ConteinerComponent } from './conteiner/conteiner.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule,
-MatSelectModule} from '@angular/material';
+  MatSelectModule,  MatTableModule, MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule, MatButtonToggleModule,
+  MatCardModule, MatCheckboxModule, MatChipsModule, MatStepperModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
+  MatExpansionModule, MatInputModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule,
+  MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
+  MatSortModule, MatTabsModule, MatTooltipModule, MatTreeModule,} from '@angular/material';
 
 
 import { UserComponent } from './user/user.component';
@@ -29,6 +33,15 @@ import { TarifaComponent } from './tarifa/tarifa.component';
 import { ReservaOnlineComponent } from './reserva-online/reserva-online.component';
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
+import { DatosHabitacionComponent } from './datos-habitacion/datos-habitacion.component';
+import { DatosHotelComponent } from './datos-hotel/datos-hotel.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { A11yModule } from '@angular/cdk/a11y';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
+
 
 @NgModule({
   declarations: [
@@ -40,14 +53,17 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
     InventarioComponent,
     DashboardComponent,
     EstablecimientoComponent,
-     AdminComponent,
+    AdminComponent,
     ContrasenaComponent,
     LoginComponent,
     SalirComponent,
     TarifaComponent,
     ReservaOnlineComponent,
     NuevaReservaComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    PrimerosPasosComponent,
+    DatosHabitacionComponent,
+    DatosHotelComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +82,47 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
     HttpClientModule,
     MatGridListModule,
     MatSelectModule,
+    MatTableModule,
+    A11yModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

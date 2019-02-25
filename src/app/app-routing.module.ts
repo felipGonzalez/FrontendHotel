@@ -13,6 +13,9 @@ import { ReservaOnlineComponent } from './reserva-online/reserva-online.componen
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
 import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { DatosHabitacionComponent } from './datos-habitacion/datos-habitacion.component';
+import { DatosHotelComponent } from './datos-hotel/datos-hotel.component';
+import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
 
 
 const routes: Routes = [
@@ -29,7 +32,11 @@ const routes: Routes = [
   {path: 'reserva', component: ReservaComponent},
   {path: 'nuevaReserva', component: NuevaReservaComponent},
   {path: 'contrasena', component: ContrasenaComponent},
-  {path: 'configuracion', component: ConfiguracionComponent}
+  {path: 'configuracion', component: ConfiguracionComponent},
+  {path: 'datosHabitaciones', component: DatosHabitacionComponent},
+  {path: 'datosHotel', component: DatosHotelComponent},
+  {path: 'primerosPasos', component: PrimerosPasosComponent},
+
 ];
 
 

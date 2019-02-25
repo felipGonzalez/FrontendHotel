@@ -1,30 +1,16 @@
 <div class="conteiner" >
-    <h1 class ="title" >Usuarios</h1>
-    <button type="button" [routerLink]="['/createUserComponent']" class="btn btn-success">Agregar Usuario</button>
+    <h1 class ="title" >Inventario</h1>
+    <button type="button" [routerLink]="['*']" class="btn btn-success">Agregar Nuevo producto</button>
     <div class="clear"  ></div>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Primer Nombre</th>
-          <th scope="col">Segundo Nombre</th>
-          <th scope="col">Primer Apellido</th>
-          <th scope="col">Segundo Apellido</th>
-          <th scope="col">Teléfono</th>
-          <th scope="col">Dirección</th>
-          <th scope="col">Acción</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Cantidad base</th>
+          <th scope="col">Cantidad actual</th>
+          <th scope="col">Precio unitario</th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor='let item of users'>
-          <td>{{item.firstName}}</td>
-          <td>{{item.lastName}}</td>
-          <td>{{item.document}}</td>
-          <td>{{item.email}}</td>
-          <td>{{item.phone}}</td>
-          <td>{{item.city}}</td>
-          <td><img src="../../assets/edit.png" class="editIcon" (click)="edit(item)"></td>
-        </tr>
 
-      </tbody>
     </table>
 </div>

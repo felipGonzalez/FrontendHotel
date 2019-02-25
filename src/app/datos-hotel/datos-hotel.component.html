@@ -1,0 +1,76 @@
+<div class="conteiner">
+  <mat-list-item>
+    <h1>Datos del hotel</h1>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <div class="principal">
+    <div class="basic">
+      <h2>Datos basicos</h2>
+      <form class="main-form">
+        <div class="form-group">
+          <label for="actual"> <span class="required">*</span>Nombre: </label>
+          <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="actual">
+            <span class="required">*</span>Razón social:
+          </label>
+          <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="actual">
+            <span class="required">*</span>NIF / N° Fiscal</label
+          >
+          <input type="text" class="form-control" />
+        </div>
+      </form>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="contact">
+      <h2>Información de contacto</h2>
+      <form class="main-form">
+        <div class="form-group">
+          <label for="actual">
+            <span class="required">*</span>Telefono de contacto</label
+          >
+          <input type="tel" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="actual">
+            <span class="required">*</span>E-mail de contacto
+          </label>
+          <input type="email" class="form-control" />
+        </div>
+      </form>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="location">
+      <h2>Localización</h2>
+      <form class="main-form">
+        <div class="form-group">
+          <label for="actual">
+            <span class="required">*</span>Departamento</label
+          >
+          <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="actual"> <span class="required">*</span>Municipio</label>
+          <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="actual"> <span class="required">*</span>Dirección</label>
+          <input type="text" class="form-control" />
+        </div>
+        <div class="row div-btn">
+          <div class="col-xl-6 text-center" ><button type="submit"   class="btn btn-primary btn-block btn-lg">Guardar</button></div>
+          <div class="col-xl-6 text-center" ><button type="button" [routerLink]="['/establecimiento']" class="btn btn-success btn-block btn-lg" >Cancelar</button></div>
+        </div>
+
+
+      </form>
+    </div>
+    </div>
+</div>
