@@ -1,32 +1,88 @@
-<div class="conteiner" >
-    <h1 class ="title" >Usuarios</h1>
-    <button type="button" [routerLink]="['/createUserComponent']" class="btn btn-success">Agregar Usuario</button>
-    <div class="clear"  ></div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Primer Nombre</th>
-          <th scope="col">Segundo Nombre</th>
-          <th scope="col">Primer Apellido</th>
-          <th scope="col">Segundo Apellido</th>
-          <th scope="col">Teléfono</th>
-          <th scope="col">Dirección</th>
-          <th scope="col">Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor='let item of users'>
-          <td>{{item.firstName}}</td>
-          <td>{{item.lastName}}</td>
-          <td>{{item.document}}</td>
-          <td>{{item.email}}</td>
-          <td>{{item.phone}}</td>
-          <td>{{item.city}}</td>
-          <td><img src="../../assets/edit.png" class="editIcon" (click)="edit(item)"></td>
-        </tr>
+<div class="conteiner">
+  <h1 class="title">Usuarios</h1>
+  <button
+    type="button"
+    [routerLink]="['/createUserComponent']"
+    class="btn btn-success"
+  >
+    Agregar Usuario
+  </button>
+  <div class="clear"></div>
+  <div class="list">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Buscar"
+      />
+    </mat-form-field>
 
-      </tbody>
-    </table>
+    <mat-table [dataSource]="userList">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No°. </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.firstName }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.lastName }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <p *ngIf="user.gender === genderDomain[0]"> Masculino</p>
+          <p *ngIf="user.gender === genderDomain[1]"> Femenino</p>
+          <p *ngIf="user.gender === genderDomain[2]"> Indefinido</p>
+          <p *ngIf="!(user.gender === genderDomain[0]) && !(user.gender === genderDomain[1]) && !(user.gender === genderDomain[2])"> No disponible</p>
+
+           </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="document">
+        <mat-header-cell *matHeaderCellDef> documento </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.document }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.phone }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef> Ciudad </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.city }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button mat-raised-button (click)="edit(user)">
+            <i class="material-icons">edit</i>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
 </div>
-
-

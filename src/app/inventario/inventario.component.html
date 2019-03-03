@@ -1,16 +1,60 @@
 <div class="conteiner" >
-    <h1 class ="title" >Inventario</h1>
-    <button type="button" [routerLink]="['*']" class="btn btn-success">Agregar Nuevo producto</button>
-    <div class="clear"  ></div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col">Cantidad base</th>
-          <th scope="col">Cantidad actual</th>
-          <th scope="col">Precio unitario</th>
-        </tr>
-      </thead>
+  <h1 class ="title" >Inventario</h1>
+  <button type="button" [routerLink]="['/createProduct']" class="btn btn-success">Agregar Inventario</button>
+  <div class="clear"  ></div>
 
-    </table>
+ <div class="list">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+
+    <mat-table [dataSource]="productList" >
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No°. </mat-header-cell>
+        <mat-cell *matCellDef="let product"> {{product.id}} </mat-cell>
+      </ng-container>
+
+       <!-- Name Column -->
+       <ng-container matColumnDef="name">
+          <mat-header-cell  *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell  *matCellDef="let product"> {{product.name}} </mat-cell>
+        </ng-container>
+
+         <!-- Name Column -->
+       <ng-container matColumnDef="idCategory">
+          <mat-header-cell  *matHeaderCellDef> Categoria </mat-header-cell>
+          <mat-cell  *matCellDef="let product" >{{ getTextCategory(product.idCategory)}}</mat-cell>
+        </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="baseQuantity">
+        <mat-header-cell *matHeaderCellDef> Cantidad Base </mat-header-cell>
+        <mat-cell *matCellDef="let product"> {{product.baseQuantity}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="actualQuantity">
+        <mat-header-cell  *matHeaderCellDef> Cantidad Actual </mat-header-cell>
+        <mat-cell  *matCellDef="let product"> {{product.actualQuantity}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+          <mat-cell *matCellDef="let product">
+            <button mat-raised-button (click)="edit(product)">
+                <i class="material-icons">edit</i>
+            </button>
+            <button mat-raised-button (click)="openDialog(product)">
+                <i class="material-icons">add_circle</i>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
 </div>

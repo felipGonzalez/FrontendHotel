@@ -5,3 +5,28 @@
 .editIcon{
 cursor: pointer;
 }
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.list{
+    margin-bottom: 5%;
+    margin-left: 2%;
+    margin-right: 4%;
+}
+
+.tittle{
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+.mat-table{
+
+  width: 100%;
+}

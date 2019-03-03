@@ -1,0 +1,59 @@
+<div class="conteiner cont">
+    <h1 mat-dialog-title>Agregar compra producto  {{data.name}}</h1>
+    <form class="form-main">
+
+
+      <div class="form-group">
+        <label for="text"><b><h4>Provedor del producto</h4></b> </label>
+         <mat-form-field  class="full-width">
+          <mat-select
+            placeholder="Provedor"
+            [formControl]="selectControl"
+
+            required
+          >
+            <mat-option>Seleccione un provedor del producto</mat-option>
+            <mat-option
+              *ngFor="let provider of providerList"
+              [value]="provider.id"
+            >{{ provider.nameProvider }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="selectControl.hasError('required')"
+            >Por favor, seleccione el provedor</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label for="text"><b><h4>Fecha de Compra</h4></b> </label>
+        <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+
+
+    <div class="form-group">
+      <label for="text"><b><h4>Cantidad</h4></b> </label>
+      <mat-form-field class="full-width">
+        <input matInput  type="number"  max="10" placeholder="Ingrese la cantidad base" [formControl]="quantityControl"  pattern="[0-9]+"  [(ngModel)]="quantityControl.baseQuantity">
+
+        <mat-error *ngIf="quantityControl.hasError('maxLength') && !quantityBaseControl.hasError('required')">
+          Por favor ingrese la cantidad base
+        </mat-error>
+        <mat-error *ngIf="quantityControl.hasError('required')">
+          La cantidad  base <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cerrar sin guardar</button>
+        <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Guardar</button>
+      </div>
+    </form>
+</div>
+

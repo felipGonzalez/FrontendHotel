@@ -1,51 +1,136 @@
 <div class="conteiner">
-    <h1 class ="title" >Usuarios</h1>
-    <form action="/action_page.php" class="main-form" >
-      <div *ngIf="!isValid"  class="alert alert-danger" role="alert">
-        <strong>Tenemos un error!</strong> {{ message }}
-      </div>
-      <div class="form-group">
-        <label for="firstName"> <span class="required" >*</span>Nombres:</label>
-        <input type="text" class="form-control" name="firstName"  id="firstName" [(ngModel)]="user.firstName"  placeholder="Ingrese su Primer Nombre">
-      </div>
-      <div class="form-group">
-        <label for="firstSurName"><span class="required"  >*</span>Apellidos:</label>
-        <input type="text" class="form-control"  name="firstSurName" id="firstSurName" [(ngModel)]="user.lastName " placeholder="Ingrese su Primer Apellido">
-      </div>
+  <h1 class="title">Usuarios</h1>
+  <form action="/action_page.php" class="main-form">
+    <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+      <strong>Tenemos un error!</strong> {{ messageInfo }}
+    </div>
+    <div class="form-group">
+      <label for="firstName"> <span *ngIf="!valid" class="required">*</span>Nombres:</label>
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        id="firstName"
+        [(ngModel)]="userActually.firstName"
+        placeholder="Ingrese su Primer Nombre"
+      />
+    </div>
+    <div class="form-group">
+      <label for="firstSurName"
+        ><span class="required" *ngIf="!valid">*</span>Apellidos:</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        name="firstSurName"
+        id="firstSurName"
+        [(ngModel)]="userActually.lastName"
+        placeholder="Ingrese su Primer Apellido"
+      />
+    </div>
 
-      <h4>Tipo de Documento</h4>
+    <div class="form-group">
+      <h4>Genero</h4>
       <mat-form-field>
-        <mat-select placeholder="Tipo de Documento"     [formControl]="userControl"  [(ngModel)] = "user.idTypeDocument" required>
-          <mat-option >Seleccione el tipo de documento</mat-option>
-          <mat-option *ngFor="let document of typeDocuments" [value]="document.id"  >
-             {{document.nombre_tipo}}
+        <mat-select
+          placeholder="Genero"
+          [formControl]="selectGenderControl"
+          [(ngModel)]="userActually.gender"
+          required
+        >
+          <mat-option>Seleccione su genero</mat-option>
+          <mat-option class="mat-width"
+            *ngFor="let gender of genderList"
+            [value]="gender.domainGender"
+          >
+            {{ gender.nameGender }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="userControl.hasError('required')">Por favor, ingrese su tipo de documento</mat-error>
+        <mat-error *ngIf="userControl.hasError('required')"
+          >Por favor, ingrese su genero</mat-error
+        >
       </mat-form-field>
+    </div>
 
-      <div class="form-group">
-        <label for="phone"><span class="required"  >*</span>Documento</label>
-        <input type="tel " class="form-control"  name="document"  id="document" [(ngModel)]="user.document" placeholder="Ingrese su Documento">
-      </div>
+    <div class="form-group">
+      <h4>Tipo de Documento</h4>
+      <mat-form-field>
+        <mat-select
+          placeholder="Tipo de Documento"
+          [formControl]="userControl"
+          [(ngModel)]="userActually.idTypeDocument"
+          required
+        >
+          <mat-option>Seleccione el tipo de documento</mat-option>
+          <mat-option
+            *ngFor="let document of typeDocumentList"
+            [value]="document.id"
+          >
+            {{ document.nombre_tipo }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="userControl.hasError('required')"
+          >Por favor, ingrese su tipo de documento</mat-error
+        >
+      </mat-form-field>
+    </div>
 
-      <div class="form-group">
-        <label for="phone"><span class="required"  >*</span>Teléfono</label>
-        <input type="tel" class="form-control"  name="phone"  id="phone" [(ngModel)]="user.phone" placeholder="Ingrese su Teléfono">
-      </div>
-      <div class="form-group">
-        <label for="adrees"><span class="required"  >*</span>Ciudad</label>
-        <input type="text" class="form-control" name="adrees"  id="adrees" [(ngModel)]="user.city" placeholder="Ingrese su Dirreción">
-      </div>
+    <div class="form-group">
+      <label for="phone"><span class="required" *ngIf="!valid">*</span>Documento</label>
+      <input
+        type="tel "
+        class="form-control"
+        name="document"
+        id="document"
+        [(ngModel)]="userActually.document"
+        placeholder="Ingrese su Documento"
+      />
+    </div>
 
-      <div class="form-group">
-        <label for="adrees"><span class="required"  >*</span>Email</label>
-        <input type="email" class="form-control" name="adrees"  id="adrees" [(ngModel)]="user.email" placeholder="Ingrese su Dirreción">
-      </div>
+    <div class="form-group">
+      <label for="phone"><span class="required" *ngIf="!valid">*</span>Teléfono</label>
+      <input
+        type="tel"
+        class="form-control"
+        name="phone"
+        id="phone"
+        [(ngModel)]="userActually.phone"
+        placeholder="Ingrese su Teléfono"
+      />
+    </div>
+    <div class="form-group">
+      <label for="adrees"><span *ngIf="!valid" class="required" >*</span>Ciudad</label>
+      <input
+        type="text"
+        class="form-control"
+        name="adrees"
+        id="adrees"
+        [(ngModel)]="userActually.city"
+        placeholder="Ingrese su Dirreción"
+      />
+    </div>
 
-      <button type="submit" (click)="saveOurUpdate()"  class="btn btn-primary btn-save">Guardar</button>
-      <button type="button" [routerLink]="['/user']" class="btn btn-success" >Cancelar</button>
-    </form>
+    <div class="form-group">
+      <label for="adrees"><span class="required"*ngIf="!valid" >*</span>Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        id="email"
+        [(ngModel)]="userActually.email"
+        placeholder="Ingrese su Dirreción"
+      />
+    </div>
 
+    <button
+      type="submit"
+      (click)="saveOurUpdate()"
+      class="btn btn-primary btn-save"
+    >
+      Guardar
+    </button>
+    <button type="button" [routerLink]="['/user']" class="btn btn-success">
+      Cancelar
+    </button>
+  </form>
 </div>
-

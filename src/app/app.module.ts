@@ -16,13 +16,13 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
   MatCardModule, MatCheckboxModule, MatChipsModule, MatStepperModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
   MatExpansionModule, MatInputModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule,
   MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
-  MatSortModule, MatTabsModule, MatTooltipModule, MatTreeModule,} from '@angular/material';
+  MatSortModule, MatTabsModule, MatTooltipModule, MatTreeModule} from '@angular/material';
 
 
 import { UserComponent } from './user/user.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { ReservaComponent } from './reserva/reserva.component';
-import { InventarioComponent } from './inventario/inventario.component';
+import { InventarioComponent, ModalCompraInventario } from './inventario/inventario.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EstablecimientoComponent } from './establecimiento/establecimiento.component';
 import { AdminComponent } from './admin/admin/admin.component';
@@ -41,6 +41,9 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
+import { ProvedoresComponent } from './provedores/provedores.component';
+import { CreateProvedoresComponent } from './create-provedores/create-provedores.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 
 @NgModule({
@@ -63,8 +66,12 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     ConfiguracionComponent,
     PrimerosPasosComponent,
     DatosHabitacionComponent,
-    DatosHotelComponent
-  ],
+    DatosHotelComponent,
+    ProvedoresComponent,
+    CreateProvedoresComponent,
+    CreateProductComponent,
+    ModalCompraInventario
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -125,6 +132,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     ScrollingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[InventarioComponent, ModalCompraInventario]
 })
 export class AppModule { }

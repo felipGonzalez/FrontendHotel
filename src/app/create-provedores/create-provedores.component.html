@@ -1,0 +1,112 @@
+<div class="conteiner">
+  <h1 class="title">Provedores</h1>
+  <div *ngIf="false" class="alert alert-danger" role="alert">
+    <strong>Tenemos un error!</strong> {{ message }}
+  </div>
+<!--
+
+  nombre_proveedor varchar(30) not null,
+
+  nit_proveedor varchar(15) not null,
+
+  ciudad_proveedor varchar(30) not null,
+
+  telefono_proveedor varchar(15) not null,
+
+-->
+
+<form class="form-main">
+  <div class="form-group">
+    <label for="text">Nombre</label>
+    <mat-form-field class="full-width">
+      <input matInput #name maxlength="30" placeholder="Ingrese el nombre" [formControl]="nameControl" [(ngModel)]="providerActually.nameProvider">
+      <mat-hint align="end">{{name.value.length}} / 30</mat-hint>
+      <mat-error *ngIf="nameControl.hasError('maxLength') && !nameControl.hasError('required')">
+        Por favor ingrese un nombre valido
+      </mat-error>
+      <mat-error *ngIf="nameControl.hasError('required')">
+        El nombre es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <label for="text">Nit</label>
+    <mat-form-field class="full-width">
+      <input matInput  type="number"  max="10" placeholder="Ingrese el Nit" [formControl]="nitControl"  pattern="[0-9]+" [(ngModel)]="providerActually.nitProvider">
+
+      <mat-error *ngIf="nitControl.hasError('maxLength') && !nitControl.hasError('required')">
+        Por favor ingrese un Nit valido
+      </mat-error>
+      <mat-error *ngIf="nitControl.hasError('required')">
+        El  Nit  es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field class="full-width">
+      <span matPrefix>+57 &nbsp;</span>
+      <input type="number" matInput placeholder="Telefono"  [(ngModel)]="providerActually.phoneProvider" name="first">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+
+      </div>
+
+      <!-- div-- class="form-group">
+          <label for="text">Ubicaciòn</label>
+        <div class="row">
+          <div class="col">
+              <mat-form-field class="full-width">
+                  <input matInput placeholder="Ciudad">
+                </mat-form-field>
+          </div>
+          <div class="col">
+              <mat-form-field class="full-width">
+                  <input matInput placeholder="Estado">
+                </mat-form-field>
+          </div>
+          </div>
+      </div-->
+
+      <div class="form-group">
+          <label for="text">Ubicación</label>
+          <mat-form-field class="full-width">
+            <input matInput #ubication maxlength="30" placeholder="Ingrese la ubicación" [formControl]="ubicationControl" [(ngModel)]="providerActually.cityProvider">
+            <mat-hint align="end">{{ubication.value.length}} / 30</mat-hint>
+            <mat-error *ngIf="ubicationControl.hasError('maxLength') && !ubicationControl.hasError('required')">
+              Por favor ingrese una ubicacion valida
+            </mat-error>
+            <mat-error *ngIf="ubicationControl.hasError('required')">
+              El ubicacion es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+    <div class="form-group">
+
+    </div>
+
+
+    <div class="row btn-div">
+      <div class="col-xl-6 text-center">
+        <button type="submit" class="btn btn-primary btn-block btn-save" (click)="saveOurUpdate()">
+          Guardar
+        </button>
+      </div>
+      <div class="col-xl-6 text-center">
+        <button
+          type="button"
+          [routerLink]="['/provedores']"
+          class="btn btn-success btn-block"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

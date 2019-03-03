@@ -1,0 +1,88 @@
+<div class="conteiner">
+    <h1 class="title">Inventario</h1>
+    <form action="/action_page.php" class="main-form">
+      <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+        <strong>Tenemos un error!</strong> {{ messageInfo }}
+      </div>
+
+      <div class="form-group">
+          <label for="text"><b><h4>Nombre del Producto</h4></b> </label>
+          <mat-form-field class="full-width">
+            <input matInput #name maxlength="30" placeholder="Ingrese el nombre" [formControl]="nameControl" [(ngModel)]="productActually.name">
+            <mat-hint align="end">{{name.value.length}} / 30</mat-hint>
+            <mat-error *ngIf="nameControl.hasError('maxLength') && !nameControl.hasError('required')">
+              Por favor ingrese un nombre valido
+            </mat-error>
+            <mat-error *ngIf="nameControl.hasError('required')">
+              El nombre es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label for="text"><b><h4>Categoria del Producto</h4></b> </label>
+           <mat-form-field  class="full-width">
+            <mat-select
+              placeholder="Categoria"
+              [formControl]="selectFormControl"
+              [(ngModel)]="productActually.idCategory"
+              required
+            >
+              <mat-option>Seleccione una Categoria del producto</mat-option>
+              <mat-option
+                *ngFor="let category of categoryProductList"
+                [value]="category.id"
+              >{{ category.nameCategory }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="selectFormControl.hasError('required')"
+              >Por favor, seleccione la categoria</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label for="text"><b><h4>Descripción del Producto</h4></b> </label>
+          <mat-form-field class="full-width">
+            <input matInput #desc maxlength="100" placeholder="Ingrese una descripción del producto" [formControl]="descControl" [(ngModel)]="productActually.descProduct">
+            <mat-hint align="end">{{desc.value.length}} / 100</mat-hint>
+            <mat-error *ngIf="descControl.hasError('maxLength') && !descControl.hasError('required')">
+              Por favor ingrese una descripción  valida
+            </mat-error>
+            <mat-error *ngIf="descControl.hasError('required')">
+              La descripción  es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      <div class="form-group">
+        <label for="text"><b><h4>Cantidad base</h4></b> </label>
+        <mat-form-field class="full-width">
+          <input matInput  type="number"  max="10" placeholder="Ingrese la cantidad base" [formControl]="quantityBaseControl"  pattern="[0-9]+"  [(ngModel)]="productActually.baseQuantity">
+
+          <mat-error *ngIf="quantityBaseControl.hasError('maxLength') && !quantityBaseControl.hasError('required')">
+            Por favor ingrese la cantidad base
+          </mat-error>
+          <mat-error *ngIf="quantityBaseControl.hasError('required')">
+            La cantidad  base <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+     <div class="row btn-div">
+          <div class="col-xl-6 text-center">
+            <button type="submit" class="btn btn-primary btn-block btn-save" (click)="saveOurUpdate()">
+              Guardar
+            </button>
+          </div>
+          <div class="col-xl-6 text-center">
+            <button
+              type="button"
+              [routerLink]="['/inventario']"
+              class="btn btn-success btn-block"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+    </form>
+  </div>

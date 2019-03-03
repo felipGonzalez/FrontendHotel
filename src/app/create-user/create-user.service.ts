@@ -10,8 +10,7 @@ import { TypeDocument } from '../model/TypeDocument';
   providedIn: 'root'
 })
 export class CreateUserService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /**
    * metodo que valida campos obligatorios
@@ -19,25 +18,22 @@ export class CreateUserService {
 
   public validate(user: UserModel): boolean {
     let isValid = true;
-    console.log(user.idTypeDocument);
-    if ( !user.lastName) {
+    if (!user.lastName) {
       isValid = false;
     }
-    if ( !user.city) {
-       isValid = false;
+    if (!user.city) {
+      isValid = false;
     }
-    return isValid;
-    }
+   return isValid;
+  }
 
   public saveOurUpdate(user: UserModel): Observable<RestResponse> {
-    console.log(user.password);
-
-    return this.http.post<RestResponse>( 'http://localhost:8080/listUser' , user);
+    return this.http.post<RestResponse>('http://localhost:8080/listUser', user);
   }
 
   public getTypeDocument(): Observable<TypeDocument[]> {
-    return this.http.get<TypeDocument[]>('http://localhost:8080/listTypeDocument');
+    return this.http.get<TypeDocument[]>(
+      'http://localhost:8080/listTypeDocument'
+    );
   }
-
-
 }

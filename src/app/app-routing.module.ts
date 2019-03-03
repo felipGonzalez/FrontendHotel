@@ -16,32 +16,36 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
 import { DatosHabitacionComponent } from './datos-habitacion/datos-habitacion.component';
 import { DatosHotelComponent } from './datos-hotel/datos-hotel.component';
 import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
-
+import { ProvedoresComponent } from './provedores/provedores.component';
+import { CreateProvedoresComponent } from './create-provedores/create-provedores.component';
+import { CreateProductService } from './create-product/create-product.service';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  {path: 'user', component: UserComponent},
-  {path: 'createUserComponent', component: CreateUserComponent},
-  {path: 'admin', component: AdminComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'establecimiento', component: EstablecimientoComponent},
-  {path: 'inventario', component: InventarioComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'tarifa', component: TarifaComponent},
-  {path: 'reservaOnline', component: ReservaOnlineComponent},
-  {path: 'reserva', component: ReservaComponent},
-  {path: 'nuevaReserva', component: NuevaReservaComponent},
-  {path: 'contrasena', component: ContrasenaComponent},
-  {path: 'configuracion', component: ConfiguracionComponent},
-  {path: 'datosHabitaciones', component: DatosHabitacionComponent},
-  {path: 'datosHotel', component: DatosHotelComponent},
-  {path: 'primerosPasos', component: PrimerosPasosComponent},
-
+  { path: 'user', component: UserComponent },
+  { path: 'createUserComponent', component: CreateUserComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'establecimiento', component: EstablecimientoComponent },
+  { path: 'inventario', component: InventarioComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'tarifa', component: TarifaComponent },
+  { path: 'reservaOnline', component: ReservaOnlineComponent },
+  { path: 'reserva', component: ReservaComponent },
+  { path: 'nuevaReserva', component: NuevaReservaComponent },
+  { path: 'contrasena', component: ContrasenaComponent },
+  { path: 'configuracion', component: ConfiguracionComponent },
+  { path: 'datosHabitaciones', component: DatosHabitacionComponent },
+  { path: 'datosHotel', component: DatosHotelComponent },
+  { path: 'primerosPasos', component: PrimerosPasosComponent },
+  { path: 'provedores', component: ProvedoresComponent },
+  { path: 'createProvedores', component: CreateProvedoresComponent },
+  { path: 'createProduct', component: CreateProductComponent}
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

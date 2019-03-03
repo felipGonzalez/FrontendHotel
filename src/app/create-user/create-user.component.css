@@ -21,3 +21,13 @@
   margin-left: 45%;
 }
 
+.form-group{
+  padding: 5px;
+}
+
+.mat-form-field{
+  max-width: 500px;;
+  min-width: 200px;
+  width: 100%;
+}
+
