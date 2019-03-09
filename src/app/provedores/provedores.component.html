@@ -8,7 +8,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
     </mat-form-field>
 
-    <mat-table [dataSource]="providerList" >
+    <mat-table [dataSource]="dataSourceList" >
 
       <!-- Position Column -->
       <ng-container matColumnDef="id">

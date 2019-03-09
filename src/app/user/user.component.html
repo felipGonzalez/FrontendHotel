@@ -1,5 +1,6 @@
 <div class="conteiner">
   <h1 class="title">Usuarios</h1>
+  <hr>
   <button
     type="button"
     [routerLink]="['/createUserComponent']"
@@ -17,7 +18,7 @@
       />
     </mat-form-field>
 
-    <mat-table [dataSource]="userList">
+    <mat-table [dataSource]="dataSourceList">
       <!-- Position Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> No°. </mat-header-cell>

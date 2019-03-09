@@ -1,0 +1,84 @@
+<div class="conteiner">
+  <h1 class="title">Tipos de Reserva</h1>
+  <hr>
+  <form action="/action_page.php" class="main-form">
+    <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+      <strong>Tenemos un error!</strong> {{ messageInfo }}
+    </div>
+
+    <div class="form-group">
+      <label for="text"
+        ><b><h4>Nombre del tipo de reserva</h4></b>
+      </label>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          #name
+          maxlength="30"
+          placeholder="Ingrese el nombre"
+          [formControl]="nameControl"
+          [(ngModel)]="typeReserveActually.nameType"
+        />
+        <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
+        <mat-error
+          *ngIf="
+            nameControl.hasError('maxLength') &&
+            !nameControl.hasError('required')
+          "
+        >
+          Por favor ingrese un nombre valido
+        </mat-error>
+        <mat-error *ngIf="nameControl.hasError('required')">
+          El nombre es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="text"
+        ><b><h4>Precio</h4></b>
+      </label>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="number"
+          max="10"
+          placeholder="Ingrese la cantidad base"
+          [formControl]="priceControl"
+          pattern="[0-9]+"
+          [(ngModel)]="typeReserveActually.reservationTypePrice"
+        />
+        <mat-error
+          *ngIf="
+          priceControl.hasError('maxLength') &&
+            !quantityBaseControl.hasError('required')">
+          Por favor ingrese un precio
+        </mat-error>
+        <mat-error *ngIf="priceControl.hasError('required')">
+          El precio es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <hr>
+    <div class="row btn-div">
+      <div class="col-xl-6 text-center">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block btn-save"
+          (click)="saveOurUpdate()"
+        >
+          Guardar
+        </button>
+      </div>
+      <div class="col-xl-6 text-center">
+        <button
+          type="button"
+          [routerLink]="['/tipoReserva']"
+          class="btn btn-success btn-block"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DatosHabitacionComponent } from './datos-habitacion.component';
+import { SteateRoomComponent } from './steate-room.component';
 
-describe('DatosHabitacionComponent', () => {
-  let component: DatosHabitacionComponent;
-  let fixture: ComponentFixture<DatosHabitacionComponent>;
+describe('SteateRoomComponent', () => {
+  let component: SteateRoomComponent;
+  let fixture: ComponentFixture<SteateRoomComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DatosHabitacionComponent ]
+      declarations: [ SteateRoomComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatosHabitacionComponent);
+    fixture = TestBed.createComponent(SteateRoomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

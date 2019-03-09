@@ -1,6 +1,7 @@
-<div class="conteiner">
+  <div class="conteiner">
   <mat-list-item>
     <h1>Datos del hotel</h1>
+    <hr>
   </mat-list-item>
   <mat-divider></mat-divider>
 
@@ -8,21 +9,24 @@
     <div class="basic">
       <h2>Datos basicos</h2>
       <form class="main-form">
+          <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+              <strong>Tenemos un error !</strong> {{ messageInfo }}
+            </div>
         <div class="form-group">
-          <label for="actual"> <span class="required">*</span>Nombre: </label>
-          <input type="text" class="form-control" />
+          <label for="actual"> <span class="required" *ngIf="!valid">*</span>Nombre: </label>
+          <input type="text" class="form-control" name="name" required [(ngModel)]="dataHotelActally.nameHotel"/>
         </div>
         <div class="form-group">
           <label for="actual">
-            <span class="required">*</span>Razón social:
+            <span class="required" *ngIf="!valid">*</span>Razón social:
           </label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="razon" [(ngModel)]="dataHotelActally.razonHotel"/>
         </div>
         <div class="form-group">
           <label for="actual">
-            <span class="required">*</span>NIF / N° Fiscal</label
+            <span class="required" *ngIf="!valid">*</span>NIF / N° Fiscal</label
           >
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="nif" required [(ngModel)]="dataHotelActally.nifHotel"/>
         </div>
       </form>
     </div>
@@ -33,15 +37,15 @@
       <form class="main-form">
         <div class="form-group">
           <label for="actual">
-            <span class="required">*</span>Telefono de contacto</label
+            <span class="required" *ngIf="!valid">*</span>Telefono de contacto</label
           >
-          <input type="tel" class="form-control" />
+          <input type="tel" class="form-control" name="phone" required [(ngModel)]="dataHotelActally.phoneHotel"/>
         </div>
         <div class="form-group">
           <label for="actual">
-            <span class="required">*</span>E-mail de contacto
+            <span class="required" *ngIf="!valid">*</span>E-mail de contacto
           </label>
-          <input type="email" class="form-control" />
+          <input type="email" class="form-control" name="email" [(ngModel)]="dataHotelActally.emailHotel"/>
         </div>
       </form>
     </div>
@@ -52,21 +56,21 @@
       <form class="main-form">
         <div class="form-group">
           <label for="actual">
-            <span class="required">*</span>Departamento</label
+            <span class="required" *ngIf="!valid" >*</span>Departamento</label
           >
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="department" required [(ngModel)]="dataHotelActally.departmentHotel"/>
         </div>
         <div class="form-group">
-          <label for="actual"> <span class="required">*</span>Municipio</label>
-          <input type="text" class="form-control" />
+          <label for="actual"> <span class="required" *ngIf="!valid">*</span>Ciudad</label>
+          <input type="text" class="form-control" name="city" [(ngModel)]="dataHotelActally.cityHotel" />
         </div>
         <div class="form-group">
-          <label for="actual"> <span class="required">*</span>Dirección</label>
-          <input type="text" class="form-control" />
+          <label for="actual"> <span class="required" *ngIf="!valid">*</span>Dirección</label>
+          <input type="text" class="form-control"name="addres"  required [(ngModel)]="dataHotelActally.addresHotel"/>
         </div>
         <div class="row div-btn">
           <div class="col-xl-6 text-center">
-            <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <button type="submit" class="btn btn-primary btn-block btn-lg" (click)="saveOurUpdate()">
               Guardar
             </button>
           </div>

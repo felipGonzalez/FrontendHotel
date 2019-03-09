@@ -47,6 +47,7 @@ export class InventarioComponent implements OnInit {
     this.productService.getCategoryProduct().subscribe(
       res => {
         this.categoryProducts = res;
+
       },
       (error: any) => (this.categoryProducts = [])
     );
@@ -55,19 +56,21 @@ export class InventarioComponent implements OnInit {
     this.productService.getProduct().subscribe(
       res => {
         this.products = res;
+        this.dataSource.data = this.products;
+
       },
       (error: any) => (this.products = [])
     );
   }
 
   public getTextCategory(id: number) {
-    let mesa;
+    let text;
     this.categoryProducts.forEach(function(element) {
       if (element.id === id) {
-        mesa = element.nameCategory;
+        text = element.nameCategory;
       }
     });
-    return mesa;
+    return text;
   }
 
   public edit(product: ProductModel): void {
@@ -84,7 +87,7 @@ export class InventarioComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalCompraInventario, {
       width: '800px',
       data: {id: product.id , idCategory:product.idCategory ,
-        name:product.name ,descProduct:product.descProduct ,
+        name:product.name , descProduct:product.descProduct ,
         actualQuantity: product.actualQuantity, baseQuantity: product.actualQuantity}
     });
 
@@ -93,6 +96,8 @@ export class InventarioComponent implements OnInit {
       product = result;
     });
   }
+
+  get dataSourceList() { return this.dataSource; }
 
   get productList() {
     return this.products;

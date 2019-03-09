@@ -5,13 +5,13 @@
         [opened]="!(isHandset$ | async)">
       <mat-toolbar><a href="#" id="a_mat_toolbar">Menu</a> </mat-toolbar>
       <mat-nav-list>
-        <button class="btn_new_reserve" [routerLink]="['/nuevaReserva']" >Nueva reserva</button>
+        <button class="btn_new_reserve" (click) = "onEdit()" >Nueva reserva</button>
         <hr>
-        <a mat-list-item [routerLink]="['/dashboard']">Dashboard</a>
+        <a mat-list-item [routerLink]="['/dashboard']">Información</a>
         <hr>
         <a mat-list-item [routerLink]="['/reserva']">Reservas</a>
         <hr>
-        <a mat-list-item [routerLink]="['/tarifa']">Tarifas</a>
+        <a mat-list-item [routerLink]="['/facturacion']">Facturación</a>
         <hr>
         <a mat-list-item [routerLink]="['/user']">Clientes</a>
         <hr>

@@ -1,5 +1,6 @@
 <div class="conteiner" >
   <h1 class ="title" >Inventario</h1>
+  <hr>
   <button type="button" [routerLink]="['/createProduct']" class="btn btn-success">Agregar Inventario</button>
   <div class="clear"  ></div>
 
@@ -8,7 +9,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
     </mat-form-field>
 
-    <mat-table [dataSource]="productList" >
+    <mat-table [dataSource]="dataSourceList" >
 
       <!-- Position Column -->
       <ng-container matColumnDef="id">

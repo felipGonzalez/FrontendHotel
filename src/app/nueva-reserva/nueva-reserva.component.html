@@ -1,3 +1,291 @@
-<p>
-  nueva-reserva works!
-</p>
+<div class="conteiner cont">
+  <h1 mat-dialog-title>Nueva Reserva</h1>
+  <hr />
+  <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+    <strong>Tenemos un error!</strong> {{ messageInfo }}
+  </div>
+  <form class="form-main">
+    <div class="form-group">
+      <label for="text"
+        ><b><h4>Fecha de llegada</h4></b>
+      </label>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          [min]="getMinDateInput"
+          [max]="getMaxDateInput"
+          [matDatepicker]="picker1"
+          placeholder="Selecciona la fecha llegada"
+          (dateInput)="setFilterDateMax()"
+          [formControl]="dateInputControl"
+          [(ngModel)]="reserveActually.deteInput"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error align="end" *ngIf="!dateInputControl.hasError('reqired')">
+          Ingrese una fecha <span>Valida</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="text"
+        ><b><h4>Fecha de Salida</h4></b>
+      </label>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          [min]="getMinDateOutput"
+          [max]="getMaxDateoutput"
+          [matDatepicker]="picker2"
+          placeholder="Selecciona la fecha salida"
+          [formControl]="dateOutputControl"
+          [(ngModel)]="reserveActually.dateOutput"
+          (dateInput)="checkDate()"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error align="end" *ngIf="!dateOutputControl.hasError('reqired')">
+          Ingrese una fecha <span>Valida</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <hr />
+
+  <div class="form-main" *ngIf="isValidDiv1">
+    <div class="form-group">
+      <h4>Tipo de Reserva</h4>
+      <mat-form-field>
+        <mat-select
+          placeholder="Tipo de Reserva"
+          [formControl]="selectControl"
+          [(ngModel)]="reserveActually.idTypeReserve"
+          required
+        >
+          <mat-option>Seleccione el tipo de la reserva</mat-option>
+          <mat-option
+            *ngFor="let typeReserve of typeResrveList"
+            [value]="typeReserve.id"
+            (click)="setNumBed()"
+          >
+            {{ typeReserve.nameType }}
+          </mat-option>
+        </mat-select>
+        <mat-error align="end" *ngIf="selectControl.hasError('required')"
+          >Por favor, seleccione el tipo de reserva</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <hr />
+
+  <div class="form-main" *ngIf="isValidDiv2">
+    <div class="form-group">
+      <h4>Numero de camas</h4>
+      <mat-form-field>
+        <mat-select
+          placeholder="Numero de camas"
+          [formControl]="numBedControl"
+          [(ngModel)]="reserveActually.numBed"
+          [disabled]="isDisable"
+          required
+        >
+          <mat-option>Seleccione el numero de camas</mat-option>
+          <mat-option *ngFor="let bed of getNumBedList" [value]="bed">
+            {{ bed }}
+          </mat-option>
+        </mat-select>
+        <mat-error align="end" *ngIf="numBedControl.hasError('required')"
+          >Por favor,seleccione el numero de camas</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <hr />
+  <form>
+    <div class="form-main" *ngIf="isValidDiv3">
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                #doc
+                maxlength="10"
+                placeholder="documento"
+                [(ngModel)]="userActually.document"
+                name="document"
+                [formControl]="documentControl"
+              />
+              <mat-hint align="end">{{ doc.value.length }} / 10</mat-hint>
+              <mat-error *ngIf="documentControl.hasError('required')">
+                El Documento es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+
+          <td>
+            <div mat-dialog-actions>
+              <button mat-button  cdkFocusInitial (click)="checkUser()">Verificar</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+
+
+  <div class="form-main" *ngIf="isValidDiv4">
+    <form class="form-group">
+      <h4>Datos de usuario</h4>
+      <p *ngIf="getExistUser">
+        En caso del que cliente no este registrado se creara un nuevo registro
+        en la base de datos
+      </p>
+      <div *ngIf="!isValidForm" class="alert alert-danger" role="alert">
+        <strong>Tenemos un error!</strong> {{ messageInfo }}
+      </div>
+
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field>
+              <mat-select
+                placeholder="Tipo de Documento"
+                [formControl]="userControl"
+                [(ngModel)]="userActually.idTypeDocument"
+                required
+                [disabled]="getExistUser"
+              >
+                <mat-option>Seleccione el tipo de documento</mat-option>
+                <mat-option
+                  *ngFor="let document of typeDocumentList"
+                  [value]="document.id"
+                >
+                  {{ document.nombre_tipo }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="userControl.hasError('required')"
+                >Por favor, ingrese su tipo de documento</mat-error
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                [attr.disabled]="getExistUser ? '' : null"
+                #name
+                maxlength="30"
+                placeholder="Nombre"
+                [(ngModel)]="userActually.firstName"
+                name="firstName"
+                [formControl]="nameControl"
+              />
+              <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
+              <mat-error *ngIf="nameControl.hasError('required')">
+                El nombre es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                #name2
+                maxlength="30"
+                placeholder="Apellido"
+                [(ngModel)]="userActually.lastName"
+                name="lastName"
+                [formControl]="lastNameControl"
+                [disabled]="getExistUser"
+              />
+              <mat-hint align="end">{{ name2.value.length }} / 30</mat-hint>
+              <mat-error *ngIf="lastNameControl.hasError('required')">
+                El apellido es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <span matPrefix>+57 &nbsp;</span>
+              <input
+                type="tel"
+                #tel
+                maxlength="10"
+                matInput
+                placeholder="Telefono"
+                [(ngModel)]="userActually.phone"
+                name="phone"
+                [formControl]="phoneControl"
+                [disabled]="getExistUser"
+              />
+              <mat-hint align="end">{{ tel.value.length }} / 10</mat-hint>
+              <mat-error *ngIf="phoneControl.hasError('required')">
+                El telefono es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="Email"
+                [formControl]="emailControl"
+                [(ngModel)]="userActually.email"
+                name="email"
+                [disabled]="getExistUser"
+              />
+              <mat-error
+                *ngIf="
+                  emailControl.hasError('email') &&
+                  !emailControl.hasError('required')
+                "
+              >
+                Por favor ingrese un correo valido
+              </mat-error>
+              <mat-error *ngIf="emailControl.hasError('required')">
+                El correo es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <div class="row btn-div">
+        <div class="col text-center">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-save"
+            [mat-dialog-close]="0"
+            cdkFocusInitial
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="form-main" *ngIf="false"></div>
+
+  <div class="form-main">
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cerrar sin guardar</button>
+    </div>
+  </div>
+</div>

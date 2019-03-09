@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatDialog,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ProviderModel } from '../model/ProviderModel';
 import { ProvedoresService } from './provedores.service';
 import { Router } from '@angular/router';
@@ -30,6 +30,7 @@ export class ProvedoresComponent implements OnInit {
     this.providerService.getProvider().subscribe(
       res => {
         this.providers = res;
+        this.dataSource.data = this.providers;
       },
       (error: any) => (this.providers = [])
     );

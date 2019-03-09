@@ -41,6 +41,7 @@ export class UserComponent implements OnInit {
     this.userService.getUser().subscribe(
       res => {
         this.users = res;
+        this.dataSource.data = this.users;
       },
       (error: any) => (this.users = [])
     );
@@ -55,6 +56,7 @@ export class UserComponent implements OnInit {
       this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  get dataSourceList() {return this.dataSource; }
   get userList() { return this.users; }
   get genderDomain() {return this.domainsList; }
 }

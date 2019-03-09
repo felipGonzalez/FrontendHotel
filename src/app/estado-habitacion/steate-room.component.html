@@ -1,0 +1,49 @@
+<div class="conteiner" >
+  <h1 class ="title" >Estado Habitación</h1>
+  <hr>
+  <button type="button" [routerLink]="['/crearEstadoHabitacion']" class="btn btn-success">Estado Habitación</button>
+  <div class="clear"  ></div>
+
+ <div class="list">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+
+    <mat-table [dataSource]="dataSourceList" >
+
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let state"> {{state.nameState}} </mat-cell>
+      </ng-container>
+
+       <!-- Name Column -->
+       <ng-container matColumnDef="color">
+          <mat-header-cell  *matHeaderCellDef> Color </mat-header-cell>
+          <mat-cell  *matCellDef="let state"> {{state.colorState}} </mat-cell>
+        </ng-container>
+
+         <!-- Name Column -->
+       <ng-container matColumnDef="desc">
+          <mat-header-cell  *matHeaderCellDef> Descripción </mat-header-cell>
+          <mat-cell  *matCellDef="let state" >{{state.descState}}</mat-cell>
+        </ng-container>
+
+
+      <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+          <mat-cell *matCellDef="let state">
+            <button mat-raised-button (click)="edit(state)">
+                <i class="material-icons">edit</i>
+            </button>
+
+          </mat-cell>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+</div>

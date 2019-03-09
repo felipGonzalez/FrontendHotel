@@ -1,0 +1,21 @@
+.btn {
+  margin: 20px;
+  padding: 50px;
+
+  background: #337ab7 ;
+}
+
+.btn-data-hotel {
+  background: #5cb85c ;
+}
+
+.btn-primary{
+  border-color: unset;
+  font-size: x-large;
+}
+
+.btn-prov{
+  background: #f0ad4e ;
+}
+
+

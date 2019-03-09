@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TarifaComponent } from './tarifa.component';
+import { CreateTipoReservaComponent } from './create-tipo-reserva.component';
 
-describe('TarifaComponent', () => {
-  let component: TarifaComponent;
-  let fixture: ComponentFixture<TarifaComponent>;
+describe('CreateTipoReservaComponent', () => {
+  let component: CreateTipoReservaComponent;
+  let fixture: ComponentFixture<CreateTipoReservaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TarifaComponent ]
+      declarations: [ CreateTipoReservaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TarifaComponent);
+    fixture = TestBed.createComponent(CreateTipoReservaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

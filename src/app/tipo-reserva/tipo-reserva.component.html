@@ -1,0 +1,46 @@
+<div class="conteiner" >
+  <h1 class ="title" >Tipo Reserva</h1>
+  <hr>
+  <button type="button" [routerLink]="['/crearTipoReserva']" class="btn btn-success">Agregar tipo de reserva</button>
+  <div class="clear"  ></div>
+
+ <div class="list">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+
+    <mat-table [dataSource]="typeResrveList" >
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No°. </mat-header-cell>
+        <mat-cell *matCellDef="let typeRerserve"> {{typeRerserve.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let typeRerserve" > {{typeRerserve.nameType}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell  *matHeaderCellDef> Precio </mat-header-cell>
+        <mat-cell  *matCellDef="let typeRerserve"> {{typeRerserve.reservationTypePrice}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+          <mat-cell *matCellDef="let typeRerserve">
+            <button mat-raised-button (click)="edit(typeRerserve)">
+                <i class="material-icons">edit</i>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="getDisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: getDisplayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+</div>

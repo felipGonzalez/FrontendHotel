@@ -1,0 +1,75 @@
+<div class="conteiner">
+  <h1 class="title">Habitaciones</h1>
+  <hr>
+  <form action="/action_page.php" class="main-form">
+    <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+      <strong>Tenemos un error!</strong> {{ messageInfo }}
+    </div>
+
+    <div class="form-group">
+        <label for="text"><b><h4>Codigo  dee la Habitacion</h4></b> </label>
+        <mat-form-field class="full-width">
+          <input matInput #name maxlength="30" placeholder="Ingrese el codigo" [formControl]="codeControl" [(ngModel)]="roomActually.codeRoom">
+          <mat-hint align="end">{{name.value.length}} / 30</mat-hint>
+          <mat-error *ngIf="codeControl.hasError('maxLength') && !codeControl.hasError('required')">
+            Por favor ingrese un codigo valido
+          </mat-error>
+          <mat-error *ngIf="codeControl.hasError('required')">
+            El codigo es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label for="text"><b><h4>Estado de la habitación</h4></b> </label>
+         <mat-form-field  class="full-width">
+          <mat-select
+            placeholder="Estado"
+            [formControl]="selectControl"
+            [(ngModel)]="roomActually.stateRoom"
+            required
+          >
+            <mat-option>Seleccione el Estado de la habitacion</mat-option>
+            <mat-option
+              *ngFor="let state of stateList"
+              [value]="state.idState"
+            >{{ state.nameState }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="selectControl.hasError('required')"
+            >Por favor, seleccione us estado</mat-error>
+        </mat-form-field>
+      </div>
+    <div class="form-group">
+       <label for="text"><b><h4>Capacidad de la habitacion</h4></b> </label>
+      <mat-form-field class="full-width">
+        <input matInput  type="number"  max="10" placeholder="Ingrese la cantidad base" [formControl]="capacityControl"
+         pattern="[0-9]+"  [(ngModel)]="roomActually.capacityRoom">
+
+        <mat-error *ngIf="capacityControl.hasError('maxLength') && !capacityControl.hasError('required')">
+          Por favor ingrese capacidad valida
+        </mat-error>
+        <mat-error *ngIf="capacityControl.hasError('required')">
+          La capacidad de la habitacion es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <hr>
+   <div class="row btn-div">
+        <div class="col-xl-6 text-center">
+          <button type="submit" class="btn btn-primary btn-block btn-save" (click)="saveOurUpdate()">
+            Guardar
+          </button>
+        </div>
+        <div class="col-xl-6 text-center">
+          <button
+            type="button"
+            [routerLink]="['/habitacion']"
+            class="btn btn-success btn-block"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+  </form>
+</div>

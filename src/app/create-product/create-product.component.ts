@@ -115,6 +115,4 @@ export class CreateProductComponent implements OnInit {
   get descControl() {
     return this.descFormControl;
   }
-
-
 }

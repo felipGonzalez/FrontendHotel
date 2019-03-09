@@ -68,9 +68,7 @@ export class CreateUserComponent implements OnInit {
     if (this.isValid) {
        this.createUserService.saveOurUpdate(this.user).subscribe(res => {
        if (res.responseCode === OK) {
-         console.log(res.responseCode);
-
-        this.router.navigate(['/user']);
+         this.router.navigate(['/user']);
        } else {
          this.message = res.message;
          this.isValid = false;

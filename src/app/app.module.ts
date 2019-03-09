@@ -29,12 +29,10 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
 import { LoginComponent } from './login/login.component';
 import { SalirComponent } from './admin/salir/salir.component';
-import { TarifaComponent } from './tarifa/tarifa.component';
 import { ReservaOnlineComponent } from './reserva-online/reserva-online.component';
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
-import { DatosHabitacionComponent } from './datos-habitacion/datos-habitacion.component';
 import { DatosHotelComponent } from './datos-hotel/datos-hotel.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -44,6 +42,13 @@ import { CdkTreeModule } from '@angular/cdk/tree';
 import { ProvedoresComponent } from './provedores/provedores.component';
 import { CreateProvedoresComponent } from './create-provedores/create-provedores.component';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
+import { TipoReservaComponent } from './tipo-reserva/tipo-reserva.component';
+import { CreateTipoReservaComponent } from './create-tipo-reserva/create-tipo-reserva.component';
+import { SteateRoomComponent } from './estado-habitacion/steate-room.component';
+import { CreateSteateRoomComponent } from './create-steate-room/create-steate-room.component';
+import { HabitacionComponent } from './habitacion/habitacion.component';
+import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
 
 
 @NgModule({
@@ -60,17 +65,22 @@ import { CreateProductComponent } from './create-product/create-product.componen
     ContrasenaComponent,
     LoginComponent,
     SalirComponent,
-    TarifaComponent,
     ReservaOnlineComponent,
     NuevaReservaComponent,
     ConfiguracionComponent,
     PrimerosPasosComponent,
-    DatosHabitacionComponent,
     DatosHotelComponent,
     ProvedoresComponent,
     CreateProvedoresComponent,
     CreateProductComponent,
-    ModalCompraInventario
+    ModalCompraInventario,
+    FacturacionComponent,
+    TipoReservaComponent,
+    CreateTipoReservaComponent,
+    SteateRoomComponent,
+    CreateSteateRoomComponent,
+    HabitacionComponent,
+    CreateHabitacionComponent
    ],
   imports: [
     BrowserModule,

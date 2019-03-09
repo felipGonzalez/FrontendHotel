@@ -1,0 +1,62 @@
+<div class="conteiner">
+  <h1 class="title">Habitaciones</h1>
+  <hr>
+  <button
+    type="button"
+    [routerLink]="['/crearHabitacion']"
+    class="btn btn-success"
+  >
+    Agregar Habitación
+  </button>
+  <div class="clear"></div>
+
+  <div class="list">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Buscar"
+      />
+    </mat-form-field>
+
+    <mat-table [dataSource]="dataSourceList">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No°. </mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{ room.idRoom }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="codeRoom">
+        <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{ room.codeRoom }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="capacityRoom">
+        <mat-header-cell *matHeaderCellDef> Capacidad </mat-header-cell>
+        <mat-cell *matCellDef="let room"> {{ room.capacityRoom }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="stateRoom">
+        <mat-header-cell *matHeaderCellDef> Estado Habitación </mat-header-cell>
+        <mat-cell *matCellDef="let room">{{
+          getTextStatus(room.stateRoom)
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+        <mat-cell *matCellDef="let room">
+          <button mat-raised-button (click)="edit(room)">
+            <i class="material-icons">edit</i>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</div>

@@ -8,18 +8,22 @@ import { EstablecimientoComponent } from './establecimiento/establecimiento.comp
 import { InventarioComponent } from './inventario/inventario.component';
 import { LoginComponent } from './login/login.component';
 import { ReservaComponent } from './reserva/reserva.component';
-import { TarifaComponent } from './tarifa/tarifa.component';
 import { ReservaOnlineComponent } from './reserva-online/reserva-online.component';
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
 import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
-import { DatosHabitacionComponent } from './datos-habitacion/datos-habitacion.component';
 import { DatosHotelComponent } from './datos-hotel/datos-hotel.component';
 import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
 import { ProvedoresComponent } from './provedores/provedores.component';
 import { CreateProvedoresComponent } from './create-provedores/create-provedores.component';
-import { CreateProductService } from './create-product/create-product.service';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
+import { CreateTipoReservaComponent } from './create-tipo-reserva/create-tipo-reserva.component';
+import { TipoReservaComponent } from './tipo-reserva/tipo-reserva.component';
+import { SteateRoomComponent } from './estado-habitacion/steate-room.component';
+import { CreateSteateRoomComponent } from './create-steate-room/create-steate-room.component';
+import { HabitacionComponent } from './habitacion/habitacion.component';
+import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -30,18 +34,24 @@ const routes: Routes = [
   { path: 'establecimiento', component: EstablecimientoComponent },
   { path: 'inventario', component: InventarioComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'tarifa', component: TarifaComponent },
   { path: 'reservaOnline', component: ReservaOnlineComponent },
   { path: 'reserva', component: ReservaComponent },
   { path: 'nuevaReserva', component: NuevaReservaComponent },
   { path: 'contrasena', component: ContrasenaComponent },
   { path: 'configuracion', component: ConfiguracionComponent },
-  { path: 'datosHabitaciones', component: DatosHabitacionComponent },
   { path: 'datosHotel', component: DatosHotelComponent },
   { path: 'primerosPasos', component: PrimerosPasosComponent },
   { path: 'provedores', component: ProvedoresComponent },
   { path: 'createProvedores', component: CreateProvedoresComponent },
-  { path: 'createProduct', component: CreateProductComponent}
+  { path: 'createProduct', component: CreateProductComponent},
+  { path: 'facturacion', component: FacturacionComponent},
+  { path: 'tipoReserva', component: TipoReservaComponent},
+  { path: 'crearTipoReserva', component: CreateTipoReservaComponent},
+  { path: 'estadoHabitacion', component: SteateRoomComponent },
+  { path: 'crearEstadoHabitacion', component: CreateSteateRoomComponent},
+  { path: 'habitacion', component: HabitacionComponent},
+  { path: 'crearHabitacion', component: CreateHabitacionComponent},
+
 ];
 
 @NgModule({

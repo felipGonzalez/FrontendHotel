@@ -1,7 +1,8 @@
 .div-card{
-  margin: 10px;
+  margin: 5px;
   padding: 10px;
   background-color: #337ab7;
+
 }
 
 .div-card-info{
@@ -10,4 +11,13 @@
 
 .decoration-text{
   color: white;
+}
+
+.img-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.div-row {
+  max-height: 50px;
 }

@@ -18,18 +18,46 @@ export class CreateUserService {
 
   public validate(user: UserModel): boolean {
     let isValid = true;
+    if (!user.firstName) {
+      isValid = false;
+    }
     if (!user.lastName) {
       isValid = false;
     }
-    if (!user.city) {
+
+    if (!user.phone) {
+      isValid = false;
+    }
+
+    if (!user.email) {
+      isValid = false;
+    }
+
+    isValid = this.isValidDocument(user.document);
+
+    if (!user.idTypeDocument) {
       isValid = false;
     }
    return isValid;
   }
 
+  public isValidDocument(document: string): boolean {
+    if (!document) {
+      return false;
+    }
+    return true;
+  }
+
   public saveOurUpdate(user: UserModel): Observable<RestResponse> {
     return this.http.post<RestResponse>('http://localhost:8080/listUser', user);
   }
+
+  public verifyUser(document: string): Observable<RestResponse> {
+
+    return this.http.get<RestResponse>('http://localhost:8080/listUser/verifyUser/' + document);
+  }
+
+
 
   public getTypeDocument(): Observable<TypeDocument[]> {
     return this.http.get<TypeDocument[]>(
