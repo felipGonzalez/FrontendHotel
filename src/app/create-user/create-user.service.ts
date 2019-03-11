@@ -12,9 +12,9 @@ import { TypeDocument } from '../model/TypeDocument';
 export class CreateUserService {
   constructor(private http: HttpClient) {}
 
-  /**
+  /*
    * metodo que valida campos obligatorios
-   * ***/
+   ***/
 
   public validate(user: UserModel): boolean {
     let isValid = true;
@@ -33,19 +33,14 @@ export class CreateUserService {
       isValid = false;
     }
 
-    isValid = this.isValidDocument(user.document);
+    if (!document) {
+      return false;
+    }
 
     if (!user.idTypeDocument) {
       isValid = false;
     }
    return isValid;
-  }
-
-  public isValidDocument(document: string): boolean {
-    if (!document) {
-      return false;
-    }
-    return true;
   }
 
   public saveOurUpdate(user: UserModel): Observable<RestResponse> {

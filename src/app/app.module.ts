@@ -49,6 +49,7 @@ import { SteateRoomComponent } from './estado-habitacion/steate-room.component';
 import { CreateSteateRoomComponent } from './create-steate-room/create-steate-room.component';
 import { HabitacionComponent } from './habitacion/habitacion.component';
 import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
+import { InfoReservasComponent } from './info-reservas/info-reservas.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { CreateHabitacionComponent } from './create-habitacion/create-habitacion
     SteateRoomComponent,
     CreateSteateRoomComponent,
     HabitacionComponent,
-    CreateHabitacionComponent
+    CreateHabitacionComponent,
+    InfoReservasComponent
    ],
   imports: [
     BrowserModule,

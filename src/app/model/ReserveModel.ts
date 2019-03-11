@@ -1,11 +1,11 @@
 export class ReserveModel {
-  public idReserve: number;//-----------  ok
+  public idReserve: number;
   public idClient: number;
-  public dateReserve: Date; //-----------  ok
-  public idStateReserve: number; //-----------  ok
-  public idBill: number; //-----------  Pendiente
-  public deteInput: Date; //-----------  ok
-  public dateOutput: Date;//-----------  ok
-  public idTypeReserve: number;//-----------  ok
-  public numBed: number; //-----------  ok
+  public dateReserve: Date;
+  public idStateReserve: number;
+  public idBill: number;
+  public deteInput: Date;
+  public dateOutput: Date;
+  public idTypeReserve: number;
+  public numBed: number;
 }

@@ -1,0 +1,186 @@
+<div class="conteiner">
+  <h1>Informes de Reservas</h1>
+  <hr />
+
+  <div class="conteiner cont-base">
+    <div class="row">
+      <div class="col-xl-4">
+        <div class="row">
+          <div class="col-xl-12">
+            <button
+              type="button"
+              class="btn btn-lg btn-block btn-outline-success"
+              (click)=offValid()
+              (click)=loadReserveInput()
+            >
+              Entradas hoy
+            </button>
+          </div>
+          <div class="col-xl-12">
+            <button
+              type="button"
+              class="btn btn-lg btn-block btn-outline-primary"
+              (click)=loadReserveOutput()
+            >
+              Salidas hoy
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        <div class="row">
+          <div class="col-xl-12">
+            <button type="button"
+             (click)=onValid()
+             (click)=loadListHsistoryReserveOk()
+             class="btn btn-lg btn-block  btn-r">
+              Realizadas
+            </button>
+          </div>
+          <div class="col-xl-12">
+            <button
+              type="button"
+              (click)=onValid()
+              (click)=loadListHistoryReserveCancel()
+              class="btn btn-lg btn-block btn-outline-success btn-c"
+            >
+              Canceladas
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        <div class="row">
+          <div class="col-xl-12">
+            <button
+              type="button"
+              (click)=offValid()
+              (click)=loadUserEstancia()
+              class="btn btn-lg btn-block btn-outline-success btn-e"
+            >
+              Estancia
+            </button>
+          </div>
+          <div class="col-xl-12">
+            <button
+              type="button"
+              class="btn btn-lg btn-block btn-outline-success btn-s"
+              (click)=loadUserAsing()
+            >
+              Sin asignar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-main" *ngIf="isValidDiv">
+    <div class="form-group">
+      <label for="text"
+        ><b><h4>Fecha de Inicial</h4></b>
+      </label>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        placeholder="Selecciona la fecha Inicial"
+        (dateInput)="setFilterDateMax()"
+        [formControl]="dateInputControl"
+        [(ngModel)]="getDateInfo.dateInit"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker1"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      <mat-error
+        align="end"
+        *ngIf="!dateInputControl.hasError('reqired')"
+      >
+        Ingrese una fecha <span>Valida</span>
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div class="form-group">
+      <label for="text"
+        ><b><h4>Fecha Final</h4></b>
+      </label>
+
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          [min]="getMinDateOutput"
+          [matDatepicker]="picker2"
+          placeholder="Selecciona la fecha Final"
+          [formControl]="dateOutputControl"
+          [(ngModel)]="getDateInfo.dateFinish"
+          (dateInput)="checkDate()"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error
+          align="end"
+          *ngIf="!dateOutputControl.hasError('reqired')"
+        >
+          Ingrese una fecha <span>Valida</span>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="list">
+    <div><h4>{{messageInfo}}</h4></div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+
+    <mat-table [dataSource]="dataSourceList" >
+
+       <!-- Name Column -->
+       <ng-container matColumnDef="name">
+          <mat-header-cell  *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell  *matCellDef="let data"> {{data.nombres}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="impor">
+          <mat-header-cell  *matHeaderCellDef> Importe </mat-header-cell>
+          <mat-cell  *matCellDef="let data"> {{data.importe}} </mat-cell>
+        </ng-container>
+
+         <!-- Name Column -->
+       <ng-container matColumnDef="dateInit">
+          <mat-header-cell  *matHeaderCellDef> Fecha Inicial </mat-header-cell>
+          <mat-cell  *matCellDef="let data" >{{ data.fecha_inicial}}</mat-cell>
+        </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="dateEnd">
+        <mat-header-cell *matHeaderCellDef> Fecha Final </mat-header-cell>
+        <mat-cell *matCellDef="let data"> {{data.fecha_final}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+          <mat-cell *matCellDef="let data">
+            <button mat-raised-button >
+                <i class="material-icons">edit</i>
+            </button>
+            </mat-cell>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+
+</div>

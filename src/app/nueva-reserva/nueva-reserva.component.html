@@ -4,288 +4,235 @@
   <div *ngIf="!isValid" class="alert alert-danger" role="alert">
     <strong>Tenemos un error!</strong> {{ messageInfo }}
   </div>
-  <form class="form-main">
-    <div class="form-group">
-      <label for="text"
-        ><b><h4>Fecha de llegada</h4></b>
-      </label>
-      <mat-form-field class="full-width">
-        <input
-          matInput
-          [min]="getMinDateInput"
-          [max]="getMaxDateInput"
-          [matDatepicker]="picker1"
-          placeholder="Selecciona la fecha llegada"
-          (dateInput)="setFilterDateMax()"
-          [formControl]="dateInputControl"
-          [(ngModel)]="reserveActually.deteInput"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="picker1"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-        <mat-error align="end" *ngIf="!dateInputControl.hasError('reqired')">
-          Ingrese una fecha <span>Valida</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
 
-    <div class="form-group">
-      <label for="text"
-        ><b><h4>Fecha de Salida</h4></b>
-      </label>
-      <mat-form-field class="full-width">
-        <input
-          matInput
-          [min]="getMinDateOutput"
-          [max]="getMaxDateoutput"
-          [matDatepicker]="picker2"
-          placeholder="Selecciona la fecha salida"
-          [formControl]="dateOutputControl"
-          [(ngModel)]="reserveActually.dateOutput"
-          (dateInput)="checkDate()"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="picker2"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-        <mat-error align="end" *ngIf="!dateOutputControl.hasError('reqired')">
-          Ingrese una fecha <span>Valida</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
-  </form>
-  <hr />
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
 
-  <div class="form-main" *ngIf="isValidDiv1">
-    <div class="form-group">
-      <h4>Tipo de Reserva</h4>
-      <mat-form-field>
-        <mat-select
-          placeholder="Tipo de Reserva"
-          [formControl]="selectControl"
-          [(ngModel)]="reserveActually.idTypeReserve"
-          required
-        >
-          <mat-option>Seleccione el tipo de la reserva</mat-option>
-          <mat-option
-            *ngFor="let typeReserve of typeResrveList"
-            [value]="typeReserve.id"
-            (click)="setNumBed()"
-          >
-            {{ typeReserve.nameType }}
-          </mat-option>
-        </mat-select>
-        <mat-error align="end" *ngIf="selectControl.hasError('required')"
-          >Por favor, seleccione el tipo de reserva</mat-error
-        >
-      </mat-form-field>
-    </div>
-  </div>
-  <hr />
+      <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>DatosCliente</ng-template>
+              <button
+              type="button"
+              class="btn btn-success"
+              (click)=onNoClick()
+            >
+              Agregar Usuario
+            </button>
+              <div class="list">
+                <mat-form-field>
+                  <input
+                    matInput
+                    (keyup)="applyFilter($event.target.value)"
+                    placeholder="Buscar"
+                  />
+                </mat-form-field>
 
-  <div class="form-main" *ngIf="isValidDiv2">
-    <div class="form-group">
-      <h4>Numero de camas</h4>
-      <mat-form-field>
-        <mat-select
-          placeholder="Numero de camas"
-          [formControl]="numBedControl"
-          [(ngModel)]="reserveActually.numBed"
-          [disabled]="isDisable"
-          required
-        >
-          <mat-option>Seleccione el numero de camas</mat-option>
-          <mat-option *ngFor="let bed of getNumBedList" [value]="bed">
-            {{ bed }}
-          </mat-option>
-        </mat-select>
-        <mat-error align="end" *ngIf="numBedControl.hasError('required')"
-          >Por favor,seleccione el numero de camas</mat-error
-        >
-      </mat-form-field>
-    </div>
-  </div>
-  <hr />
-  <form>
-    <div class="form-main" *ngIf="isValidDiv3">
-      <table class="full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                #doc
-                maxlength="10"
-                placeholder="documento"
-                [(ngModel)]="userActually.document"
-                name="document"
-                [formControl]="documentControl"
-              />
-              <mat-hint align="end">{{ doc.value.length }} / 10</mat-hint>
-              <mat-error *ngIf="documentControl.hasError('required')">
-                El Documento es <strong>requerido</strong>
-              </mat-error>
-            </mat-form-field>
-          </td>
+                <mat-table [dataSource]="dataSourceList">
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="firstName">
+                    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                    <mat-cell *matCellDef="let user"> {{ user.firstName }} </mat-cell>
+                  </ng-container>
 
-          <td>
-            <div mat-dialog-actions>
-              <button mat-button  cdkFocusInitial (click)="checkUser()">Verificar</button>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </form>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="lastName">
+                    <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+                    <mat-cell *matCellDef="let user"> {{ user.lastName }} </mat-cell>
+                  </ng-container>
+
+                 <!-- Weight Column -->
+                  <ng-container matColumnDef="document">
+                    <mat-header-cell *matHeaderCellDef> documento </mat-header-cell>
+                    <mat-cell *matCellDef="let user"> {{ user.document }} </mat-cell>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="phone">
+                    <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+                    <mat-cell *matCellDef="let user"> {{ user.phone }} </mat-cell>
+                  </ng-container>
+
+                   <!-- Name Column -->
+                  <ng-container matColumnDef="city">
+                    <mat-header-cell *matHeaderCellDef> Ciudad </mat-header-cell>
+                    <mat-cell *matCellDef="let user"> {{ user.city }} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+                    <mat-cell *matCellDef="let user">
+                        <button mat-button matStepperNext (click)= edit(user)>Ok</button>
+                    </mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                </mat-table>
+              </div>
+              <div>
+
+                <button mat-button matStepperNext>Next</button>
+              </div>
+
+          </form>
+
+        </mat-step>
 
 
-  <div class="form-main" *ngIf="isValidDiv4">
-    <form class="form-group">
-      <h4>Datos de usuario</h4>
-      <p *ngIf="getExistUser">
-        En caso del que cliente no este registrado se creara un nuevo registro
-        en la base de datos
-      </p>
-      <div *ngIf="!isValidForm" class="alert alert-danger" role="alert">
-        <strong>Tenemos un error!</strong> {{ messageInfo }}
-      </div>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" class="form-main">
+        <ng-template matStepLabel>Fecha de reserva</ng-template>
 
-      <table class="full-width" cellspacing="0">
-        <tr>
-          <td>
+        <div class="form-group">
+          <label for="text"
+            ><b><h4>Fecha de llegada</h4></b>
+          </label>
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              [min]="getMinDateInput"
+              [max]="getMaxDateInput"
+              [matDatepicker]="picker1"
+              placeholder="Selecciona la fecha llegada"
+              (dateInput)="setFilterDateMax()"
+              [formControl]="dateInputControl"
+              [(ngModel)]="reserveActually.deteInput"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error
+              align="end"
+              *ngIf="!dateInputControl.hasError('reqired')"
+            >
+              Ingrese una fecha <span>Valida</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label for="text"
+            ><b><h4>Fecha de Salida</h4></b>
+          </label>
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              [min]="getMinDateOutput"
+              [max]="getMaxDateoutput"
+              [matDatepicker]="picker2"
+              placeholder="Selecciona la fecha salida"
+              [formControl]="dateOutputControl"
+              [(ngModel)]="reserveActually.dateOutput"
+              (dateInput)="checkDate()"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error
+              align="end"
+              *ngIf="!dateOutputControl.hasError('reqired')"
+            >
+              Ingrese una fecha <span>Valida</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="threeFormGroup">
+      <form [formGroup]="threeFormGroup">
+        <ng-template matStepLabel>Tipo de Reserva</ng-template>
+        <div class="form-main" >
+          <div class="form-group">
             <mat-form-field>
               <mat-select
-                placeholder="Tipo de Documento"
-                [formControl]="userControl"
-                [(ngModel)]="userActually.idTypeDocument"
+                placeholder="Tipo de Reserva"
+                [formControl]="selectControl"
+                [(ngModel)]="reserveActually.idTypeReserve"
                 required
-                [disabled]="getExistUser"
               >
-                <mat-option>Seleccione el tipo de documento</mat-option>
+                <mat-option>Seleccione el tipo de la reserva</mat-option>
                 <mat-option
-                  *ngFor="let document of typeDocumentList"
-                  [value]="document.id"
+                  *ngFor="let typeReserve of typeReserveList"
+                  [value]="typeReserve.id"
+                  (click)="setNumBed()"
                 >
-                  {{ document.nombre_tipo }}
+                  {{ typeReserve.nameType }}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="userControl.hasError('required')"
-                >Por favor, ingrese su tipo de documento</mat-error
+              <mat-error align="end" *ngIf="selectControl.hasError('required')"
+                >Por favor, seleccione el tipo de reserva</mat-error
               >
             </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                [attr.disabled]="getExistUser ? '' : null"
-                #name
-                maxlength="30"
-                placeholder="Nombre"
-                [(ngModel)]="userActually.firstName"
-                name="firstName"
-                [formControl]="nameControl"
-              />
-              <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
-              <mat-error *ngIf="nameControl.hasError('required')">
-                El nombre es <strong>requerido</strong>
-              </mat-error>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                #name2
-                maxlength="30"
-                placeholder="Apellido"
-                [(ngModel)]="userActually.lastName"
-                name="lastName"
-                [formControl]="lastNameControl"
-                [disabled]="getExistUser"
-              />
-              <mat-hint align="end">{{ name2.value.length }} / 30</mat-hint>
-              <mat-error *ngIf="lastNameControl.hasError('required')">
-                El apellido es <strong>requerido</strong>
-              </mat-error>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-
-      <table class="full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="full-width">
-              <span matPrefix>+57 &nbsp;</span>
-              <input
-                type="tel"
-                #tel
-                maxlength="10"
-                matInput
-                placeholder="Telefono"
-                [(ngModel)]="userActually.phone"
-                name="phone"
-                [formControl]="phoneControl"
-                [disabled]="getExistUser"
-              />
-              <mat-hint align="end">{{ tel.value.length }} / 10</mat-hint>
-              <mat-error *ngIf="phoneControl.hasError('required')">
-                El telefono es <strong>requerido</strong>
-              </mat-error>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                placeholder="Email"
-                [formControl]="emailControl"
-                [(ngModel)]="userActually.email"
-                name="email"
-                [disabled]="getExistUser"
-              />
-              <mat-error
-                *ngIf="
-                  emailControl.hasError('email') &&
-                  !emailControl.hasError('required')
-                "
+          </div>
+          <div class="form-group" *ngIf="isValidDiv2">
+            <h4>Numero de camas</h4>
+            <mat-form-field>
+              <mat-select
+                placeholder="Numero de camas"
+                [formControl]="numBedControl"
+                [(ngModel)]="reserveActually.numBed"
+                required
+                (click)="setNumBed()"
               >
-                Por favor ingrese un correo valido
-              </mat-error>
-              <mat-error *ngIf="emailControl.hasError('required')">
-                El correo es <strong>requerido</strong>
-              </mat-error>
+                <mat-option>Seleccione el numero de camas</mat-option>
+                <mat-option *ngFor="let bed of getNumBedList" [value]="bed">
+                  {{ bed }}
+                </mat-option>
+              </mat-select>
+              <mat-error align="end" *ngIf="numBedControl.hasError('required')"
+                >Por favor,seleccione el numero de camas</mat-error
+              >
             </mat-form-field>
-          </td>
-        </tr>
-      </table>
-
-      <div class="row btn-div">
-        <div class="col text-center">
-          <button
-            type="submit"
-            class="btn btn-primary btn-block btn-save"
-            [mat-dialog-close]="0"
-            cdkFocusInitial
-          >
-            Guardar
-          </button>
+          </div>
         </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step >
+        <ng-template matStepLabel>Crear reserva</ng-template>
+      <div *ngIf="isValidDiv3">
+          <h4>Datos de reserva</h4>
+          <hr>
+          <p>Usuario: {{userActually.firstName}}  {{userActually.lastName}}</p>
+          <p>Fecha de Reserva: {{ reserveActually.dateReserve | date: "mediumDate" }}</p>
+          <p>Fecha de Entrada: {{ reserveActually.deteInput | date: "mediumDate" }}</p>
+          <p>Fecha de salida: {{ reserveActually.dateOutput | date: "mediumDate" }}</p>
+          <p>Numero de camas: {{reserveActually.numBed}}</p>
+          <hr>
+
+            <button  type="button"  class="btn btn-success" (click)=saveOurUpdate()>Crear reserva</button>
+
+          <hr>
       </div>
-    </form>
-  </div>
-
-  <div class="form-main" *ngIf="false"></div>
-
-  <div class="form-main">
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cerrar sin guardar</button>
-    </div>
-  </div>
+      <div>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
+
+<!--
+
+<p>Usuario: {{userActually.firstName}}  {{userActually.lastName}}</p>
+          <p>Fecha de Entrada: {{ reserveActually.deteInput | date: "mediumDate" }}</p>
+          <p>Fecha de salida: {{ reserveActually.dateOutput | date: "mediumDate" }}</p>
+          <p>Tipo de reserva: {{typeResrveList[reserveActually.idTypeReserve].nameType}}</p>
+          <p>Numero de camas: {{reserveActually.numBed}}</p>
+
+-->

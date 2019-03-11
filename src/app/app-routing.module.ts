@@ -24,6 +24,7 @@ import { SteateRoomComponent } from './estado-habitacion/steate-room.component';
 import { CreateSteateRoomComponent } from './create-steate-room/create-steate-room.component';
 import { HabitacionComponent } from './habitacion/habitacion.component';
 import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
+import { InfoReservasComponent } from './info-reservas/info-reservas.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'reservaOnline', component: ReservaOnlineComponent },
   { path: 'reserva', component: ReservaComponent },
+  { path: 'infoReserva', component: InfoReservasComponent},
   { path: 'nuevaReserva', component: NuevaReservaComponent },
   { path: 'contrasena', component: ContrasenaComponent },
   { path: 'configuracion', component: ConfiguracionComponent },

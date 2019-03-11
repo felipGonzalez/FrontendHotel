@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StateReserveModel } from '../model/StateReserveModel';
 import { HttpClient } from '@angular/common/http';
+import { ReserveModel } from '../model/ReserveModel';
+import { RestResponse } from '../model/RestResponse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,48 @@ export class NuevaReservaService {
 
   constructor(private http: HttpClient) { }
 
+
+  public validate(reserve: ReserveModel): boolean {
+    let isValid = true;
+    if (!reserve.dateOutput) {
+      isValid = false;
+    }
+
+    if (!reserve.dateReserve) {
+      isValid = false;
+    }
+
+    if (!reserve.deteInput) {
+      isValid = false;
+    }
+
+   if (!reserve.idClient) {
+      isValid = false;
+    }
+
+    if (!reserve.idTypeReserve) {
+      isValid = false;
+    }
+
+    if (!reserve.numBed) {
+      isValid = false;
+    }
+
+   return isValid;
+  }
+
   public getStateReserve(): Observable<StateReserveModel[]> {
     return this.http.get<StateReserveModel[]>(
       'http://localhost:8080/listStateReserve'
     );
   }
+
+
+  public saveOurUpdate(reserve: ReserveModel): Observable<RestResponse> {
+    console.log(reserve);
+
+    return this.http.post<RestResponse>('http://localhost:8080/listReserve', reserve);
+  }
+
 
 }

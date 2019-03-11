@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDatepickerInputEvent } from '@angular/material';
+import { MatDialogRef,MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  FormControl,
+  Validators,
+  FormGroup,
+  FormBuilder
+} from '@angular/forms';
 import { CreateTipoReservaService } from '../create-tipo-reserva/create-tipo-reserva.service';
 import { NuevaReservaService } from './nueva-reserva.service';
 import { TypeReserveModel } from '../model/typeReserveModel';
@@ -10,17 +15,16 @@ import { StateReserveModel } from '../model/StateReserveModel';
 import { TypeDocument } from '../model/TypeDocument';
 import { CreateUserService } from '../create-user/create-user.service';
 import { UserModel } from '../model/UserModel';
-import { OK,NOT_ACCEPTABLE } from '../model/httpStatus';
-
+import { OK, NOT_ACCEPTABLE } from '../model/httpStatus';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-nueva-reserva',
   templateUrl: './nueva-reserva.component.html',
   styleUrls: ['./nueva-reserva.component.css'],
-  providers: [CreateTipoReservaService,NuevaReservaService,CreateUserService]
+  providers: [CreateTipoReservaService, NuevaReservaService, CreateUserService]
 })
 export class NuevaReservaComponent implements OnInit {
-
   private message: string;
   private validDate: boolean;
   private dateInpuFilter = new Date();
@@ -35,9 +39,7 @@ export class NuevaReservaComponent implements OnInit {
   private validDiv1: boolean;
   private validDiv2: boolean;
   private validDiv3: boolean;
-  private validDiv4: boolean;
-  private validForm: boolean;
-  private existUser: boolean;
+   private validForm: boolean;
   private typeReserves: Array<TypeReserveModel>;
   private typeReserveFormControl;
   private reserve: ReserveModel;
@@ -46,60 +48,72 @@ export class NuevaReservaComponent implements OnInit {
   private stateReserves: Array<StateReserveModel>;
   private numBeds: number[] = [1, 2, 3, 4, 5];
   private disableSelect: boolean;
-  private emailFormControl;
-  private userFromControl;
-  private typeDocuments: Array<TypeDocument>;
-  private  user: UserModel;
-  private nameFormControl;
-  private lastNameFormControl;
-  private documentFormControl;
-  private phoneFormControl;
+
+  private user: UserModel;
+
+  isLinear: boolean;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  threeFormGroup: FormGroup;
+
+
+  private users: Array<UserModel>;
+  private dataSource;
+  private domainsList: string[] = ['M', 'F', 'I', 'N'];
+
+
+  displayedColumns: string[] = ['firstName', 'lastName', 'document', 'phone', 'city', 'action'];
 
   constructor(
     public dialogRef: MatDialogRef<NuevaReservaComponent>,
     private router: Router,
-    private tipeReserveService:CreateTipoReservaService ,
+    private tipeReserveService: CreateTipoReservaService,
     private newReserveService: NuevaReservaService,
-    private createUserService: CreateUserService
+    private createUserService: CreateUserService,
+    private _formBuilder: FormBuilder,
+    private userService: UserService
   ) {
     this.validDate = true;
     this.dateSelectOutput = new Date();
-    this.dateInputFormControl = new FormControl('',[Validators.required]);
-    this.dateOutputFormControl = new FormControl('',[Validators.required]);
-    this.nameFormControl = new FormControl('',[Validators.required]);
-    this.lastNameFormControl = new FormControl('',[Validators.required]);
-    this.documentFormControl = new FormControl('',[Validators.required]);
-    this.phoneFormControl = new FormControl('',[Validators.required]);
+    this.dateInputFormControl = new FormControl('', [Validators.required]);
+    this.dateOutputFormControl = new FormControl('', [Validators.required]);
     this.dateSelectInput = new Date();
-    this.validDate = true;
-    this.disableSelect = true;
+
+    this.disableSelect = false;
     this.validDiv1 = false;
     this.validDiv2 = false;
-    this.validDiv3 = true;
-    this.validDiv4 = false;
+    this.validDiv3 = false;
+    this.isLinear = true;
     this.validForm = true;
-    this.existUser = false;
+
     this.reserve = new ReserveModel();
     this.reserve.dateReserve = new Date();
+    this.reserve.idTypeReserve = 0;
     this.selectFormControl = new FormControl('', Validators.required);
     this.numBedFormControl = new FormControl('', Validators.required);
-    this.emailFormControl = new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]);
-    this.userFromControl = new FormControl('', [Validators.required]);
-    this.user = new UserModel;
+
+    this.user = new UserModel();
+    this.dataSource = new MatTableDataSource(this.users);
   }
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.threeFormGroup = this._formBuilder.group({
+      threeCtrl: ['', Validators.required]
+    });
     this.setFilterDateMin();
     this.setFilterDateMaxInit();
     this.loadTypeReserve();
     this.loadStateReserve();
-    this.loadTypeDocument();
+    this.loadUsers();
   }
 
-  private loadStateReserve(): void {
+  private loadTypeReserve(): void {
     this.tipeReserveService.getTypeReserve().subscribe(
       res => {
         this.typeReserves = res;
@@ -108,7 +122,7 @@ export class NuevaReservaComponent implements OnInit {
     );
   }
 
-  private loadTypeReserve(): void {
+  private loadStateReserve(): void {
     this.newReserveService.getStateReserve().subscribe(
       res => {
         this.stateReserves = res;
@@ -117,102 +131,134 @@ export class NuevaReservaComponent implements OnInit {
     );
   }
 
-  private loadTypeDocument(): void {
-    this.createUserService.getTypeDocument().subscribe(res => {
-      this.typeDocuments = res;
-      console.log(this.typeDocuments);
-    },
-      (error: any)  => this.typeDocuments = []
+  public setFilterDateMin(): void {
+    this.minDateInput = new Date(
+      this.dateInpuFilter.getFullYear(),
+      this.dateInpuFilter.getMonth(),
+      this.dateInpuFilter.getDate()
+    );
+    this.maxDateInput = new Date(
+      this.dateInpuFilter.getFullYear(),
+      this.dateInpuFilter.getMonth(),
+      this.dateInpuFilter.getDate() + 20
     );
   }
 
-  public setFilterDateMin(): void{
-
-     this.minDateInput = new  Date ( this.dateInpuFilter.getFullYear() , this.dateInpuFilter.getMonth() , (this.dateInpuFilter.getDate()) );
-     this.maxDateInput = new  Date (this.dateInpuFilter.getFullYear() , this.dateInpuFilter.getMonth(), this.dateInpuFilter.getDate()+20);
+  public setFilterDateMaxInit(): void {
+    this.minDateOutput = new Date(
+      this.dateInpuFilter.getFullYear(),
+      this.dateSelectInput.getMonth(),
+      this.dateInpuFilter.getDate() + 1
+    );
+    this.maxDateoutput = new Date(
+      this.dateInpuFilter.getFullYear(),
+      this.dateSelectInput.getMonth(),
+      this.dateInpuFilter.getDate() + 20
+    );
   }
 
-  public setFilterDateMaxInit(): void{
-    this.minDateOutput = new  Date ( this.dateInpuFilter.getFullYear() ,
-     this.dateSelectInput.getMonth() , this.dateInpuFilter.getDate() + 1 );
-    this.maxDateoutput = new  Date (this.dateInpuFilter.getFullYear() ,
-     this.dateSelectInput.getMonth(), this.dateInpuFilter.getDate() + 20);
-
- }
-
-  public setFilterDateMax(): void{
-    console.log(this.reserve.deteInput.getFullYear()+ '  ' + this.reserve.deteInput.getMonth()+ '  '
-    + this.reserve.deteInput.getDate());
-
-     this.minDateOutput = new  Date ( this.reserve.deteInput.getFullYear(),
-      this.reserve.deteInput.getMonth() , this.reserve.deteInput.getDate() + 1 );
-     this.maxDateoutput = new  Date (this.reserve.deteInput.getFullYear(),
-      this.reserve.deteInput.getMonth(), this.reserve.deteInput.getDate() + 20);
-      this.checkDate();
+  public setFilterDateMax(): void {
+    this.minDateOutput = new Date(
+      this.reserve.deteInput.getFullYear(),
+      this.reserve.deteInput.getMonth(),
+      this.reserve.deteInput.getDate() + 1
+    );
+    this.maxDateoutput = new Date(
+      this.reserve.deteInput.getFullYear(),
+      this.reserve.deteInput.getMonth(),
+      this.reserve.deteInput.getDate() + 20
+    );
+    this.checkDate();
   }
 
   public checkDate(): void {
-    if( this.reserve.deteInput < this.reserve.dateOutput) {
-        this.validDiv1 = true;
+    if (this.reserve.deteInput < this.reserve.dateOutput) {
+      this.validDiv1 = true;
+      this.isLinear = false;
     }
   }
 
   public setNumBed() {
     this.validDiv2 = true;
-    if(this.reserve.idTypeReserve === 2) {
-      this.reserve.numBed = 1;
-      this.disableSelect = false;
-    } else {
-      this.reserve.numBed = 5;
-      this.disableSelect = true;
+
+    if(this.reserve.numBed != null) {
+      this.validDiv3 = true;
     }
-    this.validDiv3 = true;
   }
 
-  public checkUser() {
-    if(this.createUserService.isValidDocument(this.user.document)){
-      this.createUserService.verifyUser(this.user.document).subscribe(res => {
-        if ( res.responseCode === OK) {
-          console.log(res.message);
-           this.existUser = false;
-        } else if(res.responseCode === NOT_ACCEPTABLE){
-          console.log(res.message);
-          this.existUser = true;
-        }
-      },
-        (error: any)  => 'No hay conexión'
-      );
-    }
-
-
-  }
-
-
-   onNoClick(): void {
+  onNoClick(): void {
     this.dialogRef.close();
-    //this.router.navigate(['/']);
+    this.router.navigate(['/createUserComponent']);
+
   }
+
+
+  private loadUsers(): void {
+    this.userService.getUser().subscribe(
+      res => {
+        this.users = res;
+        this.dataSource.data = this.users;
+      },
+      (error: any) => (this.users = [])
+    );
+  }
+
+  public edit(user: UserModel): void {
+    //sessionStorage.setItem('user', JSON.stringify(user));
+    //this.router.navigate(['/createUserComponent']);
+    this.user = user;
+    this.validDiv3 = true;
+    this.isLinear = false;
+    this.reserveActually.idClient = user.id;
+    console.log(this.typeReserves);
+
+  }
+
+  public validData():boolean {
+    let da = this.newReserveService.validate(this.reserve);
+    console.log(da);
+
+    return da;
+  }
+
+  public saveOurUpdate(): void {
+    this.validForm = this.newReserveService.validate(this.reserve);
+
+    console.log(this.reserve);
+
+    if (this.validForm) {
+       this.newReserveService.saveOurUpdate(this.reserve).subscribe(res => {
+       if (res.responseCode === OK) {
+         alert('Reserva Agregada Correctamente');
+        this.dialogRef.close();
+       } else {
+         this.message = res.message;
+         this.validForm = false;
+         console.log(res.message);
+       }
+      });
+    } else {
+      this.message = 'Verifique la fecha y el tipo de reserva por favor';
+    }
+   }
+
+   applyFilter(filterValue: string) {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  public getNameTypeReserve():string {
+    return this.typeReserves[this.reserveActually.idTypeReserve].nameType;
+  }
+
+  get dataSourceList() {return this.dataSource; }
+  get userList() { return this.users; }
+  get genderDomain() {return this.domainsList; }
 
   get typeReserveControl() {
     return this.typeReserveFormControl;
   }
 
-  get nameControl() {
-    return this.nameFormControl;
-  }
-
-  get lastNameControl() {
-    return this.lastNameFormControl;
-  }
-
-  get documentControl() {
-    return this.documentFormControl;
-  }
-
-  get phoneControl() {
-    return this.phoneFormControl;
-  }
-  get typeResrveList() {
+  get typeReserveList() {
     return this.typeReserves;
   }
 
@@ -221,14 +267,10 @@ export class NuevaReservaComponent implements OnInit {
   }
 
   get isValid() {
-    return this.validDate;
-  }
-
-  get isValidForm() {
     return this.validForm;
   }
 
-  get isDisable() {
+   get isDisable() {
     return this.disableSelect;
   }
 
@@ -244,16 +286,6 @@ export class NuevaReservaComponent implements OnInit {
     return this.validDiv3;
   }
 
-  get isValidDiv4() {
-    return this.validDiv4;
-  }
-
-  get getExistUser() {
-    return this.existUser;
-  }
-
-
-
   get dateInputControl() {
     return this.dateInputFormControl;
   }
@@ -262,30 +294,28 @@ export class NuevaReservaComponent implements OnInit {
     return this.dateOutputFormControl;
   }
 
-  get getMinDateInput(){
-    return this.minDateInput ;
+  get getMinDateInput() {
+    return this.minDateInput;
   }
 
-  get getMaxDateInput(){
-    return this.maxDateInput ;
+  get getMaxDateInput() {
+    return this.maxDateInput;
   }
 
-  get getMinDateOutput(){
-    return this.minDateOutput ;
+  get getMinDateOutput() {
+    return this.minDateOutput;
   }
 
-  get getMaxDateoutput(){
-    return this.maxDateoutput ;
+  get getMaxDateoutput() {
+    return this.maxDateoutput;
   }
 
   get getDateSelectInput() {
     return this.dateSelectInput;
-
   }
 
   get getDateSelectOutput() {
     return this.dateSelectOutput;
-
   }
 
   get reserveActually() {
@@ -300,19 +330,11 @@ export class NuevaReservaComponent implements OnInit {
     return this.numBedFormControl;
   }
 
-  get emailControl() {
-    return this.emailFormControl;
-  }
-
-  get userControl() {
-    return this.userFromControl;
-  }
-
   get getNumBedList() {
     return this.numBeds;
   }
 
-  get userActually() {return this.user; }
-  get typeDocumentList() {return this.typeDocuments; }
-
+  get userActually() {
+    return this.user;
+  }
 }
