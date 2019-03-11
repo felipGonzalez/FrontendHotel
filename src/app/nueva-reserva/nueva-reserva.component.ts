@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { CreateTipoReservaService } from 'src/app/create-tipo-reserva/create-tipo-reserva.service';
 import { NuevaReservaService } from './nueva-reserva.service';
-import { TypeReserveModel } from 'src/app/model/typeReserveModel';
+import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 import { ReserveModel } from 'src/app/model/ReserveModel';
 import { StateReserveModel } from 'src/app/model/StateReserveModel';
 import { TypeDocument } from 'src/app/model/TypeDocument';

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ReserveModel } from 'src/app/model/ReserveModel';
 import { StateReserveModel } from 'src/app/model/StateReserveModel';
 import { RestResponse } from 'src/app/model/RestResponse.model';
-import { TypeReserveModel } from 'src/app/model/typeReserveModel';
+import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 
 @Injectable({
   providedIn: 'root'

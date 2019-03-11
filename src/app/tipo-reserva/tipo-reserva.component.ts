@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TipoReservaService } from './tipo-reserva.service';
-import { TypeReserveModel } from 'src/app/model/typeReserveModel';
+import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 import { Router } from '@angular/router';
 
 @Component({
