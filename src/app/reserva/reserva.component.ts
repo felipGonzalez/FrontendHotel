@@ -7,7 +7,7 @@ import { UserModel } from '../model/UserModel';
 import { UserService } from '../user/user.service';
 import { MatTableDataSource } from '@angular/material';
 import { OK } from '../model/httpStatus';
-import { TypeReserveModel } from '../model/typeReserveModel';
+import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 
 @Component({
   selector: 'app-reserva',
