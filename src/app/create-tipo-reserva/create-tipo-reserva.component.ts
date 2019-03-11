@@ -20,6 +20,7 @@ export class CreateTipoReservaComponent implements OnInit {
   private typeReserve: TypeReserveModel;
 
 
+
   constructor(
     private createTypeReserve: CreateTipoReservaService,
     private router: Router) {

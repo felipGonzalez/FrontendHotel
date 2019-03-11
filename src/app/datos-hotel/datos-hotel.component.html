@@ -9,7 +9,7 @@
     <div class="basic">
       <h2>Datos basicos</h2>
       <form class="main-form">
-          <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+          <div *ngIf="!valid" class="alert alert-danger" role="alert">
               <strong>Tenemos un error !</strong> {{ messageInfo }}
             </div>
         <div class="form-group">

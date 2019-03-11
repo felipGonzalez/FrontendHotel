@@ -42,7 +42,7 @@ export class InfoReservasComponent implements OnInit {
     this.loadReserveInput();
   }
 
-  private loadReserveInput(): void {
+  public loadReserveInput(): void {
     this.infoReservaService.getReserveInput().subscribe(
       res => {
         this.listDataInfoReserve = res;
@@ -55,7 +55,7 @@ export class InfoReservasComponent implements OnInit {
     );
   }
 
-  private loadReserveOutput(): void {
+  public loadReserveOutput(): void {
     this.infoReservaService.getReserveOutput().subscribe(
       res => {
         this.listDataInfoReserve = res;
@@ -68,7 +68,7 @@ export class InfoReservasComponent implements OnInit {
     );
   }
 
-  private loadUserEstancia(): void {
+  public loadUserEstancia(): void {
     this.infoReservaService.getUserEstancia().subscribe(
       res => {
         this.listDataInfoReserve = res;
@@ -81,7 +81,7 @@ export class InfoReservasComponent implements OnInit {
     );
   }
 
-  private loadUserAsing(): void {
+  public loadUserAsing(): void {
     this.infoReservaService.getUserAsing().subscribe(
       res => {
         this.listDataInfoReserve = res;
@@ -95,7 +95,7 @@ export class InfoReservasComponent implements OnInit {
     );
   }
 
-  private loadListHsistoryReserveOk(): void {
+  public loadListHsistoryReserveOk(): void {
     this.infoReservaService.getListHsistoryReserveOk(this.dateInfo).subscribe(
       res => {
         this.listDataInfoReserve = res;
@@ -113,7 +113,7 @@ export class InfoReservasComponent implements OnInit {
 
 
 
-  private loadListHistoryReserveCancel(): void {
+  public loadListHistoryReserveCancel(): void {
     this.infoReservaService.getListHistoryReserveCancel(this.dateInfo).subscribe(
       res => {
         this.listDataInfoReserve = res;

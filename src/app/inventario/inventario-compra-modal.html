@@ -42,7 +42,7 @@
       <mat-form-field class="full-width">
         <input matInput  type="number"  max="10" placeholder="Ingrese la cantidad base" [formControl]="quantityControl"  pattern="[0-9]+"  [(ngModel)]="quantityControl.baseQuantity">
 
-        <mat-error *ngIf="quantityControl.hasError('maxLength') && !quantityBaseControl.hasError('required')">
+        <mat-error *ngIf="quantityControl.hasError('maxLength') && !quantityControl.hasError('required')">
           Por favor ingrese la cantidad base
         </mat-error>
         <mat-error *ngIf="quantityControl.hasError('required')">

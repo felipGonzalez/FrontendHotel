@@ -2,7 +2,7 @@
   <h1 class="title">Usuarios</h1>
   <hr>
   <form action="/action_page.php" class="main-form">
-    <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+    <div *ngIf="!valid" class="alert alert-danger" role="alert">
       <strong>Tenemos un error!</strong> {{ messageInfo }}
     </div>
     <div class="form-group">
