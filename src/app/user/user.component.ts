@@ -4,7 +4,7 @@ import {MatTableDataSource} from '@angular/material';
 
 
 import { UserService } from './user.service';
-import { UserModel } from '../model/UserModel';
+import { UserModel } from 'src/app/model/UserModel';
 
 
 export interface Gender {

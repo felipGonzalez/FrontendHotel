@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DataInfoReserveModel } from '../model/DataInfoReserveModel';
-import { DatesInfoReserveModel } from '../model/DatesInfoReserveModel';
+import { DataInfoReserveModel } from 'src/app/model/DataInfoReserveModel';
+import { DatesInfoReserveModel } from 'src/app/model/DatesInfoReserveModel';
 
 @Injectable({
   providedIn: 'root'

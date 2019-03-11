@@ -4,7 +4,7 @@ import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 import { Router } from '@angular/router';
 import { Validators, FormControl } from '@angular/forms';
 import { CreateTipoReservaService } from './create-tipo-reserva.service';
-import { OK } from '../model/httpStatus';
+import { OK } from 'src/app/model/httpStatus';
 
 @Component({
   selector: 'app-create-tipo-reserva',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HabitacionModel } from '../model/HabitacionModel';
-import { StateRoomModel } from '../model/StateRoomModel';
+import { HabitacionModel } from 'src/app/model/HabitacionModel';
+import { StateRoomModel } from 'src/app/model/StateRoomModel';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateHabitacionService } from './create-habitacion.service';
-import { OK } from '../model/httpStatus';
+import { OK } from 'src/app/model/httpStatus';
 
 @Component({
   selector: 'app-create-habitacion',

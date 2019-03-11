@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { RestResponse } from '../model/RestResponse.model';
-import { CategoryProductModel } from '../model/CategoryProductModel';
-import { ProductModel } from '../model/ProductModel';
+import { RestResponse } from 'src/app/model/RestResponse.model';
+import { CategoryProductModel } from 'src/app/model/CategoryProductModel';
+import { ProductModel } from 'src/app/model/ProductModel';
 
 
 @Injectable({

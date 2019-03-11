@@ -1,7 +1,7 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "src/app/tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
+    "outDir": "src/app/out-tsc/app",
     "module": "commonjs",
     "target": "es5",
     "types": [

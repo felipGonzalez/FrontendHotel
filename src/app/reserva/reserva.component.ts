@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ReserveModel } from '../model/ReserveModel';
-import { StateReserveModel } from '../model/StateReserveModel';
+import { ReserveModel } from 'src/app/model/ReserveModel';
+import { StateReserveModel } from 'src/app/model/StateReserveModel';
 import { ReservaService } from './reserva.service';
 import { Router } from '@angular/router';
-import { UserModel } from '../model/UserModel';
-import { UserService } from '../user/user.service';
+import { UserModel } from 'src/app/model/UserModel';
+import { UserService } from 'src/app/user/user.service';
 import { MatTableDataSource } from '@angular/material';
-import { OK } from '../model/httpStatus';
+import { OK } from 'src/app/model/httpStatus';
 import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 
 @Component({

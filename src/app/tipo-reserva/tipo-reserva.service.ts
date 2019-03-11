@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TypeReserveModel } from '../model/typeReserveModel';
+import { TypeReserveModel } from 'src/app/model/typeReserveModel';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 

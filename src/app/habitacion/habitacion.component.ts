@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HabitacionModel } from '../model/HabitacionModel';
-import { StateRoomModel } from '../model/StateRoomModel';
+import { HabitacionModel } from 'src/app/model/HabitacionModel';
+import { StateRoomModel } from 'src/app/model/StateRoomModel';
 import { MatTableDataSource, MatDialog,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HabitacionService } from './habitacion.service';
 import { Router } from '@angular/router';

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormControl,  FormGroupDirective,  NgForm,  Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProviderModel } from '../model/ProviderModel';
-import { OK } from '../model/httpStatus';
+import { ProviderModel } from 'src/app/model/ProviderModel';
+import { OK } from 'src/app/model/httpStatus';
 import { CreateProvedorService } from './create-provedor.service';
 
 

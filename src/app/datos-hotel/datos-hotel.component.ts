@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelModel } from '../model/HotelModel';
+import { HotelModel } from 'src/app/model/HotelModel';
 import { DatosHotelService } from './datos-hotel.service';
 import { Router } from '@angular/router';
-import { OK } from '../model/httpStatus';
+import { OK } from 'src/app/model/httpStatus';
 
 @Component({
   selector: 'app-datos-hotel',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { StateRoomModel } from '../model/StateRoomModel';
-import { RestResponse } from '../model/RestResponse.model';
+import { StateRoomModel } from 'src/app/model/StateRoomModel';
+import { RestResponse } from 'src/app/model/RestResponse.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

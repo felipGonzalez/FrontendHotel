@@ -1,5 +1,5 @@
 {
-    "extends": "../tslint.json",
+    "extends": "src/app/tslint.json",
     "rules": {
         "directive-selector": [
             true,

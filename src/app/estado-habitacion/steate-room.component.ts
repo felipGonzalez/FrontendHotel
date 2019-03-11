@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StateRoomModel } from '../model/StateRoomModel';
+import { StateRoomModel } from 'src/app/model/StateRoomModel';
 import { StateRoomService } from './state-room.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';

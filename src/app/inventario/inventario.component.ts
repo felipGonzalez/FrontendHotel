@@ -2,11 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatTableDataSource, MatDialog,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { ProductModel } from '../model/ProductModel';
+import { ProductModel } from 'src/app/model/ProductModel';
 import { InventarioService } from './inventario.service';
-import { CategoryProductModel } from '../model/CategoryProductModel';
-import { ProvedoresService } from '../provedores/provedores.service';
-import { ProviderModel } from '../model/ProviderModel';
+import { CategoryProductModel } from 'src/app/model/CategoryProductModel';
+import { ProvedoresService } from 'src/app/provedores/provedores.service';
+import { ProviderModel } from 'src/app/model/ProviderModel';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ProductModel } from '../model/ProductModel';
+import { ProductModel } from 'src/app/model/ProductModel';
 import { Router } from '@angular/router';
 import { CreateProductService } from './create-product.service';
-import { CategoryProductModel } from '../model/CategoryProductModel';
-import { OK } from '../model/httpStatus';
+import { CategoryProductModel } from 'src/app/model/CategoryProductModel';
+import { OK } from 'src/app/model/httpStatus';
 
 @Component({
   selector: 'app-create-product',

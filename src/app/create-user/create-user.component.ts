@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserModel } from '../model/UserModel';
+import { UserModel } from 'src/app/model/UserModel';
 import { CreateUserService } from './create-user.service';
-import { OK } from '../model/httpStatus';
-import { TypeDocument } from '../model/TypeDocument';
+import { OK } from 'src/app/model/httpStatus';
+import { TypeDocument } from 'src/app/model/TypeDocument';
 import { FormControl, Validators } from '@angular/forms';
 
 export interface Gender {

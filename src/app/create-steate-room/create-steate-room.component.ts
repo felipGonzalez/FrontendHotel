@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CreateStateRoomService } from './create-state-room.service';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
-import { StateRoomModel } from '../model/StateRoomModel';
-import { OK } from '../model/httpStatus';
+import { StateRoomModel } from 'src/app/model/StateRoomModel';
+import { OK } from 'src/app/model/httpStatus';
 
 @Component({
   selector: 'app-create-steate-room',

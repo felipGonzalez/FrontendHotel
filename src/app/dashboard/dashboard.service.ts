@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DataInfoReserveModel } from '../model/DataInfoReserveModel';
+import { DataInfoReserveModel } from 'src/app/model/DataInfoReserveModel';
 
 @Injectable({
   providedIn: 'root'

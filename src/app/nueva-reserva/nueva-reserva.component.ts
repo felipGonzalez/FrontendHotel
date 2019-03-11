@@ -7,16 +7,16 @@ import {
   FormGroup,
   FormBuilder
 } from '@angular/forms';
-import { CreateTipoReservaService } from '../create-tipo-reserva/create-tipo-reserva.service';
+import { CreateTipoReservaService } from 'src/app/create-tipo-reserva/create-tipo-reserva.service';
 import { NuevaReservaService } from './nueva-reserva.service';
-import { TypeReserveModel } from '../model/typeReserveModel';
-import { ReserveModel } from '../model/ReserveModel';
-import { StateReserveModel } from '../model/StateReserveModel';
-import { TypeDocument } from '../model/TypeDocument';
-import { CreateUserService } from '../create-user/create-user.service';
-import { UserModel } from '../model/UserModel';
-import { OK, NOT_ACCEPTABLE } from '../model/httpStatus';
-import { UserService } from '../user/user.service';
+import { TypeReserveModel } from 'src/app/model/typeReserveModel';
+import { ReserveModel } from 'src/app/model/ReserveModel';
+import { StateReserveModel } from 'src/app/model/StateReserveModel';
+import { TypeDocument } from 'src/app/model/TypeDocument';
+import { CreateUserService } from 'src/app/create-user/create-user.service';
+import { UserModel } from 'src/app/model/UserModel';
+import { OK, NOT_ACCEPTABLE } from 'src/app/model/httpStatus';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-nueva-reserva',

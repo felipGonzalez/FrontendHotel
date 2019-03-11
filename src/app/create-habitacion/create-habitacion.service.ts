@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HabitacionModel } from '../model/HabitacionModel';
+import { HabitacionModel } from 'src/app/model/HabitacionModel';
 import { Observable } from 'rxjs';
-import { RestResponse } from '../model/RestResponse.model';
-import { CategoryProductModel } from '../model/CategoryProductModel';
-import { StateRoomModel } from '../model/StateRoomModel';
+import { RestResponse } from 'src/app/model/RestResponse.model';
+import { CategoryProductModel } from 'src/app/model/CategoryProductModel';
+import { StateRoomModel } from 'src/app/model/StateRoomModel';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { DashboardService } from './dashboard.service';
-import { DataInfoReserveModel } from '../model/DataInfoReserveModel';
+import { DataInfoReserveModel } from 'src/app/model/DataInfoReserveModel';
 
 @Component({
   selector: 'app-dashboard',

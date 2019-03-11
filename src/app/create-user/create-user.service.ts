@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { RestResponse } from '../model/RestResponse.model';
-import { UserModel } from '../model/UserModel';
-import { TypeDocument } from '../model/TypeDocument';
+import { RestResponse } from 'src/app/model/RestResponse.model';
+import { UserModel } from 'src/app/model/UserModel';
+import { TypeDocument } from 'src/app/model/TypeDocument';
 
 @Injectable({
   providedIn: 'root'

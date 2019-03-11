@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ProviderModel } from '../model/ProviderModel';
+import { ProviderModel } from 'src/app/model/ProviderModel';
 import { ProvedoresService } from './provedores.service';
 import { Router } from '@angular/router';
 

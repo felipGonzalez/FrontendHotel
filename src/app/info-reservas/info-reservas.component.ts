@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { DatesInfoReserveModel } from '../model/DatesInfoReserveModel';
-import { DataInfoReserveModel } from '../model/DataInfoReserveModel';
+import { DatesInfoReserveModel } from 'src/app/model/DatesInfoReserveModel';
+import { DataInfoReserveModel } from 'src/app/model/DataInfoReserveModel';
 import { MatTableDataSource } from '@angular/material';
 import { InfoReservaService } from './info-reserva.service';
 

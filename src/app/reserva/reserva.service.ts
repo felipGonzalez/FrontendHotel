@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ReserveModel } from '../model/ReserveModel';
-import { StateReserveModel } from '../model/StateReserveModel';
-import { RestResponse } from '../model/RestResponse.model';
-import { TypeReserveModel } from '../model/typeReserveModel';
+import { ReserveModel } from 'src/app/model/ReserveModel';
+import { StateReserveModel } from 'src/app/model/StateReserveModel';
+import { RestResponse } from 'src/app/model/RestResponse.model';
+import { TypeReserveModel } from 'src/app/model/typeReserveModel';
 
 @Injectable({
   providedIn: 'root'
