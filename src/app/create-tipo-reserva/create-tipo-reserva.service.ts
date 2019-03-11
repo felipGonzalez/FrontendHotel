@@ -1,6 +1,6 @@
 import { Injectable, TypeProvider } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TypeReserveModel } from '../model/typeReserveModel';
+import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 import { Observable } from 'rxjs';
 import { RestResponse } from '../model/RestResponse.model';
 
