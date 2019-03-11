@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeReserveModel } from '../model/typeReserveModel';
+import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 
 import { Router } from '@angular/router';
 import { Validators, FormControl } from '@angular/forms';
