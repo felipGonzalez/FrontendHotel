@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeReserveModel } from '../model/typeReserveModel';
+
 import { Router } from '@angular/router';
 import { Validators, FormControl } from '@angular/forms';
 import { CreateTipoReservaService } from './create-tipo-reserva.service';
