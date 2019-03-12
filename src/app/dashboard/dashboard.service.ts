@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DataInfoReserveModel } from 'src/app/model/DataInfoReserveModel';
+import { HTTP_URL } from 'src/app/model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -13,37 +14,37 @@ export class DashboardService {
 
   public getNumberClientInput(): Observable<number> {
     return this.http.get<number>(
-      'http://localhost:8080/listReserve/numClientInput'
+      HTTP_URL+'listReserve/numClientInput'
     );
   }
 
   public getNumberClientOutput(): Observable<number> {
     return this.http.get<number>(
-      'http://localhost:8080/listReserve/numClientOutput'
+      HTTP_URL+'listReserve/numClientOutput'
     );
   }
 
   public getNumberClient(): Observable<number> {
     return this.http.get<number>(
-      'http://localhost:8080/listReserve/numberClientsHosted'
+      HTTP_URL+'listReserve/numberClientsHosted'
     );
   }
 
   public getNumberRoom(): Observable<number> {
     return this.http.get<number>(
-      'http://localhost:8080/listReserve/OccupiedRoom'
+      HTTP_URL+'listReserve/OccupiedRoom'
     );
   }
 
   public getNumberRoomTotal(): Observable<number> {
     return this.http.get<number>(
-      'http://localhost:8080/listReserve/totalRoom'
+      HTTP_URL+'listReserve/totalRoom'
     );
   }
 
   public getReserveInput(): Observable<DataInfoReserveModel> {
     return this.http.get<DataInfoReserveModel>(
-      'http://localhost:8080/listReserve/reserveInput'
+      HTTP_URL+'listReserve/reserveInput'
     );
   }
 
