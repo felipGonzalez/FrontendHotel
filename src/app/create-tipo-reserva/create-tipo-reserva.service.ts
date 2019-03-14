@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { TypeReserveModel } from 'src/app/model/TypeReserveModel';
 import { Observable } from 'rxjs';
 import { RestResponse } from 'src/app/model/RestResponse.model';
+import { HTTP_URL } from '../model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +24,12 @@ export class CreateTipoReservaService {
   }
 
   public saveOurUpdate(typeReserve: TypeReserveModel): Observable<RestResponse> {
-    return this.http.post<RestResponse>('http://localhost:8080/listTypeReserve', typeReserve);
+    return this.http.post<RestResponse>(HTTP_URL+'listTypeReserve', typeReserve);
   }
 
   public getTypeReserve(): Observable<TypeReserveModel[]> {
     return this.http.get<TypeReserveModel[]>(
-      'http://localhost:8080/listTypeReserve'
+      HTTP_URL+'listTypeReserve'
     );
   }
 }

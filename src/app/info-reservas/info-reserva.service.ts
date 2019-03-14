@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DataInfoReserveModel } from 'src/app/model/DataInfoReserveModel';
 import { DatesInfoReserveModel } from 'src/app/model/DatesInfoReserveModel';
+import { HTTP_URL } from '../model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -13,38 +14,38 @@ export class InfoReservaService {
 
   public getReserveInput(): Observable<DataInfoReserveModel[]> {
     return this.http.get<DataInfoReserveModel[]>(
-      'http://localhost:8080/listReserve/reserveInput'
+      HTTP_URL+'listReserve/reserveInput'
     );
   }
 
   public getReserveOutput(): Observable<DataInfoReserveModel[]> {
     return this.http.get<DataInfoReserveModel[]>(
-      'http://localhost:8080/listReserve/reserveOutput'
+      HTTP_URL+'listReserve/reserveOutput'
     );
   }
 
   public getUserEstancia(): Observable<DataInfoReserveModel[]> {
     return this.http.get<DataInfoReserveModel[]>(
-      'http://localhost:8080/listReserve/userEstancia'
+      HTTP_URL+'listReserve/userEstancia'
     );
   }
 
   public getUserAsing(): Observable<DataInfoReserveModel[]> {
     return this.http.get<DataInfoReserveModel[]>(
-      'http://localhost:8080/listReserve/reserveAsing'
+      HTTP_URL+'listReserve/reserveAsing'
     );
   }
 
   public getListHsistoryReserveOk(dateInfo: DatesInfoReserveModel): Observable<DataInfoReserveModel[]> {
     return this.http.get<DataInfoReserveModel[]>(
-     'http://localhost:8080/listReserve/listHsistoryReserveOk?date=' + this.formatDate(dateInfo.dateInit) +
+      HTTP_URL+'listReserve/listHsistoryReserveOk?date=' + this.formatDate(dateInfo.dateInit) +
       '&date=' + this.formatDate(dateInfo.dateFinish)
     );
   }
 
   public getListHistoryReserveCancel(dateInfo: DatesInfoReserveModel): Observable<DataInfoReserveModel[]> {
     return this.http.get<DataInfoReserveModel[]>(
-      'http://localhost:8080/listReserve/listHistoryReserveCancel?date=' + this.formatDate(dateInfo.dateInit) +
+      HTTP_URL+'listReserve/listHistoryReserveCancel?date=' + this.formatDate(dateInfo.dateInit) +
       '&date=' + this.formatDate(dateInfo.dateFinish)
     );
   }

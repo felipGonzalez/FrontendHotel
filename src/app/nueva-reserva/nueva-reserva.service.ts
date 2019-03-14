@@ -4,6 +4,7 @@ import { StateReserveModel } from 'src/app/model/StateReserveModel';
 import { HttpClient } from '@angular/common/http';
 import { ReserveModel } from 'src/app/model/ReserveModel';
 import { RestResponse } from 'src/app/model/RestResponse.model';
+import { HTTP_URL } from '../model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,7 @@ export class NuevaReservaService {
 
   public getStateReserve(): Observable<StateReserveModel[]> {
     return this.http.get<StateReserveModel[]>(
-      'http://localhost:8080/listStateReserve'
+      HTTP_URL+'listStateReserve'
     );
   }
 
@@ -52,7 +53,7 @@ export class NuevaReservaService {
   public saveOurUpdate(reserve: ReserveModel): Observable<RestResponse> {
     console.log(reserve);
 
-    return this.http.post<RestResponse>('http://localhost:8080/listReserve', reserve);
+    return this.http.post<RestResponse>(HTTP_URL+'listReserve', reserve);
   }
 
 

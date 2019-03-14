@@ -32,7 +32,7 @@ export class DashboardService {
 
   public getNumberRoom(): Observable<number> {
     return this.http.get<number>(
-      HTTP_URL+'listReserve/OccupiedRoom'
+      HTTP_URL+'listReserve/occupiedRoom'
     );
   }
 

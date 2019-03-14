@@ -58,7 +58,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "hotel-yeimar:build",
-            "port": 5000
+            "port": 4200
           },
           "configurations": {
             "production": {

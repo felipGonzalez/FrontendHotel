@@ -29,10 +29,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadNumberClient();
     this.loadNumberClientInput();
     this.loadNumberClientOutput();
     this.loadNumberRoom();
+    this.loadNumberClient();
     this.loadNumberRoomTotal();
   }
 
@@ -58,9 +58,7 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getNumberClient().subscribe(
       res => {
         this.numberClient = res;
-        console.log(this.numberClient);
-
-      },
+        },
       (error: any) => (this.numberClient = 0)
     );
   }

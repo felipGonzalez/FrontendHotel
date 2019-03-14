@@ -24,10 +24,9 @@
   <div class="form-group">
     <mat-radio-group  class="radio-group" [(ngModel)]="stateActually.colorState" name="first">
       <mat-radio-button class="radio-button" *ngFor="let color of colorList" [value]="color">
-       {{color}}
+        <div  class="divColor" [ngStyle]="{'background-color': color}" ></div>
       </mat-radio-button>
     </mat-radio-group>
-    <div class="example-selected-value">Tu color es : {{stateActually.colorState}}</div>
   </div>
 
 

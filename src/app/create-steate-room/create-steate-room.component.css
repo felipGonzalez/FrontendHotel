@@ -40,3 +40,9 @@
 .selected-value {
   margin: 15px 0;
 }
+
+.divColor {
+  height: 20px;
+  width: 40px;
+  display: inline-block;
+}

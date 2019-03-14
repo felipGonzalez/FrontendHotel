@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { RestResponse } from 'src/app/model/RestResponse.model';
 import { CategoryProductModel } from 'src/app/model/CategoryProductModel';
 import { ProductModel } from 'src/app/model/ProductModel';
+import { HTTP_URL } from '../model/httpStatus';
 
 
 @Injectable({
@@ -31,12 +32,12 @@ export class CreateProductService {
   }
 
   public saveOurUpdate(product: ProductModel): Observable<RestResponse> {
-    return this.http.post<RestResponse>('http://localhost:8080/listProduct', product);
+    return this.http.post<RestResponse>(HTTP_URL+'listProduct', product);
   }
 
   public getCategoryProduct(): Observable<CategoryProductModel[]> {
     return this.http.get<CategoryProductModel[]>(
-      'http://localhost:8080/listCategoryProduct'
+      HTTP_URL+'listCategoryProduct'
     );
   }
 }

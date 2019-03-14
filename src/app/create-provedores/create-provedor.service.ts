@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProviderModel } from 'src/app/model/ProviderModel';
 import { RestResponse } from 'src/app/model/RestResponse.model';
+import { HTTP_URL } from '../model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,6 @@ export class CreateProvedorService {
   }
 
   public saveOurUpdate(provider: ProviderModel): Observable<RestResponse> {
-    return this.http.post<RestResponse>('http://localhost:8080/listProvider', provider);
+    return this.http.post<RestResponse>(HTTP_URL+'listProvider', provider);
   }
 }

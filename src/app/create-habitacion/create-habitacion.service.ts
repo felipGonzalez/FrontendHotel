@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { RestResponse } from 'src/app/model/RestResponse.model';
 import { CategoryProductModel } from 'src/app/model/CategoryProductModel';
 import { StateRoomModel } from 'src/app/model/StateRoomModel';
+import { HTTP_URL } from '../model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +31,12 @@ export class CreateHabitacionService {
   }
 
   public saveOurUpdate(room: HabitacionModel): Observable<RestResponse> {
-    return this.http.post<RestResponse>('http://localhost:8080/listRoom', room);
+    return this.http.post<RestResponse>(HTTP_URL+'listRoom', room);
   }
 
   public getStateRoom(): Observable<StateRoomModel[]> {
     return this.http.get<StateRoomModel[]>(
-      'http://localhost:8080/listStateRoom'
+      HTTP_URL+'listStateRoom'
     );
   }
 }

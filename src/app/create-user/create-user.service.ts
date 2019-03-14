@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { RestResponse } from 'src/app/model/RestResponse.model';
 import { UserModel } from 'src/app/model/UserModel';
 import { TypeDocument } from 'src/app/model/TypeDocument';
+import { HTTP_URL } from '../model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -44,19 +45,19 @@ export class CreateUserService {
   }
 
   public saveOurUpdate(user: UserModel): Observable<RestResponse> {
-    return this.http.post<RestResponse>('http://localhost:8080/listUser', user);
+    return this.http.post<RestResponse>(HTTP_URL+'listUser', user);
   }
 
   public verifyUser(document: string): Observable<RestResponse> {
 
-    return this.http.get<RestResponse>('http://localhost:8080/listUser/verifyUser/' + document);
+    return this.http.get<RestResponse>(HTTP_URL+'listUser/verifyUser/' + document);
   }
 
 
 
   public getTypeDocument(): Observable<TypeDocument[]> {
     return this.http.get<TypeDocument[]>(
-      'http://localhost:8080/listTypeDocument'
+      HTTP_URL+'listTypeDocument'
     );
   }
 }

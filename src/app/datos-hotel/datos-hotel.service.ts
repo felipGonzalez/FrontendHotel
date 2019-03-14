@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HotelModel } from 'src/app/model/HotelModel';
 import { Observable } from 'rxjs';
 import { RestResponse } from 'src/app/model/RestResponse.model';
+import { HTTP_URL } from '../model/httpStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -51,11 +52,11 @@ export class DatosHotelService {
     }
 
     public saveOurUpdate(dataHotel: HotelModel): Observable<RestResponse> {
-      return this.http.post<RestResponse>('http://localhost:8080/hotelData', dataHotel);
+      return this.http.post<RestResponse>(HTTP_URL+'hotelData', dataHotel);
     }
 
     public getData(): Observable<HotelModel> {
-      return this.http.get<HotelModel>('http://localhost:8080/hotelData');
+      return this.http.get<HotelModel>(HTTP_URL+'hotelData');
     }
 
 

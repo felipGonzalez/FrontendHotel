@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
 
 
   constructor(private userService: UserService, private router: Router) {
-    sessionStorage.clear();
+    sessionStorage.removeItem('user');
     this.dataSource = new MatTableDataSource(this.users);
   }
 

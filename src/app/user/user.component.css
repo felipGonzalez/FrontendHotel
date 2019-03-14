@@ -19,6 +19,8 @@ table {
     margin-bottom: 5%;
     margin-left: 2%;
     margin-right: 4%;
+    overflow-x: scroll;
+    min-width: 600px;
 }
 
 .tittle{
