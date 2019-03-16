@@ -34,7 +34,7 @@ export class InventarioComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog
   ) {
-    sessionStorage.clear();
+    sessionStorage.removeItem('product');
     this.dataSource = new MatTableDataSource(this.products);
   }
 

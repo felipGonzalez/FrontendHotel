@@ -18,7 +18,7 @@ export class TipoReservaComponent implements OnInit {
 
   constructor(private tipeReserveService: TipoReservaService,
     private router: Router) {
-      sessionStorage.clear();
+      sessionStorage.removeItem('typeReserve');
       this.dataSource = new MatTableDataSource(this.typeReserves);
      }
 

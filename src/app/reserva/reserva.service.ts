@@ -24,6 +24,12 @@ export class ReservaService {
     );
   }
 
+  public getReserveNotAssign(): Observable<ReserveModel[]> {
+    return this.http.get<ReserveModel[]>(
+      HTTP_URL+'listReserve/reserveNotAssign'
+    );
+  }
+
   public getStateReserve(): Observable<StateReserveModel[]> {
     return this.http.get<StateReserveModel[]>(
       HTTP_URL+'listStateReserve'

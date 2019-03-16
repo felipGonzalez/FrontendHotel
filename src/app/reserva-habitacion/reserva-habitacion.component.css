@@ -1,0 +1,30 @@
+.main-form{
+  margin: 0 auto;
+  width: 50%;
+}
+
+
+.form-group{
+  padding: 5px;
+}
+
+.mat-form-field{
+  max-width: 500px;;
+  min-width: 200px;
+  width: 100%;
+}
+
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}

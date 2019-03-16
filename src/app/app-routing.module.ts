@@ -8,7 +8,6 @@ import { EstablecimientoComponent } from './establecimiento/establecimiento.comp
 import { InventarioComponent } from './inventario/inventario.component';
 import { LoginComponent } from './login/login.component';
 import { ReservaComponent } from './reserva/reserva.component';
-import { ReservaOnlineComponent } from './reserva-online/reserva-online.component';
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
 import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
@@ -25,6 +24,7 @@ import { CreateSteateRoomComponent } from './create-steate-room/create-steate-ro
 import { HabitacionComponent } from './habitacion/habitacion.component';
 import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
 import { InfoReservasComponent } from './info-reservas/info-reservas.component';
+import { ReservaHabitacionComponent } from './reserva-habitacion/reserva-habitacion.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -35,7 +35,6 @@ const routes: Routes = [
   { path: 'establecimiento', component: EstablecimientoComponent },
   { path: 'inventario', component: InventarioComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'reservaOnline', component: ReservaOnlineComponent },
   { path: 'reserva', component: ReservaComponent },
   { path: 'infoReserva', component: InfoReservasComponent},
   { path: 'nuevaReserva', component: NuevaReservaComponent },
@@ -53,6 +52,7 @@ const routes: Routes = [
   { path: 'crearEstadoHabitacion', component: CreateSteateRoomComponent},
   { path: 'habitacion', component: HabitacionComponent},
   { path: 'crearHabitacion', component: CreateHabitacionComponent},
+  { path: 'reservaHabitacion', component: ReservaHabitacionComponent },
 
 ];
 

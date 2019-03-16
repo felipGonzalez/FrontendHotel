@@ -7,10 +7,6 @@
   font-weight: bolder;
 }
 
-.main-form{
-  margin: 0 auto;
-  width: 50%;
-}
 
 .mat-form-field {
   margin: 0 auto;
@@ -20,6 +16,12 @@
 .btn-save{
   margin-left: 45%;
 }
+
+.main-form{
+  margin: 0 auto;
+  width: 50%;
+}
+
 
 .form-group{
   padding: 5px;

@@ -1,0 +1,79 @@
+<div class="conteiner">
+  <h1 class="title">Asignar reservas</h1>
+  <hr />
+  <div class="clear"></div>
+  <div *ngIf="isLoad()" >
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <form *ngIf="isValidDiv1()" >
+      <h4>Seleccione la habitacion que desa asignar</h4>
+      <div class="form-group">
+          <h4>Habitación</h4>
+          <mat-form-field>
+            <mat-select
+              placeholder="Habitación"
+              [formControl]="getRoomControl()"
+              [(ngModel)]="getDetailReserve().idRoom"
+              required
+            >
+              <mat-option>Seleccione La habitación</mat-option>
+              <mat-option
+                *ngFor="let room of getListRooms()"
+                [value]="room.idRoom"
+              >
+                {{ room.codeRoom}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="getRoomControl().hasError('required')"
+              >Por favor, Seleccione la habitacion</mat-error
+            >
+          </mat-form-field>
+
+          <div class="row" >
+            <div class="col-xl-12 text-center"  >
+                <button btn-success btn-block  mat-raised-button (click)="save()"  color="primary">Guardar</button>
+            </div>
+            <div class="col-xl-12 text-center">
+                <a btn-success btn-block mat-flat-button (click)= "onNoClick()" >Cerrar sin guardar</a>
+            </div>
+          </div>
+       </div>
+  </form>
+
+  <!---->
+  <div class="div2" *ngIf="isValidDiv2()">
+    <h4>Reservas Compartidas</h4>
+    <form>
+      <h4>Seleccione la habitacion que desa asignar</h4>
+      <div class="form-group">
+          <h4>Habitación</h4>
+          <mat-form-field>
+            <mat-select
+              placeholder="Habitación"
+              [formControl]="getRoomAvailableControl()"
+              [(ngModel)]="getDetailReserve().idRoom"
+              required
+            >
+              <mat-option>Seleccione La habitación</mat-option>
+              <mat-option
+                *ngFor="let room of getListRoomAvailable()"
+                [value]="room.id_habitacion">
+                {{   room.codigo  }} Camas  disponibles  =  {{ room.cantidad_disponible  }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="getRoomAvailableControl().hasError('required')"
+              >Por favor, Seleccione la habitacion</mat-error
+            >
+            </mat-form-field>
+             <div class="row" >
+            <div class="col-xl-12 text-center"  >
+                <button btn-success btn-block  mat-raised-button (click)="save()"  color="primary">Guardar</button>
+            </div>
+            <div class="col-xl-12 text-center">
+                <a btn-success btn-block mat-flat-button (click)= "onNoClick()" >Cerrar sin guardar</a>
+            </div>
+          </div>
+       </div>
+  </form>
+  </div>
+</div>

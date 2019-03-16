@@ -25,7 +25,7 @@ export class SteateRoomComponent implements OnInit {
     private router: Router,
     private stateRoomService: StateRoomService
   ) {
-    sessionStorage.clear();
+    sessionStorage.removeItem('stateRoom');
     this.dataSource = new MatTableDataSource(this.statesRooms);
 
   }
@@ -38,6 +38,8 @@ export class SteateRoomComponent implements OnInit {
     this.stateRoomService.getState().subscribe(
       res => {
         this.statesRooms = res;
+        console.log( this.statesRooms );
+
         this.dataSource.data = this.statesRooms;
 
       },

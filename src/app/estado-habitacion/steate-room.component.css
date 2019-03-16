@@ -18,3 +18,9 @@ table {
     margin-top: 5%;
     margin-bottom: 2%;
 }
+
+.divColor {
+  height: 20px;
+  width: 40px;
+  display: inline-block;
+}

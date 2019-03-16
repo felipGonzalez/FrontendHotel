@@ -29,7 +29,7 @@ export class HabitacionComponent implements OnInit {
     private roomService: HabitacionService,
     private router: Router,
   ) {
-    sessionStorage.clear();
+    sessionStorage.removeItem('room');
     this.dataSource = new MatTableDataSource(this.rooms);
 
    }

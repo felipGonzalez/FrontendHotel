@@ -2,7 +2,104 @@
     <h1 class="title">Reservas</h1>
     <hr>
     <div class="clear"></div>
-    <div class="list">
+
+
+
+    <div  *ngIf="isValidDiv" >
+      <h4>Sin Asignar</h4>
+      <mat-table [dataSource]="dataSourceNotAssingList">
+        <!-- Position Column -->
+        <ng-container matColumnDef="idReserve">
+          <mat-header-cell *matHeaderCellDef> No°. </mat-header-cell>
+          <mat-cell *matCellDef="let reserve"> {{ reserve.idReserve }} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="idClient">
+          <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let reserve"> {{ getNameUser(reserve.idClient)}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="dateReserve">
+          <mat-header-cell *matHeaderCellDef> Fecha reserva </mat-header-cell>
+          <mat-cell *matCellDef="let reserve"> {{ reserve.dateReserve | date:'mediumDate'}} </mat-cell>
+        </ng-container>s
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="idStateReserve">
+          <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+          <mat-cell *matCellDef="let reserve">
+            <button type="button"   (click)="onEdit(reserve)"  class="btn btn-warning">Asignar</button>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="deteInput">
+          <mat-header-cell *matHeaderCellDef> Entra </mat-header-cell>
+          <mat-cell *matCellDef="let reserve"> {{  reserve.deteInput | date:'mediumDate' }}  </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="dateOutput">
+          <mat-header-cell *matHeaderCellDef> Salida </mat-header-cell>
+          <mat-cell *matCellDef="let reserve">{{ reserve.dateOutput | date:'mediumDate' }} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="idTypeReserve">
+          <mat-header-cell *matHeaderCellDef> Tipo</mat-header-cell>
+         <mat-cell *matCellDef="let reserve">
+          {{getNameTypeReserve(reserve.idTypeReserve)}}
+           </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="numBed">
+          <mat-header-cell *matHeaderCellDef> Camas </mat-header-cell>
+          <mat-cell *matCellDef="let reserve"> {{ reserve.numBed }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+          <mat-cell *matCellDef="let reserve">
+            <button mat-raised-button  data-toggle="modal" data-backdrop="false" (click)="setReserveAux(reserve)" data-target="#exampleModal">
+              <img src="/assets/delete.png" alt="" class="img-icon"/>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           ¿ Esta seguro que desea eliminar la reserva ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" class="btn btn-primary">Cancelar</button>
+            <button type="button" (click)="cancelReserve()" data-dismiss="modal" class="btn btn-danger">Si, eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="div2">
+      <h4>Reservas confirmadas y en estancia</h4>
       <mat-table [dataSource]="dataSourceList">
         <!-- Position Column -->
         <ng-container matColumnDef="idReserve">
@@ -34,9 +131,8 @@
                 <mat-option
                 *ngFor="let state of stateReserveList"
                 [value]="state.idState"
-                (click)=saveOurUpdate(reserve)
-              >
-                {{ state.nameState }}
+                (click)=saveOurUpdate(reserve)>
+                <span *ngIf="state.idState != 1 && state.idState != 5" >{{ state.nameState }}</span>
               </mat-option>
             </mat-select>
 
@@ -67,6 +163,16 @@
         <ng-container matColumnDef="numBed">
           <mat-header-cell *matHeaderCellDef> Camas </mat-header-cell>
           <mat-cell *matCellDef="let reserve"> {{ reserve.numBed }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+          <mat-cell *matCellDef="let reserve">
+            <button mat-raised-button>
+              <img src="/assets/invoice.png" alt="" class="img-icon"/>
+            </button>
+          </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

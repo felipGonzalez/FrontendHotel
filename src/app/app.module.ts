@@ -29,7 +29,6 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
 import { LoginComponent } from './login/login.component';
 import { SalirComponent } from './admin/salir/salir.component';
-import { ReservaOnlineComponent } from './reserva-online/reserva-online.component';
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
@@ -50,6 +49,7 @@ import { CreateSteateRoomComponent } from './create-steate-room/create-steate-ro
 import { HabitacionComponent } from './habitacion/habitacion.component';
 import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
 import { InfoReservasComponent } from './info-reservas/info-reservas.component';
+import { ReservaHabitacionComponent } from './reserva-habitacion/reserva-habitacion.component';
 
 
 @NgModule({
@@ -66,7 +66,6 @@ import { InfoReservasComponent } from './info-reservas/info-reservas.component';
     ContrasenaComponent,
     LoginComponent,
     SalirComponent,
-    ReservaOnlineComponent,
     NuevaReservaComponent,
     ConfiguracionComponent,
     PrimerosPasosComponent,
@@ -82,7 +81,8 @@ import { InfoReservasComponent } from './info-reservas/info-reservas.component';
     CreateSteateRoomComponent,
     HabitacionComponent,
     CreateHabitacionComponent,
-    InfoReservasComponent
+    InfoReservasComponent,
+    ReservaHabitacionComponent
    ],
   imports: [
     BrowserModule,

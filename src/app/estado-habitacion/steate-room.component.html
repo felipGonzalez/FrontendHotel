@@ -21,7 +21,7 @@
        <!-- Name Column -->
        <ng-container matColumnDef="color">
           <mat-header-cell  *matHeaderCellDef> Color </mat-header-cell>
-          <mat-cell  *matCellDef="let state"> {{state.colorState}} </mat-cell>
+          <mat-cell  *matCellDef="let state"><div  class="divColor" [ngStyle]="{'background-color': state.colorState}" ></div></mat-cell>
         </ng-container>
 
          <!-- Name Column -->

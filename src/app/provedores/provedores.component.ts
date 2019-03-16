@@ -18,7 +18,7 @@ export class ProvedoresComponent implements OnInit {
 
   constructor(private providerService: ProvedoresService,
     private router: Router) {
-      sessionStorage.clear();
+      sessionStorage.removeItem('provider');
       this.dataSource = new MatTableDataSource(this.providers);
     }
 
