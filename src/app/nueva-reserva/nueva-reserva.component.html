@@ -6,77 +6,72 @@
   </div>
 
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>DatosCliente</ng-template>
+        <button type="button" class="btn btn-success" (click)="onNoClick()">
+          Agregar Usuario
+        </button>
+        <div class="list">
+          <mat-form-field>
+            <input
+              matInput
+              (keyup)="applyFilter($event.target.value)"
+              placeholder="Buscar"
+            />
+          </mat-form-field>
 
-      <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
-              <ng-template matStepLabel>DatosCliente</ng-template>
-              <button
-              type="button"
-              class="btn btn-success"
-              (click)=onNoClick()
-            >
-              Agregar Usuario
-            </button>
-              <div class="list">
-                <mat-form-field>
-                  <input
-                    matInput
-                    (keyup)="applyFilter($event.target.value)"
-                    placeholder="Buscar"
-                  />
-                </mat-form-field>
+          <mat-table [dataSource]="dataSourceList">
+            <!-- Name Column -->
+            <ng-container matColumnDef="firstName">
+              <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+              <mat-cell *matCellDef="let user"> {{ user.firstName }} </mat-cell>
+            </ng-container>
 
-                <mat-table [dataSource]="dataSourceList">
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="firstName">
-                    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{ user.firstName }} </mat-cell>
-                  </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="lastName">
+              <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+              <mat-cell *matCellDef="let user"> {{ user.lastName }} </mat-cell>
+            </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="lastName">
-                    <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{ user.lastName }} </mat-cell>
-                  </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="document">
+              <mat-header-cell *matHeaderCellDef> documento </mat-header-cell>
+              <mat-cell *matCellDef="let user"> {{ user.document }} </mat-cell>
+            </ng-container>
 
-                 <!-- Weight Column -->
-                  <ng-container matColumnDef="document">
-                    <mat-header-cell *matHeaderCellDef> documento </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{ user.document }} </mat-cell>
-                  </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="phone">
+              <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+              <mat-cell *matCellDef="let user"> {{ user.phone }} </mat-cell>
+            </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="phone">
-                    <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{ user.phone }} </mat-cell>
-                  </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="city">
+              <mat-header-cell *matHeaderCellDef> Ciudad </mat-header-cell>
+              <mat-cell *matCellDef="let user"> {{ user.city }} </mat-cell>
+            </ng-container>
 
-                   <!-- Name Column -->
-                  <ng-container matColumnDef="city">
-                    <mat-header-cell *matHeaderCellDef> Ciudad </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{ user.city }} </mat-cell>
-                  </ng-container>
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+              <mat-cell *matCellDef="let user">
+                <button mat-button matStepperNext (click)="edit(user)">
+                  Ok
+                </button>
+              </mat-cell>
+            </ng-container>
 
-                  <ng-container matColumnDef="action">
-                    <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
-                    <mat-cell *matCellDef="let user">
-                        <button mat-button matStepperNext (click)= edit(user)>Ok</button>
-                    </mat-cell>
-                  </ng-container>
-
-                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-                </mat-table>
-              </div>
-              <div>
-
-                <button mat-button matStepperNext>Next</button>
-              </div>
-
-          </form>
-
-        </mat-step>
-
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
 
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup" class="form-main">
@@ -141,8 +136,8 @@
         </div>
 
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button matStepperNext>Siguiente</button>
         </div>
       </form>
     </mat-step>
@@ -150,7 +145,7 @@
     <mat-step [stepControl]="threeFormGroup">
       <form [formGroup]="threeFormGroup">
         <ng-template matStepLabel>Tipo de Reserva</ng-template>
-        <div class="form-main" >
+        <div class="form-main">
           <div class="form-group">
             <mat-form-field>
               <mat-select
@@ -196,43 +191,41 @@
         </div>
 
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button matStepperNext>Siguiente</button>
         </div>
       </form>
     </mat-step>
 
-
-    <mat-step >
-        <ng-template matStepLabel>Crear reserva</ng-template>
+    <mat-step>
+      <ng-template matStepLabel>Crear reserva</ng-template>
       <div *ngIf="isValidDiv3">
-          <h4>Datos de reserva</h4>
-          <hr>
-          <p>Usuario: {{userActually.firstName}}  {{userActually.lastName}}</p>
-          <p>Fecha de Reserva: {{ reserveActually.dateReserve | date: "mediumDate" }}</p>
-          <p>Fecha de Entrada: {{ reserveActually.deteInput | date: "mediumDate" }}</p>
-          <p>Fecha de salida: {{ reserveActually.dateOutput | date: "mediumDate" }}</p>
-          <p>Numero de camas: {{reserveActually.numBed}}</p>
-          <hr>
+        <h4>Datos de reserva</h4>
+        <hr />
+        <p>Usuario: {{ userActually.firstName }} {{ userActually.lastName }}</p>
+        <p>
+          Fecha de Reserva:
+          {{ reserveActually.dateReserve | date: "mediumDate" }}
+        </p>
+        <p>
+          Fecha de Entrada: {{ reserveActually.deteInput | date: "mediumDate" }}
+        </p>
+        <p>
+          Fecha de salida: {{ reserveActually.dateOutput | date: "mediumDate" }}
+        </p>
+        <p>Numero de camas: {{ reserveActually.numBed }}</p>
+        <hr />
 
-            <button  type="button"  class="btn btn-success" (click)=saveOurUpdate()>Crear reserva</button>
+        <button type="button" class="btn btn-success" (click)="saveOurUpdate()">
+          Crear reserva
+        </button>
 
-          <hr>
+        <hr />
       </div>
       <div>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-button matStepperPrevious>Back</button>
-        </div>
+        <button mat-button (click)="stepper.reset()">Reiniciar</button>
+        <button mat-button matStepperPrevious>Atras</button>
+      </div>
     </mat-step>
   </mat-horizontal-stepper>
 </div>
-
-<!--
-
-<p>Usuario: {{userActually.firstName}}  {{userActually.lastName}}</p>
-          <p>Fecha de Entrada: {{ reserveActually.deteInput | date: "mediumDate" }}</p>
-          <p>Fecha de salida: {{ reserveActually.dateOutput | date: "mediumDate" }}</p>
-          <p>Tipo de reserva: {{typeResrveList[reserveActually.idTypeReserve].nameType}}</p>
-          <p>Numero de camas: {{reserveActually.numBed}}</p>
-
--->

@@ -3,7 +3,12 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
-      <mat-toolbar><a href="#" id="a_mat_toolbar">Menu</a> </mat-toolbar>
+      <mat-toolbar>
+        <button   class="btn-icon" [routerLink]="['/']" >
+          <img src="/assets/icono.png" alt="" class="img-icon"/>
+        </button>
+
+      </mat-toolbar>
       <mat-nav-list>
         <button class="btn_new_reserve" (click) = "onEdit()" >Nueva reserva</button>
         <hr>
@@ -19,9 +24,7 @@
         <hr>
         <a mat-list-item [routerLink]="['/inventario']">Inventario</a>
         <hr>
-        <a mat-list-item [routerLink]="['/reservaOnline']">Reservas Online</a>
-        <hr>
-      </mat-nav-list>
+       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary">
@@ -36,33 +39,27 @@
         <mat-toolbar-row>
           <span><h1>Hotel Yeimar</h1></span>
           <span class="example-spacer"></span>
-          <button mat-button class="link-btn" [matMenuTriggerFor]="option">
-              <i class="material-icons">more_horiz</i> Opciones
+
+          <button mat-button class="link-btn" [routerLink]="['/establecimiento']">
+              <i class="material-icons">business</i> Mi Establecimiento
             </button>
-          <mat-menu #option="matMenu">
-          <button mat-menu-item  [routerLink]="['/establecimiento']">
-            <i class="material-icons">business</i> Mi Establecimiento
-          </button>
-          <button mat-menu-item [routerLink]="['/configuracion']" >
-            <i class="material-icons">build</i>  Configurar
-          </button>
-          </mat-menu>
           <button mat-button [matMenuTriggerFor]="manager">
               <i class="material-icons">group</i> Administrador
           </button>
           <mat-menu #manager="matMenu">
-          <button mat-menu-item [routerLink]="['/admin']">
-            <i class="material-icons">person</i> Datos de usuario</button>
+              <button mat-menu-item [routerLink]="['/buzon']">
+                <i class="material-icons">mail_outline</i> Buzon de sugerencias</button>
           <button mat-menu-item [routerLink]="['/contrasena']">
-            <i class="material-icons">vpn_key</i> Cambiar contraseña</button>
+            <i class="material-icons">vpn_key</i> Datos de acceso</button>
           <button mat-menu-item>
               <i class="material-icons">exit_to_app</i> Cerrar sesión</button>
           </mat-menu>
           <button mat-button [matMenuTriggerFor]="help">
               <i class="material-icons">help</i> Ayuda</button>
           <mat-menu #help="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="openFile()">
               <i class="material-icons">book</i> Manual</button>
+
           <button mat-menu-item [routerLink]="['/primerosPasos']">
             <i class="material-icons">child_care </i> Primeros pasos</button>
           </mat-menu>

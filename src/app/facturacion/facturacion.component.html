@@ -1,4 +1,67 @@
-<p>
-  facturacion works!
-</p>
-<hr>
+<div class="conteiner">
+  <h1 class="title">Historial de facturas</h1>
+  <hr>
+  <div class="clear"></div>
+  <div class="list">
+    <div *ngIf="isValid">
+        <div class="alert alert-info">
+            <strong>Info!  </strong>  {{getMessage}}</div>
+
+    </div>
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Buscar"
+      />
+    </mat-form-field>
+
+    <mat-table [dataSource]="getDataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="documento">
+        <mat-header-cell *matHeaderCellDef> No°. Documento </mat-header-cell>
+        <mat-cell *matCellDef="let bill"> {{ bill.documento }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombres">
+        <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+        <mat-cell *matCellDef="let bill"> {{ bill.nombres }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="tipo">
+        <mat-header-cell *matHeaderCellDef> Tipo reserva </mat-header-cell>
+        <mat-cell *matCellDef="let bill"> {{ bill.tipo }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="fecha_reserva">
+        <mat-header-cell *matHeaderCellDef> Fecha de reserva </mat-header-cell>
+        <mat-cell *matCellDef="let bill"> {{ bill.fecha_reserva }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="fecha_inicial">
+        <mat-header-cell *matHeaderCellDef> Fecha inicial </mat-header-cell>
+        <mat-cell *matCellDef="let bill"> {{ bill.fecha_inicial }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="fecha_final">
+        <mat-header-cell *matHeaderCellDef> Fecha Final </mat-header-cell>
+        <mat-cell *matCellDef="let bill"> {{ bill.fecha_final }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="importe">
+        <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+        <mat-cell *matCellDef="let bill"> {{ bill.importe}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</div>
+

@@ -21,9 +21,15 @@
         </ng-container>
 
         <!-- Name Column -->
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+          <mat-cell *matCellDef="let reserve"> {{ getPhoneUser(reserve.idClient)}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
         <ng-container matColumnDef="dateReserve">
           <mat-header-cell *matHeaderCellDef> Fecha reserva </mat-header-cell>
-          <mat-cell *matCellDef="let reserve"> {{ reserve.dateReserve | date:'mediumDate'}} </mat-cell>
+          <mat-cell *matCellDef="let reserve"> {{  getFormatDate(reserve.dateReserve) | date:'mediumDate'}} </mat-cell>
         </ng-container>s
 
         <!-- Name Column -->
@@ -37,13 +43,13 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="deteInput">
           <mat-header-cell *matHeaderCellDef> Entra </mat-header-cell>
-          <mat-cell *matCellDef="let reserve"> {{  reserve.deteInput | date:'mediumDate' }}  </mat-cell>
+          <mat-cell *matCellDef="let reserve"> {{   getFormatDate(reserve.deteInput)| date:'mediumDate'}}  </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="dateOutput">
           <mat-header-cell *matHeaderCellDef> Salida </mat-header-cell>
-          <mat-cell *matCellDef="let reserve">{{ reserve.dateOutput | date:'mediumDate' }} </mat-cell>
+          <mat-cell *matCellDef="let reserve">{{  getFormatDate(reserve.dateOutput)| date:'mediumDate'}} </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
@@ -64,14 +70,15 @@
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
           <mat-cell *matCellDef="let reserve">
-            <button mat-raised-button  data-toggle="modal" data-backdrop="false" (click)="setReserveAux(reserve)" data-target="#exampleModal">
+            <button mat-raised-button matTooltip="Cancelar reserva" [matTooltipPosition]="positionOptions"
+            data-toggle="modal" data-backdrop="false" (click)="setReserveAux(reserve)" data-target="#exampleModal">
               <img src="/assets/delete.png" alt="" class="img-icon"/>
             </button>
           </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns2"></mat-row>
       </mat-table>
     </div>
 
@@ -116,7 +123,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="dateReserve">
           <mat-header-cell *matHeaderCellDef> Fecha reserva </mat-header-cell>
-          <mat-cell *matCellDef="let reserve"> {{ reserve.dateReserve | date:'mediumDate'}} </mat-cell>
+          <mat-cell *matCellDef="let reserve"> {{ getFormatDate(reserve.dateReserve )| date:'mediumDate' }} </mat-cell>
         </ng-container>s
 
         <!-- Name Column -->
@@ -132,7 +139,7 @@
                 *ngFor="let state of stateReserveList"
                 [value]="state.idState"
                 (click)=saveOurUpdate(reserve)>
-                <span *ngIf="state.idState != 1 && state.idState != 5" >{{ state.nameState }}</span>
+                <span *ngIf="state.idState != 1" >{{ state.nameState }}</span>
               </mat-option>
             </mat-select>
 
@@ -142,13 +149,13 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="deteInput">
           <mat-header-cell *matHeaderCellDef> Entra </mat-header-cell>
-          <mat-cell *matCellDef="let reserve"> {{  reserve.deteInput | date:'mediumDate' }}  </mat-cell>
+          <mat-cell *matCellDef="let reserve"> {{   getFormatDate(reserve.deteInput)| date:'mediumDate'}}  </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="dateOutput">
           <mat-header-cell *matHeaderCellDef> Salida </mat-header-cell>
-          <mat-cell *matCellDef="let reserve">{{ reserve.dateOutput | date:'mediumDate' }} </mat-cell>
+          <mat-cell *matCellDef="let reserve">{{  getFormatDate(reserve.dateOutput)| date:'mediumDate' }} </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
@@ -169,7 +176,7 @@
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
           <mat-cell *matCellDef="let reserve">
-            <button mat-raised-button>
+            <button mat-raised-button  matTooltip="Generar cobro" [matTooltipPosition]="positionOptions" (click)="openDialog(reserve)">
               <img src="/assets/invoice.png" alt="" class="img-icon"/>
             </button>
           </mat-cell>

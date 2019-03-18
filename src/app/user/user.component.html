@@ -67,12 +67,6 @@
         <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="city">
-        <mat-header-cell *matHeaderCellDef> Ciudad </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{ user.city }} </mat-cell>
-      </ng-container>
-
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
         <mat-cell *matCellDef="let user">

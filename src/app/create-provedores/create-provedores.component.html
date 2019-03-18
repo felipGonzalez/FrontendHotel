@@ -14,6 +14,7 @@
           maxlength="30"
           placeholder="Ingrese el nombre"
           [formControl]="nameControl"
+          (keypress)="restrictext($event)"
           [(ngModel)]="providerActually.nameProvider"
         />
         <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
@@ -36,14 +37,16 @@
       <mat-form-field class="full-width">
         <input
           matInput
-          type="number"
-          max="10"
+          type="text"
+          maxLength="10"
+          #nit
           placeholder="Ingrese el Nit"
           [formControl]="nitControl"
+          (keypress)="restrictNumeric($event)"
           pattern="[0-9]+"
           [(ngModel)]="providerActually.nitProvider"
         />
-
+        <mat-hint align="end">{{ nit.value.length }} / 10</mat-hint>
         <mat-error
           *ngIf="
             nitControl.hasError('maxLength') && !nitControl.hasError('required')
@@ -61,12 +64,16 @@
       <mat-form-field class="full-width">
         <span matPrefix>+57 &nbsp;</span>
         <input
-          type="number"
+          type="text"
           matInput
+          maxLength="10"
+          #tel
+          (keypress)="($event)"
           placeholder="Telefono"
           [(ngModel)]="providerActually.phoneProvider"
           name="first"
         />
+        <mat-hint align="end">{{ tel.value.length }} / 10</mat-hint>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
     </div>
@@ -78,6 +85,7 @@
           matInput
           #ubication
           maxlength="30"
+          (keypress)="restrictext($event)"
           placeholder="Ingrese la ubicación"
           [formControl]="ubicationControl"
           [(ngModel)]="providerActually.cityProvider"

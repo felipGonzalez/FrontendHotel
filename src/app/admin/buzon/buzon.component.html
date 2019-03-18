@@ -1,0 +1,124 @@
+<div class="conteiner">
+  <h1 class="title">Buzón</h1>
+  <hr />
+  <div class="clear"></div>
+  <div class="alert alert-info" *ngIf="getValid">
+    <strong>Info!</strong> {{ getMessageInfo }}
+  </div>
+
+  <div class="list">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Buscar"
+      />
+    </mat-form-field>
+
+    <mat-table [dataSource]="getDataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="idMessage">
+        <mat-header-cell *matHeaderCellDef> No°. </mat-header-cell>
+        <mat-cell *matCellDef="let mailbox"> {{ mailbox.idMessage }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nameClient">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let mailbox">
+          {{ mailbox.nameClient }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="lastClient">
+        <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+        <mat-cell *matCellDef="let mailbox">
+          {{ mailbox.lastClient }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="emailClient">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let mailbox">
+          {{ mailbox.emailClient }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="affair">
+        <mat-header-cell *matHeaderCellDef> Asunto </mat-header-cell>
+        <mat-cell *matCellDef="let mailbox"> {{ mailbox.affair }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
+        <mat-cell *matCellDef="let mailbox">
+          <button
+            mat-raised-button
+            matTooltip="Ver mensaje"
+            [matTooltipPosition]="positionOptions"
+            data-toggle="modal"
+            data-backdrop="false"
+            (click)="onClick(mailbox)"
+            data-target="#exampleModal"
+          >
+            <i class="material-icons">message</i>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ getMailBox.affair }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6"><h5>Remitente :</h5></div>
+          <div class="col-12">{{ getMailBox.nameClient }}  {{getMailBox.lastClient}}</div>
+        </div>
+        <div class="row">
+            <div class="col-12"><h5>Mensaje :</h5></div>
+            <div class="col-12">{{ getMailBox.message }}</div>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          class="btn btn-primary"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

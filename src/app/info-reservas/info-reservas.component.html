@@ -168,15 +168,6 @@
       </ng-container>
 
 
-      <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef> acciones </mat-header-cell>
-          <mat-cell *matCellDef="let data">
-            <button mat-raised-button >
-                <i class="material-icons">edit</i>
-            </button>
-            </mat-cell>
-        </ng-container>
-
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

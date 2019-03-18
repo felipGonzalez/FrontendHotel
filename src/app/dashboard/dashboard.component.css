@@ -21,3 +21,18 @@
 .div-row {
   max-height: 50px;
 }
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table{
+
+  width: 100%;
+}
+
+.card {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

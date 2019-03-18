@@ -64,6 +64,13 @@ export class CreateSteateRoomComponent implements OnInit {
     }
    }
 
+   public restrictext(e) {
+    let input;
+    input = String.fromCharCode(e.which);
+    return !!/[\D]/.test(input);
+  }
+
+
   get messageInfo() {
     return this.message;
   }

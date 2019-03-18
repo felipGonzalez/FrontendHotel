@@ -41,9 +41,9 @@
       <!-- Name Column -->
       <ng-container matColumnDef="stateRoom">
         <mat-header-cell *matHeaderCellDef> Estado Habitación </mat-header-cell>
-        <mat-cell *matCellDef="let room">{{
-          getTextStatus(room.stateRoom)
-        }}</mat-cell>
+        <mat-cell *matCellDef="let room">
+          {{getTextStatus(room.stateRoom)}} &nbsp; <div  class="divColor" [ngStyle]="{'background-color': getColorStatus(room.stateRoom)}" ></div>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="action">

@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
   private domainsList: string[] = ['M', 'F', 'I','N'];
 
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'gender', 'document', 'phone', 'email', 'city', 'action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'gender', 'document', 'phone', 'email', 'action'];
 
 
   constructor(private userService: UserService, private router: Router) {

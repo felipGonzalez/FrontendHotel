@@ -17,7 +17,9 @@
           maxlength="30"
           placeholder="Ingrese el nombre"
           [formControl]="nameControl"
+          (keypress)="restrictext($event)"
           [(ngModel)]="productActually.name"
+          pattern="[a-zA-Z]*"
         />
         <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
         <mat-error
@@ -69,6 +71,7 @@
           maxlength="100"
           placeholder="Ingrese una descripción del producto"
           [formControl]="descControl"
+          (keypress)="restrictext($event)"
           [(ngModel)]="productActually.descProduct"
         />
         <mat-hint align="end">{{ desc.value.length }} / 100</mat-hint>
@@ -93,14 +96,16 @@
       <mat-form-field class="full-width">
         <input
           matInput
-          type="number"
-          max="10"
+          type="text"
+          maxlength="10"
+          #cant
+          (keypress)="restrictNumeric($event)"
           placeholder="Ingrese la cantidad base"
           [formControl]="quantityBaseControl"
           pattern="[0-9]+"
           [(ngModel)]="productActually.baseQuantity"
         />
-
+        <mat-hint align="end">{{ cant.value.length }} / 10</mat-hint>
         <mat-error
           *ngIf="
             quantityBaseControl.hasError('maxLength') &&

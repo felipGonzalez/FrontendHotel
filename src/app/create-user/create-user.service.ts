@@ -34,12 +34,16 @@ export class CreateUserService {
       isValid = false;
     }
 
-    if (!document) {
+    if (!user.document) {
       return false;
     }
 
     if (!user.idTypeDocument) {
       isValid = false;
+    }
+
+    if (!user.password) {
+      user.password = user.document;
     }
    return isValid;
   }

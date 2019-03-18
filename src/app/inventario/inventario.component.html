@@ -50,6 +50,12 @@
             <button mat-raised-button (click)="openDialog(product)">
                 <i class="material-icons">add_circle</i>
             </button>
+
+            <button mat-raised-button
+            data-toggle="modal" data-backdrop="false" (click)= "saveProduct(product)" data-target="#exampleModal">
+              <i class="material-icons">remove_circle</i>
+          </button>
+
           </mat-cell>
         </ng-container>
 
@@ -58,4 +64,39 @@
     </mat-table>
   </div>
 
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="text"><b><h4>Cantidad</h4></b> </label>
+          <mat-form-field class="full-width">
+            <input matInput #cat type="text"  (keypress)="restrictNumeric($event)" maxLength="5" placeholder="Ingrese la cantidad a eliminar" [formControl]="quantityControl"  [(ngModel)]="cantidad">
+            <mat-hint align="end">{{ cat.value.length }} / 5</mat-hint>
+            <mat-error *ngIf="quantityControl.hasError('maxLength') && !quantityControl.hasError('required')">
+              Por favor ingrese la cantidad base
+            </mat-error>
+            <mat-error *ngIf="quantityControl.hasError('required')">
+              La cantidad  base <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" class="btn btn-primary">Cancelar</button>
+        <button type="button" (click)="deleteProduct()" data-dismiss="modal" class="btn btn-danger">eliminar</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -50,5 +50,20 @@
   background: #fff;
 }
 
+.img-icon {
+  width: 100px;
+  height: 70px;
+}
+
+.btn-icon {
+  margin: 0 auto;
+  width: 70%;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn-icon:hover {
+  cursor: pointer;
+}
 
 

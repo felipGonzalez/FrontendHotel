@@ -34,6 +34,29 @@ export class CreateUserComponent implements OnInit {
   selectFormControl = new FormControl('', Validators.required);
   selectGenderControl = new FormControl('', Validators.required);
 
+  nameFormControl = new FormControl('', [Validators.required,
+    Validators.maxLength(30)
+  ]);
+  lastFormControl = new FormControl('', [Validators.required,
+    Validators.maxLength(30)
+  ]);
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  documentFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  phoneFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+
+
   constructor(private createUserService: CreateUserService,
     private router: Router ) {
 
@@ -75,12 +98,37 @@ export class CreateUserComponent implements OnInit {
        }
       });
     } else {
-      this.message = 'Los campos con * son obligatorios';
+      this.message = 'Los campos en rojo son obligatorios';
     }
    }
 
    onChange(event) {
     console.log(event)
+  }
+
+
+  public restrictNumeric(e) {
+    let input;
+    if (e.metaKey || e.ctrlKey) {
+      return true;
+    }
+    if (e.which === 32) {
+      return false;
+    }
+    if (e.which === 0) {
+      return true;
+    }
+    if (e.which < 33) {
+      return true;
+    }
+    input = String.fromCharCode(e.which);
+    return !!/[\d\s]/.test(input);
+  }
+
+  public restrictext(e) {
+    let input;
+    input = String.fromCharCode(e.which);
+    return !!/[\D]/.test(input);
   }
 
   get messageInfo() {return this.message; }

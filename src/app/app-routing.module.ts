@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { AdminComponent } from './admin/admin/admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EstablecimientoComponent } from './establecimiento/establecimiento.component';
 import { InventarioComponent } from './inventario/inventario.component';
@@ -10,7 +9,6 @@ import { LoginComponent } from './login/login.component';
 import { ReservaComponent } from './reserva/reserva.component';
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
 import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
-import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { DatosHotelComponent } from './datos-hotel/datos-hotel.component';
 import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
 import { ProvedoresComponent } from './provedores/provedores.component';
@@ -25,12 +23,12 @@ import { HabitacionComponent } from './habitacion/habitacion.component';
 import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
 import { InfoReservasComponent } from './info-reservas/info-reservas.component';
 import { ReservaHabitacionComponent } from './reserva-habitacion/reserva-habitacion.component';
+import { BuzonComponent } from './admin/buzon/buzon.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'user', component: UserComponent },
   { path: 'createUserComponent', component: CreateUserComponent },
-  { path: 'admin', component: AdminComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'establecimiento', component: EstablecimientoComponent },
   { path: 'inventario', component: InventarioComponent },
@@ -39,7 +37,6 @@ const routes: Routes = [
   { path: 'infoReserva', component: InfoReservasComponent},
   { path: 'nuevaReserva', component: NuevaReservaComponent },
   { path: 'contrasena', component: ContrasenaComponent },
-  { path: 'configuracion', component: ConfiguracionComponent },
   { path: 'datosHotel', component: DatosHotelComponent },
   { path: 'primerosPasos', component: PrimerosPasosComponent },
   { path: 'provedores', component: ProvedoresComponent },
@@ -53,6 +50,7 @@ const routes: Routes = [
   { path: 'habitacion', component: HabitacionComponent},
   { path: 'crearHabitacion', component: CreateHabitacionComponent},
   { path: 'reservaHabitacion', component: ReservaHabitacionComponent },
+  { path: 'buzon', component: BuzonComponent }
 
 ];
 

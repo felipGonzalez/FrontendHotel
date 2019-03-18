@@ -71,6 +71,18 @@ export class HabitacionComponent implements OnInit {
     return text;
   }
 
+  public getColorStatus(id: number) {
+    let color;
+    this.states.forEach(function(element) {
+      if (element.idState === id) {
+        color = element.colorState;
+      }
+    });
+    console.log(color);
+
+    return color;
+  }
+
   public edit(room: HabitacionModel): void {
     sessionStorage.setItem('room', JSON.stringify(room));
     this.router.navigate(['/crearHabitacion']);

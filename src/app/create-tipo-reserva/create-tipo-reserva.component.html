@@ -17,6 +17,7 @@
           maxlength="30"
           placeholder="Ingrese el nombre"
           [formControl]="nameControl"
+          (keypress)="restrictext($event)"
           [(ngModel)]="typeReserveActually.nameType"
         />
         <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
@@ -41,13 +42,16 @@
       <mat-form-field class="full-width">
         <input
           matInput
-          type="number"
-          max="10"
+          type="text"
+          maxLength="10"
+          #price
+          (keypress)="restrictNumeric($event)"
           placeholder="Ingrese la cantidad base"
           [formControl]="priceControl"
           pattern="[0-9]+"
           [(ngModel)]="typeReserveActually.reservationTypePrice"
         />
+        <mat-hint align="end">{{ price.value.length }} / 10</mat-hint>
         <mat-error
           *ngIf="
           priceControl.hasError('maxLength') &&

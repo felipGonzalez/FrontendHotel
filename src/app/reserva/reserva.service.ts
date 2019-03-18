@@ -41,4 +41,10 @@ export class ReservaService {
       HTTP_URL+'listTypeReserve'
     );
   }
+
+  public getCosReserve(idReserve:number): Observable<number> {
+    return this.http.get<number>(
+      HTTP_URL+'listReserve/costReserve/'+idReserve
+    );
+  }
 }

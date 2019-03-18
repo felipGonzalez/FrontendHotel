@@ -5,30 +5,69 @@
     <div *ngIf="!valid" class="alert alert-danger" role="alert">
       <strong>Tenemos un error!</strong> {{ messageInfo }}
     </div>
+
     <div class="form-group">
-      <label for="firstName"> <span *ngIf="!valid" class="required">*</span>Nombres:</label>
-      <input
-        type="text"
-        class="form-control"
-        name="firstName"
-        id="firstName"
-        [(ngModel)]="userActually.firstName"
-        placeholder="Ingrese su Primer Nombre"
-      />
-    </div>
-    <div class="form-group">
-      <label for="firstSurName"
-        ><span class="required" *ngIf="!valid">*</span>Apellidos:</label
-      >
-      <input
-        type="text"
-        class="form-control"
-        name="firstSurName"
-        id="firstSurName"
-        [(ngModel)]="userActually.lastName"
-        placeholder="Ingrese su Primer Apellido"
-      />
-    </div>
+        <label for="firstName"
+          ><b><h4>Nombre</h4></b>
+        </label>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            #name
+            maxlength="30"
+            id="firstName"
+            placeholder="Ingrese el nombre"
+            [formControl]="nameFormControl"
+            (keypress)="restrictext($event)"
+            [(ngModel)]="userActually.firstName"
+            pattern="[a-zA-Z]*"
+          />
+          <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
+          <mat-error
+            *ngIf="
+            nameFormControl.hasError('maxLength') &&
+              !nameFormControl.hasError('required')
+            "
+          >
+            Por favor ingrese un nombre valido
+          </mat-error>
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            El nombre es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-group">
+        <label for="lastName"
+          ><b><h4>Apellidos </h4></b>
+        </label>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            #last
+            maxlength="30"
+            id="lastName"
+            placeholder="Ingrese el apellido"
+            [formControl]="lastFormControl"
+            [(ngModel)]="userActually.lastName"
+            pattern="[a-zA-Z]*"
+            (keypress)="restrictext($event)"
+          />
+          <mat-hint align="end">{{ last.value.length }} / 30</mat-hint>
+          <mat-error
+            *ngIf="
+            lastFormControl.hasError('maxLength') &&
+              !nameFormControl.hasError('required')
+            "
+          >
+            Por favor ingrese un apellido valido
+          </mat-error>
+          <mat-error *ngIf="lastFormControl.hasError('required')">
+            El apellido es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
     <div class="form-group">
       <h4>Genero</h4>
@@ -77,61 +116,108 @@
     </div>
 
     <div class="form-group">
-      <label for="phone"><span class="required" *ngIf="!valid">*</span>Documento</label>
-      <input
-        type="tel "
-        class="form-control"
-        name="document"
-        id="document"
-        [(ngModel)]="userActually.document"
-        placeholder="Ingrese su Documento"
-      />
-    </div>
+        <label for="document"
+          ><b><h4>Documento </h4></b>
+        </label>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            #doc
+            maxlength="10"
+            id="document"
+            placeholder="Ingrese el Numero de documento"
+            [formControl]="documentFormControl"
+            [(ngModel)]="userActually.document"
+            pattern="[a-zA-Z]*"
+            (keypress)="restrictNumeric($event)"
+          />
+          <mat-hint align="end">{{ doc.value.length }} / 10</mat-hint>
+          <mat-error
+            *ngIf="
+            documentFormControl.hasError('maxLength') &&
+              !documentFormControl.hasError('required')
+            "
+          >
+            Por favor ingrese un documento valido
+          </mat-error>
+          <mat-error *ngIf="documentFormControl.hasError('required')">
+            El documento es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
     <div class="form-group">
-      <label for="phone"><span class="required" *ngIf="!valid">*</span>Teléfono</label>
-      <input
-        type="tel"
-        class="form-control"
-        name="phone"
-        id="phone"
-        [(ngModel)]="userActually.phone"
-        placeholder="Ingrese su Teléfono"
-      />
-    </div>
-    <div class="form-group">
-      <label for="adrees"><span *ngIf="!valid" class="required" >*</span>Ciudad</label>
-      <input
-        type="text"
-        class="form-control"
-        name="adrees"
-        id="adrees"
-        [(ngModel)]="userActually.city"
-        placeholder="Ingrese su Dirreción"
-      />
-    </div>
+        <label for="phone"
+          ><b><h4>Teléfono </h4></b>
+        </label>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            #tel
+            maxlength="10"
+            id="phone"
+            placeholder="Ingrese un teléfono"
+            [formControl]="phoneFormControl"
+            [(ngModel)]="userActually.phone"
+            pattern="[a-zA-Z]*"
+            (keypress)="restrictNumeric($event)"
+          />
+          <mat-hint align="end">{{ tel.value.length }} / 10</mat-hint>
+          <mat-error
+            *ngIf="
+            phoneFormControl.hasError('maxLength') &&
+              !phoneFormControl.hasError('required')
+            "
+          >
+            Por favor ingrese un teléfono valido
+          </mat-error>
+          <mat-error *ngIf="documentFormControl.hasError('required')">
+            El teléfono es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
 
     <div class="form-group">
-      <label for="adrees"><span class="required"*ngIf="!valid" >*</span>Email</label>
-      <input
-        type="email"
-        class="form-control"
-        name="email"
-        id="email"
-        [(ngModel)]="userActually.email"
-        placeholder="Ingrese su Dirreción"
-      />
-    </div>
+       <h4>Correo</h4>
+      <mat-form-field class="full-width">
+       <input matInput
+       #email
+       maxlength="50"
+        placeholder="Ingrese su correo electrónico" [formControl]="emailFormControl"
+        [(ngModel)]="userActually.email"  name="email" >
+        <mat-hint align="end">{{ email.value.length }} / 50</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor ingrese un correo valido
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          El correo  es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+        </div>
     <hr>
-    <button
-      type="submit"
-      (click)="saveOurUpdate()"
-      class="btn btn-primary btn-save"
-    >
-      Guardar
-    </button>
-    <button type="button" [routerLink]="['/user']" class="btn btn-success">
-      Cancelar
-    </button>
+    <div class="row btn-div">
+        <div class="col-xl-6 text-center">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-save"
+            (click)="saveOurUpdate()"
+          >
+            Guardar
+          </button>
+        </div>
+        <div class="col-xl-6 text-center">
+          <button
+            type="button"
+            [routerLink]="['/user']"
+
+            class="btn btn-success btn-block"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+
   </form>
 </div>

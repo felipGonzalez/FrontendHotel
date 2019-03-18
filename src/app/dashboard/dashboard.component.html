@@ -4,15 +4,16 @@
   </section>
   <hr />
   <div>
-
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-lg-6  col-xl-3">
         <div class="row div-card">
           <div class="col-6 div-sub">
-            <img src="/assets/log-in.png" alt="" class="img-icon"/>
+            <img src="/assets/log-in.png" alt="" class="img-icon" />
           </div>
           <div class="col-6 text-right div-card-infon">
-            <div class="col-xl-12 "><h1 class="decoration-text">{{numberClientInput}}</h1></div>
+            <div class="col-xl-12 ">
+              <h1 class="decoration-text">{{ numberClientInput }}</h1>
+            </div>
             <div class="col-xl-12">
               <p class="decoration-text">Entran hoy</p>
             </div>
@@ -26,7 +27,9 @@
             <img src="/assets/logout.png" alt="" class="img-icon" />
           </div>
           <div class="col-6 text-right div-card-infon">
-            <div class="col-xl-12"><h1 class="decoration-text">{{numberClientOutput}}</h1></div>
+            <div class="col-xl-12">
+              <h1 class="decoration-text">{{ numberClientOutput }}</h1>
+            </div>
             <div class="col-xl-12">
               <p class="decoration-text">Salen hoy</p>
             </div>
@@ -38,12 +41,14 @@
         <div class="row div-card">
           <div class="col-6">
             <p>
-              <img src="/assets/group.png" alt="" class="img-icon"/>
+              <img src="/assets/group.png" alt="" class="img-icon" />
             </p>
           </div>
 
           <div class="col-6 text-right div-card-infon">
-            <div class="col-xl-12"><h1 class="decoration-text">{{numberClient}}</h1></div>
+            <div class="col-xl-12">
+              <h1 class="decoration-text">{{ numberClient }}</h1>
+            </div>
             <div class="col-xl-12">
               <p class="decoration-text">Huéspedes</p>
             </div>
@@ -54,10 +59,14 @@
       <div class="col-xs-12 col-sm-12 col-lg-6  col-xl-3">
         <div class="row div-card">
           <div class="col-6">
-            <img src="/assets/building.png" alt="" class="img-icon"/>
+            <img src="/assets/building.png" alt="" class="img-icon" />
           </div>
           <div class="col-5 text-right div-card-infon">
-            <div class="col-xl-12"><h1 class="decoration-text">{{numberRoom}}/{{numberRoomTotal}}</h1></div>
+            <div class="col-xl-12">
+              <h1 class="decoration-text">
+                {{ numberRoom }}/{{ numberRoomTotal }}
+              </h1>
+            </div>
             <div class="col-xl-12">
               <p class="decoration-text">Ocupación</p>
             </div>
@@ -68,8 +77,92 @@
     <hr />
   </div>
 
-  <div>
+  <div class="row">
+    <div class=" col-12 card">
+
+        <div class="list">
+            <div><h4>Entran hoy</h4></div>
+            <div class="alert alert-info" *ngIf="isValidDiv1">
+                <strong>Info!</strong> Sin Entradas para hoy</div>
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter1($event.target.value)" placeholder="Buscar">
+            </mat-form-field>
+
+            <mat-table [dataSource]="dataSourceList" >
+
+               <!-- Name Column -->
+               <ng-container matColumnDef="name">
+                  <mat-header-cell  *matHeaderCellDef> Nombre </mat-header-cell>
+                  <mat-cell  *matCellDef="let data"> {{data.nombres}} </mat-cell>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="impor">
+                  <mat-header-cell  *matHeaderCellDef> Importe </mat-header-cell>
+                  <mat-cell  *matCellDef="let data"> {{data.importe}} </mat-cell>
+                </ng-container>
+
+                 <!-- Name Column -->
+               <ng-container matColumnDef="dateInit">
+                  <mat-header-cell  *matHeaderCellDef> Fecha Inicial </mat-header-cell>
+                  <mat-cell  *matCellDef="let data" >{{ getFormatDate(data.fecha_inicial) | date:'mediumDate' }}</mat-cell>
+                </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="dateEnd">
+                <mat-header-cell *matHeaderCellDef> Fecha Final </mat-header-cell>
+                <mat-cell *matCellDef="let data"> {{ getFormatDate(data.fecha_final) | date:'mediumDate' }}</mat-cell>
+              </ng-container>
 
 
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          </div>
+
+    </div>
+
+  </div>
+<br>
+  <div class="row">
+    <div class=" col-12 card">
+      <div class="list">
+          <div><h4>Salen hoy</h4></div>
+          <div class="alert alert-info" *ngIf="isValidDiv2">
+              <strong>Info!</strong> Sin Salidas para hoy</div>
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter2($event.target.value)" placeholder="Buscar">
+          </mat-form-field>
+
+          <mat-table [dataSource]="dataSourceList2" >
+
+             <!-- Name Column -->
+             <ng-container matColumnDef="name">
+                <mat-header-cell  *matHeaderCellDef> Nombre </mat-header-cell>
+                <mat-cell  *matCellDef="let data"> {{data.nombres}} </mat-cell>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="impor">
+                <mat-header-cell  *matHeaderCellDef> Importe </mat-header-cell>
+                <mat-cell  *matCellDef="let data"> {{data.importe}} </mat-cell>
+              </ng-container>
+
+               <!-- Name Column -->
+             <ng-container matColumnDef="dateInit">
+                <mat-header-cell  *matHeaderCellDef> Fecha Inicial </mat-header-cell>
+                <mat-cell  *matCellDef="let data" >{{ getFormatDate(data.fecha_inicial) | date:'shortDate' }}</mat-cell>
+              </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="dateEnd">
+              <mat-header-cell *matHeaderCellDef> Fecha Final </mat-header-cell>
+              <mat-cell *matCellDef="let data"> {{ getFormatDate(data.fecha_final) | date:'shortDate' }} </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+  </div>
   </div>
 </div>

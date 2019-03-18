@@ -89,6 +89,7 @@ export class NuevaReservaComponent implements OnInit {
     this.reserve = new ReserveModel();
     this.reserve.dateReserve = new Date();
     this.reserve.idTypeReserve = 0;
+    this.reserve.idStateReserve = 1;
     this.selectFormControl = new FormControl('', Validators.required);
     this.numBedFormControl = new FormControl('', Validators.required);
 

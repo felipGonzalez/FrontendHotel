@@ -8,6 +8,8 @@ import { CategoryProductModel } from 'src/app/model/CategoryProductModel';
 import { ProvedoresService } from 'src/app/provedores/provedores.service';
 import { ProviderModel } from 'src/app/model/ProviderModel';
 import { FormControl, Validators } from '@angular/forms';
+import { CreateProductService } from '../create-product/create-product.service';
+import { OK } from '../model/httpStatus';
 
 @Component({
   selector: 'app-inventario',
@@ -28,6 +30,12 @@ export class InventarioComponent implements OnInit {
   ];
   private dataSource;
   private categoryProducts: Array<CategoryProductModel>;
+  cantidad;
+
+  quantityControl= new FormControl('', [
+    Validators.required,
+    Validators.maxLength(10)
+  ]);;
 
   constructor(
     private productService: InventarioService,
@@ -82,20 +90,7 @@ export class InventarioComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog(product: ProductModel): void {
-// tslint:disable-next-line: no-use-before-declare
-    const dialogRef = this.dialog.open(ModalCompraInventario, {
-      width: '800px',
-      data: {id: product.id , idCategory:product.idCategory ,
-        name:product.name , descProduct:product.descProduct ,
-        actualQuantity: product.actualQuantity, baseQuantity: product.actualQuantity}
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      product = result;
-    });
-  }
 
   get dataSourceList() { return this.dataSource; }
 
@@ -108,13 +103,83 @@ export class InventarioComponent implements OnInit {
 
 
 
+  openDialog(product: ProductModel): void {
+    // tslint:disable-next-line: no-use-before-declare
+        const dialogRef = this.dialog.open(ModalCompraInventario, {
+          width: '800px',
+          data: {id: product.id , idCategory:product.idCategory ,
+            name:product.name , descProduct:product.descProduct ,
+            actualQuantity: product.actualQuantity, baseQuantity: product.baseQuantity}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+         this.loadProducts();
+        });
+      }
+
+      saveProduct(product: ProductModel) {
+        sessionStorage.setItem('product1', JSON.stringify(product));
+      }
+
+      public restrictNumeric(e) {
+        let input;
+        if (e.metaKey || e.ctrlKey) {
+          return true;
+        }
+        if (e.which === 32) {
+          return false;
+        }
+        if (e.which === 0) {
+          return true;
+        }
+        if (e.which < 33) {
+          return true;
+        }
+        input = String.fromCharCode(e.which);
+        return !!/[\d\s]/.test(input);
+      }
+
+    deleteProduct():void {
+      var product: ProductModel
+      if (sessionStorage.getItem('product1')) {
+
+
+        product = JSON.parse(sessionStorage.getItem('product1'));
+
+        if(product.actualQuantity > this.cantidad) {
+
+
+          product.actualQuantity = Number(product.actualQuantity) - Number(this.cantidad);
+          this.saveOurUpdate(product);
+        }else {
+          this.cantidad = null;
+        }
+      }
+  }
+
+  public saveOurUpdate(product:ProductModel): void {
+
+    if (this.productService.validate(product)) {
+
+        this.productService.saveOurUpdate(product).subscribe(res => {
+       if (res.responseCode === OK) {
+        this.loadProducts();
+       } else {
+
+       }
+      });
+    } else {
+
+    }
+   }
+
 }
 
 @Component({
   selector: 'inventario-compra-modal',
   templateUrl: 'inventario-compra-modal.html',
   styleUrls: ['./inventario-compra-modal.css'],
-  providers: [ProvedoresService]
+  providers: [ProvedoresService, InventarioService]
 })
 
 export class ModalCompraInventario implements OnInit {
@@ -122,10 +187,20 @@ export class ModalCompraInventario implements OnInit {
   private providers: Array<ProviderModel>;
   private selectFormControl;
   private quantityFormControl;
+  price:number;
+  quantity:number;
+
+  priceFormControl= new FormControl('', [
+    Validators.required,
+    Validators.maxLength(10)
+  ]);;
+
+
 
 
   constructor(
     private router: Router,
+    private productService: InventarioService,
     public dialogRef: MatDialogRef<ModalCompraInventario>,
     private providerService: ProvedoresService,
     @Inject(MAT_DIALOG_DATA) public data: ProductModel) {
@@ -134,6 +209,7 @@ export class ModalCompraInventario implements OnInit {
         Validators.required,
         Validators.maxLength(10)
       ]);
+
     }
 
     ngOnInit() {
@@ -150,9 +226,52 @@ export class ModalCompraInventario implements OnInit {
     }
 
 
+    public saveOurUpdate(): void {
+
+      if (this.productService.validate(this.data)) {
+
+        this.data.actualQuantity = Number(this.data.actualQuantity) + Number(this.quantity);
+          this.productService.saveOurUpdate(this.data).subscribe(res => {
+         if (res.responseCode === OK) {
+          this.onNoClick();
+         } else {
+
+         }
+        });
+      } else {
+
+      }
+     }
+
   onNoClick(): void {
     this.dialogRef.close();
     this.router.navigate(['/inventario']);
+  }
+
+
+
+  public restrictNumeric(e) {
+    let input;
+    if (e.metaKey || e.ctrlKey) {
+      return true;
+    }
+    if (e.which === 32) {
+      return false;
+    }
+    if (e.which === 0) {
+      return true;
+    }
+    if (e.which < 33) {
+      return true;
+    }
+    input = String.fromCharCode(e.which);
+    return !!/[\d\s]/.test(input);
+  }
+
+  public restrictext(e) {
+    let input;
+    input = String.fromCharCode(e.which);
+    return !!/[\D]/.test(input);
   }
 
   get selectControl() {return this.selectFormControl; }

@@ -21,16 +21,14 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 
 import { UserComponent } from './user/user.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { ReservaComponent } from './reserva/reserva.component';
+import { ReservaComponent, ModalBill } from './reserva/reserva.component';
 import { InventarioComponent, ModalCompraInventario } from './inventario/inventario.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EstablecimientoComponent } from './establecimiento/establecimiento.component';
-import { AdminComponent } from './admin/admin/admin.component';
 import { ContrasenaComponent } from './admin/contrasena/contrasena.component';
 import { LoginComponent } from './login/login.component';
 import { SalirComponent } from './admin/salir/salir.component';
 import { NuevaReservaComponent } from './nueva-reserva/nueva-reserva.component';
-import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { PrimerosPasosComponent } from './primeros-pasos/primeros-pasos.component';
 import { DatosHotelComponent } from './datos-hotel/datos-hotel.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -50,6 +48,7 @@ import { HabitacionComponent } from './habitacion/habitacion.component';
 import { CreateHabitacionComponent } from './create-habitacion/create-habitacion.component';
 import { InfoReservasComponent } from './info-reservas/info-reservas.component';
 import { ReservaHabitacionComponent } from './reserva-habitacion/reserva-habitacion.component';
+import { BuzonComponent } from './admin/buzon/buzon.component';
 
 
 @NgModule({
@@ -62,12 +61,10 @@ import { ReservaHabitacionComponent } from './reserva-habitacion/reserva-habitac
     InventarioComponent,
     DashboardComponent,
     EstablecimientoComponent,
-    AdminComponent,
     ContrasenaComponent,
     LoginComponent,
     SalirComponent,
     NuevaReservaComponent,
-    ConfiguracionComponent,
     PrimerosPasosComponent,
     DatosHotelComponent,
     ProvedoresComponent,
@@ -82,7 +79,9 @@ import { ReservaHabitacionComponent } from './reserva-habitacion/reserva-habitac
     HabitacionComponent,
     CreateHabitacionComponent,
     InfoReservasComponent,
-    ReservaHabitacionComponent
+    ReservaHabitacionComponent,
+    ModalBill,
+    BuzonComponent
    ],
   imports: [
     BrowserModule,
@@ -145,6 +144,6 @@ import { ReservaHabitacionComponent } from './reserva-habitacion/reserva-habitac
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[InventarioComponent, ModalCompraInventario]
+  entryComponents:[InventarioComponent, ModalCompraInventario,ModalBill]
 })
 export class AppModule { }

@@ -22,7 +22,7 @@ export class InfoReservasComponent implements OnInit {
   private isValid: boolean;
   public listDataInfoReserve: Array<DataInfoReserveModel>;
   private numSelect: number;
-  displayedColumns: string[] = ['name', 'dateInit', 'dateEnd', 'impor', 'action'];
+  displayedColumns: string[] = ['name', 'dateInit', 'dateEnd', 'impor'];
   private dataSource;
 
 
@@ -153,7 +153,7 @@ export class InfoReservasComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-}
+  }
 
   public onValid(){
     this.isValid = true;

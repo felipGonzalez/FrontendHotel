@@ -1,4 +1,4 @@
-<div class="conteiner cont">
+<div class="conteiner">
     <h1 mat-dialog-title>Agregar compra producto  {{data.name}}</h1>
     <hr>
     <form class="form-main">
@@ -33,15 +33,11 @@
             <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
       </div>
-
-
-
-
     <div class="form-group">
       <label for="text"><b><h4>Cantidad</h4></b> </label>
       <mat-form-field class="full-width">
-        <input matInput  type="number"  max="10" placeholder="Ingrese la cantidad base" [formControl]="quantityControl"  pattern="[0-9]+"  [(ngModel)]="quantityControl.baseQuantity">
-
+        <input matInput #cat type="text"   maxLength="5" placeholder="Ingrese la cantidad base" [formControl]="quantityControl"  [(ngModel)]="quantity">
+        <mat-hint align="end">{{ cat.value.length }} / 5</mat-hint>
         <mat-error *ngIf="quantityControl.hasError('maxLength') && !quantityControl.hasError('required')">
           Por favor ingrese la cantidad base
         </mat-error>
@@ -51,9 +47,24 @@
       </mat-form-field>
     </div>
 
+
+    <div class="form-group">
+      <label for="text"><b><h4>Precio</h4></b> </label>
+      <mat-form-field class="full-width">
+        <input matInput  type="text"  #pre maxLength="5" placeholder="Ingrese el precio" [formControl]="priceFormControl"  pattern="[0-9]+"  [(ngModel)]="price">
+        <mat-hint align="end">{{ pre.value.length }} / 5</mat-hint>
+        <mat-error *ngIf="priceFormControl.hasError('maxLength') && !priceFormControl.hasError('required')">
+          Por favor ingrese un precio
+        </mat-error>
+        <mat-error *ngIf="priceFormControl.hasError('required')">
+          El precio es  <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">Cerrar sin guardar</button>
-        <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Guardar</button>
+        <button mat-button (click)="saveOurUpdate()" cdkFocusInitial>Guardar</button>
       </div>
     </form>
 </div>
