@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatDialog} from '@angular/material';
 import { NuevaReservaComponent } from 'src/app/nueva-reserva/nueva-reserva.component';
+import { LoginService } from '../login/login.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class ConteinerComponent {
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
 
-  constructor(
+  constructor(private loginService: LoginService,
     private breakpointObserver: BreakpointObserver,
     private dialog: MatDialog
   ) {}
@@ -29,8 +30,13 @@ export class ConteinerComponent {
 }
 
 public openFile() {
-  window.open("https://firebasestorage.googleapis.com/v0/b/hotelyeimar-001.appspot.com/o/Manual.pdf?alt=media&token=8dc6cede-8c1b-458a-ba35-6aa5d2ab35c4");
-
+  window.open("https://firebasestorage.googleapis.com/v0/b/hotelyeimar-001.appspot.com/o/Manual.pdf?alt=media&token=c076aca5-ef08-4238-b65a-24df7ab6755f");
 }
+
+
+ public logOut() {
+  this.loginService.logoutUser();
+  location.reload();
+ }
 
 }

@@ -1,1 +1,9 @@
-<app-conteiner></app-conteiner>
+<div *ngIf="getVari != null" >
+  <app-conteiner></app-conteiner>
+</div>
+
+<div *ngIf="getVari == null" >
+  <app-login></app-login>
+</div>
+
+

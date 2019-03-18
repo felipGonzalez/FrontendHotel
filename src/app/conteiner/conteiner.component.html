@@ -51,8 +51,9 @@
                 <i class="material-icons">mail_outline</i> Buzon de sugerencias</button>
           <button mat-menu-item [routerLink]="['/contrasena']">
             <i class="material-icons">vpn_key</i> Datos de acceso</button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="logOut()">
               <i class="material-icons">exit_to_app</i> Cerrar sesión</button>
+
           </mat-menu>
           <button mat-button [matMenuTriggerFor]="help">
               <i class="material-icons">help</i> Ayuda</button>
